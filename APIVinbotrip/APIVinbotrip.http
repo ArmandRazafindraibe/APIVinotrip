@@ -1,0 +1,6 @@
+@APIVinbotrip_HostAddress = http://localhost:5208
+
+GET {{APIVinbotrip_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
