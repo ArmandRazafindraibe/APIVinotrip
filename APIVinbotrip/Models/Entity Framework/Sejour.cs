@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIVinbotrip.Models.Entity_Framework
 {
     [Table("SEJOUR")]
-    public class Sejour
+    public partial class Sejour
     {
         [Key]
         [Column("idSejour")]
@@ -43,22 +44,39 @@ namespace APIVinbotrip.Models.Entity_Framework
         [Column("idTheme")]
         public int IdTheme { get; set; }
 
-        [Column("idParticipant")]
-        public int IdParticipant { get; set; }
+        [Column("idCategorieSejour")]
+        public int IdCategorieSejour { get; set; }
 
-        [InverseProperty(nameof(Duree.Sejours))]
-        public virtual Duree? DureeSejour { get; set; }
+        [Column("idCategorieParticipant")]
+        public int IdCategorieParticipant { get; set; }
 
-        [InverseProperty(nameof(CategorieVignoble.Sejours))]
-        public virtual CategorieVignoble? CategorieVignobleSejour { get; set; }
-
-        [InverseProperty(nameof(Localite.Sejours))]
-        public virtual Localite? LocaliteSejour { get; set; }
+        // Navigation properties (One-to-One relationships)
+        [InverseProperty(nameof(CategorieSejour.Sejours))]
+        public virtual CategorieSejour? CategorieSejour { get; set; }
 
         [InverseProperty(nameof(Theme.Sejours))]
-        public virtual Theme? ThemeSejour { get; set; }
+        public virtual Theme? Theme { get; set; }
 
-        [InverseProperty(nameof(Participant.Sejours))]
-        public virtual Participant? ParticipantSejour { get; set; }
+        [InverseProperty(nameof(CategorieVignoble.Sejours))]
+        public virtual CategorieVignoble? CategorieVignoble { get; set; }
+
+        [InverseProperty(nameof(Duree.Sejours))]
+        public virtual Duree? Duree { get; set; }
+
+        [InverseProperty(nameof(CategorieParticipant.Sejours))]
+        public virtual CategorieParticipant? CategorieParticipant { get; set; }
+
+        [InverseProperty(nameof(Localite.Sejours))]
+        public virtual Localite? Localite { get; set; }
+
+        // Collection navigation properties (One-to-Many relationships)
+        [InverseProperty(nameof(Etape.Sejour))]
+        public virtual ICollection<Etape> Etapes { get; set; } = new List<Etape>();
+
+        [InverseProperty(nameof(Avis.Sejour))]
+        public virtual ICollection<Avis> Avis { get; set; } = new List<Avis>();
+
+        [InverseProperty(nameof(Photo.Sejour))]
+        public virtual ICollection<Photo> Photos { get; set; } = new List<Photo>();
     }
 }
