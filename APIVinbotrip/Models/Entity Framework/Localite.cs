@@ -20,7 +20,7 @@ namespace APIVinbotrip.Models.Entity_Framework
             [Column("idCategorieVignoble")]
             public int? IdCategorieVignoble { get; set; }
 
-            [InverseProperty(nameof(Sejour.Localite))]
+            [InverseProperty(nameof(Sejour.IdlocaliteNavigation))]
             public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
 
             [ForeignKey(nameof(IdCategorieVignoble))]    

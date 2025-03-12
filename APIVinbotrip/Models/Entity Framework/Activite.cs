@@ -19,8 +19,7 @@ namespace APIVinotrip.Models.Entity_Framework
         [Column("prixActivite", TypeName = "NUMERIC(8,2)")]
         public decimal? PrixActivite { get; set; }
 
-        [InverseProperty(nameof(Comporte.ActiviteComporte))]
-        public virtual ICollection<Comporte> ListeActivites { get; set; } = new List<Comporte>();
+       
 
     }
 }

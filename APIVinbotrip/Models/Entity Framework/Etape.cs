@@ -46,10 +46,7 @@ namespace APIVinbotrip.Models.Entity_Framework
         [InverseProperty(nameof(Hebergement.Etapes))]
         public virtual Hebergement? Hebergement { get; set; }
 
-        // Collection navigation properties
-        [InverseProperty(nameof(Inclus.Etape))]
-        public virtual ICollection<Inclus> InclusCollection { get; set; } = new List<Inclus>();
-
+       
 
     }
 

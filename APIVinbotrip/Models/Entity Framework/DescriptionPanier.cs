@@ -55,14 +55,10 @@ namespace APIVinbotrip.Models.Entity_Framework
 		[Column("disponibiliteHebergement")]
 		public bool? DisponibiliteHebergement { get; set; }
 
-		[InverseProperty(nameof(Detient.DescriptionPanierDetient))]
-		public virtual ICollection<Detient> DetientCollection { get; set; } = new List<Detient>();
-
-		[InverseProperty(nameof(Comporte.DescriptionPanierComporte))]
-		public virtual ICollection<Comporte> ListeDescriptions { get; set; } = new List<Comporte>();
+	
 
         [ForeignKey(nameof(IdSejour))]
-        [InverseProperty(nameof(Sejour.DescriptionsPanierSejour))]
+        [InverseProperty(nameof(Sejour.Descriptionpaniers))]
         public virtual Sejour? Sejour { get; set; }
 
         [ForeignKey(nameof(IdPanier))]

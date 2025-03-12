@@ -16,7 +16,7 @@ namespace APIVinotrip.Models.Entity_Framework
         public string? LibelleCategoriesSejour { get; set; }
 
         // Collection navigation properties
-        [InverseProperty(nameof(Sejour.CategorieSejour))]
+        [InverseProperty(nameof(Sejour.Idcategoriesejour))]
         public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
     }
 }

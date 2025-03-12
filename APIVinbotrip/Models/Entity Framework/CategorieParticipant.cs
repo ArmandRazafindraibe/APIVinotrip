@@ -14,7 +14,7 @@ namespace APIVinbotrip.Models.Entity_Framework
         [StringLength(50)]
         public string? LibelleCategorieParticipant { get; set; }
  
-        [InverseProperty(nameof(Sejour.CategorieParticipant))]
+        [InverseProperty(nameof(Sejour.IdcategorieparticipantNavigation))]
         public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
     }
 

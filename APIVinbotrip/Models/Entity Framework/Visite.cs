@@ -24,16 +24,6 @@ namespace APIVinotrip.Models.Entity_Framework
         [Column("lienVisite")]
         [StringLength(512)]
         public string? LienVisite { get; set; }
-
-        // Navigation properties
-        [ForeignKey(nameof(IdPartenaire))]
-        [InverseProperty(nameof(Partenaire.Visites))]
-        public virtual Partenaire? Partenaire { get; set; }
-
-        // Collection navigation properties
-        [InverseProperty(nameof(Appartient.Visite))]
-        public virtual ICollection<Appartient> AppartientCollection { get; set; } = new List<Appartient>();
-
         [ForeignKey(nameof(IdPartenaire))]
         [InverseProperty(nameof(Cave.Visites))]
         public virtual Cave? Cave { get; set; }

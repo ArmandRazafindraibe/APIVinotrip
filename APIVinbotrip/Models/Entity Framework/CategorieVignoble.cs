@@ -16,13 +16,10 @@ namespace APIVinotrip.Models.Entity_Framework
         public string? LibelleCategorieVignoble { get; set; }
 
         // Collection navigation properties
-        [InverseProperty(nameof(Localite.CategorieVignoble))]
+        [InverseProperty(nameof(Localite.CategoriesVignoble))]
         public virtual ICollection<Localite> Localites { get; set; } = new List<Localite>();
 
-        [InverseProperty(nameof(SeLocalise.CategorieVignoble))]
-        public virtual ICollection<SeLocalise> SaLocalites { get; set; } = new List<SeLocalise>();
-
-        [InverseProperty(nameof(Sejour.CategorieVignoble))]
+        [InverseProperty(nameof(Sejour.Idcategorievignoble))]
         public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
     }
 }
