@@ -14,7 +14,6 @@ namespace APIVinotrip.Models.Entity_Framework
         [StringLength(50)]
         public string? LibelleRole { get; set; }
 
-        // Collection navigation properties
         [InverseProperty(nameof(Client.Role))]
         public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
     }
