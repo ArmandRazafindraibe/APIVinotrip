@@ -26,8 +26,8 @@ namespace APIVinotrip.Models.Entity_Framework
 
 
         [ForeignKey(nameof(IdPartenaire))]
-        [InverseProperty(nameof(Partenaire.LesRepas))]
-        public virtual Partenaire? Partenaire { get; set; }
+        [InverseProperty(nameof(Restaurant.RepasCollection))]
+        public virtual Restaurant? RestaurantRepas { get; set; }
 
 
         [InverseProperty(nameof(Inclus.Repas))]

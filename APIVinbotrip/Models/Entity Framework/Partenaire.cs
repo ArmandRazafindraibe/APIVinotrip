@@ -24,25 +24,20 @@ namespace APIVinotrip.Models.Entity_Framework
         public string? TelPartenaire { get; set; }
 
         // Collection navigation properties
-        [InverseProperty(nameof(Etape.Partenaire))]
-        public virtual ICollection<Etape> LesEtapes { get; set; } = new List<Etape>();
-
-        [InverseProperty(nameof(EstProposePar.Partenaire))]
-        public virtual Adresse? PartenaireProposant { get; set; } 
-
-        [InverseProperty(nameof(Visite.Partenaire))]
-        public virtual ICollection<Visite> Visites { get; set; } = new List<Visite>();
-
-        [InverseProperty(nameof(Repas.Partenaire))]
-        public virtual ICollection<Repas> LesRepas { get; set; } = new List<Repas>();
 
         [InverseProperty(nameof(Restaurant.Partenaire))]
-        public virtual ICollection<Restaurant> Restaurants { get; set; } = new List<Restaurant>();
+        public virtual Restaurant? Restaurants { get; set; } 
 
         [InverseProperty(nameof(Cave.Partenaire))]
-        public virtual ICollection<Cave> Caves { get; set; } = new List<Cave>();
+        public virtual Cave? Caves { get; set; } 
 
         [InverseProperty(nameof(Adresse.Partenaire))]
         public virtual ICollection<Partenaire> AdressesPartenaires { get; set; } = new List<Partenaire>();
+
+        [InverseProperty(nameof(Hotel.Partenaire))]
+        public virtual Hotel? HotelPartenaire { get; set; }
+
+        [InverseProperty(nameof(AutreSociete.Partenaire))]
+        public virtual AutreSociete? AutreSocietePartenaire { get; set; }
     }
 }

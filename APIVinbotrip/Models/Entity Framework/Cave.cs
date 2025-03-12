@@ -30,8 +30,11 @@ namespace APIVinotrip.Models.Entity_Framework
         public virtual TypeDegustation? TypeDegustation { get; set; }
 
         [ForeignKey(nameof(IdPartenaire))]
-        [InverseProperty(nameof(Partenaire.Cave))]
+        [InverseProperty(nameof(Partenaire.Caves))]
         public virtual Partenaire? Partenaire { get; set; }
+
+        [InverseProperty(nameof(Visite.Cave))]
+        public virtual ICollection<Visite> Visites { get; set; }= new List<Visite>();
 
     }
 }

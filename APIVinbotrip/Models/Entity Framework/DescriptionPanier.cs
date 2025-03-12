@@ -63,11 +63,11 @@ namespace APIVinbotrip.Models.Entity_Framework
         public virtual Sejour? Sejour { get; set; }
 
         [ForeignKey(nameof(IdPanier))]
-        [InverseProperty(nameof(Panier.DescriptionsPanierPanier))]
+        [InverseProperty(nameof(Panier.DescriptionsPanier))]
         public virtual Panier? Panier { get; set; }
 
         [ForeignKey("IdHebergement")]
-        [InverseProperty(nameof(Hebergement.DescriptionsPanierHebergement))]
+        [InverseProperty(nameof(Hebergement.DescriptionsPanier))]
         public virtual Hebergement? Hebergement { get; set; }
     }
 }

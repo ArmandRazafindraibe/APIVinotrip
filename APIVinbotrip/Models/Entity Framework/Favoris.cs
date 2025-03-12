@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using APIVinotrip.Models.Entity_Framework;
+using APIVinbotrip.Models.Entity_Framework;
 
 namespace APIVinotrip.Models.Entity_Framework
 {
@@ -6,11 +9,20 @@ namespace APIVinotrip.Models.Entity_Framework
     public partial class Favoris
     {
         [Key]
-        [Column("idFavoris")]
-        public int  IdFavoris{ get; set; }
+        [Column("idClient")]
+        public int  IdClient{ get; set; }
+
+        [Key]
+        [Column("idSejour")]
+        public int IdSejour { get; set; }
+
+        [ForeignKey(nameof(IdClient))]
+        [InverseProperty(nameof(Client.ListeFavoris))]
+        public virtual ICollection<Client> Clients { get; set; }=new List<Client>();
 
 
-
-
+        [ForeignKey(nameof(IdSejour))]
+        [InverseProperty(nameof(Sejour.ListeFavoris))]
+        public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
     }
 }

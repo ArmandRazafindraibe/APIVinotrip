@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using APIVinbotrip.Models.Entity_Framework;
 
 namespace APIVinotrip.Models.Entity_Framework
 {
@@ -64,7 +65,7 @@ namespace APIVinotrip.Models.Entity_Framework
         public virtual CarteBancaire? CarteBancaire { get; set; }
 
         [ForeignKey(nameof(IdPanier))]
-        [InverseProperty(nameof(Panier.Commande))]
+        [InverseProperty(nameof(Panier.Commandes))]
         public virtual Panier? PanierCommande { get; set; }
 
         [ForeignKey(nameof(Adresse.IdAdresse))]
@@ -76,8 +77,8 @@ namespace APIVinotrip.Models.Entity_Framework
         public virtual Adresse? AdresseFacturation { get; set; }
 
         [ForeignKey(nameof(IdCodePromo))]
-        [InverseProperty(nameof(CodePromo.CommandesFacturation))]
-        public virtual CodePromo? Code { get; set; }
+        [InverseProperty(nameof(CodePromo.Commandes))]
+        public virtual CodePromo? CodeCodeReduction { get; set; }
 
 
 

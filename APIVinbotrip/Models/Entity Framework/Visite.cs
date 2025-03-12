@@ -34,6 +34,10 @@ namespace APIVinotrip.Models.Entity_Framework
         [InverseProperty(nameof(Appartient.Visite))]
         public virtual ICollection<Appartient> AppartientCollection { get; set; } = new List<Appartient>();
 
+        [ForeignKey(nameof(IdPartenaire))]
+        [InverseProperty(nameof(Cave.Visites))]
+        public virtual Cave? Cave { get; set; }
+
 
     }
 }

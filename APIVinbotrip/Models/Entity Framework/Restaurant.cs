@@ -40,7 +40,7 @@ namespace APIVinotrip.Models.Entity_Framework
         [InverseProperty(nameof(Partenaire.Restaurants))]
         public virtual Partenaire? Partenaire { get; set; }
 
-        [InverseProperty(nameof(Repas.Restaurant))]
+        [InverseProperty(nameof(Repas.RestaurantRepas))]
         public virtual ICollection<Repas> RepasCollection { get; set; } = new List<Repas>();
 
 

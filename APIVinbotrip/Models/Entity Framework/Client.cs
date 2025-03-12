@@ -74,5 +74,8 @@ namespace APIVinotrip.Models.Entity_Framework
 
         [InverseProperty(nameof(CarteBancaire.Client))]
         public virtual ICollection<CarteBancaire> CartesBancaires { get; set; } = new List<CarteBancaire>();
+
+        [InverseProperty(nameof(Favoris.Clients))]
+        public virtual ICollection<Favoris> ListeFavoris { get; set; } = new List<Favoris>();
     }
 }

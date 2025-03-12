@@ -14,8 +14,8 @@ namespace APIVinbotrip.Models.Entity_Framework
         [Column("idSejour")]
         public int? IdSejour { get; set; }
 
-        [Column("idPartenaire")]
-        public int? IdPartenaire { get; set; }
+        [Column("idHebergement")]
+        public int? IdHebergement { get; set; }
 
         [Column("titreEtape")]
         [StringLength(100)]
@@ -42,9 +42,9 @@ namespace APIVinbotrip.Models.Entity_Framework
         [InverseProperty(nameof(Sejour.Etapes))]
         public virtual Sejour? Sejour { get; set; }
 
-        [ForeignKey(nameof(IdPartenaire))]
-        [InverseProperty(nameof(Partenaire.LesEtapes))]
-        public virtual Partenaire? Partenaire { get; set; }
+        [ForeignKey(nameof(IdHebergement))]
+        [InverseProperty(nameof(Hebergement.Etapes))]
+        public virtual Hebergement? Hebergement { get; set; }
 
         // Collection navigation properties
         [InverseProperty(nameof(Inclus.Etape))]

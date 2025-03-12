@@ -83,6 +83,13 @@ namespace APIVinbotrip.Models.Entity_Framework
         [InverseProperty(nameof(Photo.Sejour))]
         public virtual ICollection<Photo> Photos { get; set; } = new List<Photo>();
 
+        [InverseProperty(nameof(Favoris.Sejours))]
+        public virtual ICollection<Favoris> ListeFavoris { get; set; } = new List<Favoris>();
+
+
+        [InverseProperty(nameof(DescriptionCommande.Sejours))]
+        public virtual ICollection<Favoris> DescriptionsCommande { get; set; } = new List<Favoris>();
+
 
     }
 }

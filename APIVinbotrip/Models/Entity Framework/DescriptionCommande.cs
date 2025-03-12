@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using APIVinbotrip.Models.Entity_Framework;
 
 namespace APIVinotrip.Models.Entity_Framework
 {
@@ -13,8 +14,14 @@ namespace APIVinotrip.Models.Entity_Framework
         [Column("idCommande")]
         public int? IdCommande { get; set; }
 
+        [Column("idHebergement")]
+        public int? IdHebergement { get; set; }
+
         [Column("idPassegeiment")]
         public int? IdPassegeiment { get; set; }
+
+        [Column("idSejour")]
+        public int? IdSejour { get; set; }
 
         [Column("quantite")]
         public int? Quantite { get; set; }
@@ -63,12 +70,26 @@ namespace APIVinotrip.Models.Entity_Framework
         [InverseProperty(nameof(Commande.DescriptionsCommande))]
         public virtual Commande? Commande { get; set; }
 
-        // Collection navigation properties
-        [InverseProperty(nameof(Commande.DescriptionCommande))]
-        public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+        
 
         [ForeignKey(nameof(IdCB))]
         [InverseProperty(nameof(CarteBancaire.DescriptionsCommande))]
         public virtual CarteBancaire? CarteBancaire { get; set; }
+
+
+        [ForeignKey(nameof(IdSejour))]
+        [InverseProperty(nameof(Sejour.DescriptionsCommande))]
+        public virtual Sejour? Sejours { get; set; }
+
+
+        [ForeignKey(nameof(IdHebergement))]
+        [InverseProperty(nameof(Hebergement.DescriptionsCommande))]
+        public virtual Hebergement? Hebergements { get; set; }
+
+
+
+
+        [InverseProperty(nameof(Commande.DescriptionsCommande))]
+        public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
     }
 }
