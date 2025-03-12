@@ -32,12 +32,12 @@ namespace APIVinotrip.Models.Entity_Framework
         [StringLength(50)]
         public string? SpecialiteRestaurant { get; set; }
         
-        [ForeignKey("IdTypeCuisine")]
+        [ForeignKey(nameof(IdTypeCuisine))]
         [InverseProperty(nameof(TypeCuisine.Restaurants))]
         public virtual TypeCuisine? TypeCuisine { get; set; }
 
-        [ForeignKey("IdPartenaire")]
-        [InverseProperty(nameof(Partenaire.Restaurant))]
+        [ForeignKey(nameof(IdPartenaire))]
+        [InverseProperty(nameof(Partenaire.Restaurants))]
         public virtual Partenaire? Partenaire { get; set; }
     }
 }

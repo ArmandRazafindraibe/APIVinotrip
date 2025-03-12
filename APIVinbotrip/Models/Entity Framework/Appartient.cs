@@ -14,11 +14,11 @@ namespace APIVinotrip.Models.Entity_Framework
         public int IdEtape { get; set; }
 
         // Navigation properties
-        [ForeignKey("IdVisite")]
+        [ForeignKey(nameof(IdVisite))]
         [InverseProperty(nameof(Visite.AppartientCollection))]
         public virtual Visite? Visite { get; set; }
 
-        [ForeignKey("IdEtape")]
+        [ForeignKey(nameof(IdEtape))]
         [InverseProperty(nameof(Etape.AppartientCollection))]
         public virtual Etape? Etape { get; set; }
     }

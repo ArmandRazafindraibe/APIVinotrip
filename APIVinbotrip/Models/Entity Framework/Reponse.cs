@@ -19,7 +19,7 @@ namespace APIVinotrip.Models.Entity_Framework
         public string? DescriptionReponse { get; set; }
 
         // Navigation properties
-        [ForeignKey("IdAvis")]
+        [ForeignKey(nameof(IdAvis))]
         [InverseProperty(nameof(Avis.Reponses))]
         public virtual Avis? Avis { get; set; }
     }

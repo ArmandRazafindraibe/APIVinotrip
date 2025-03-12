@@ -61,15 +61,15 @@ namespace APIVinotrip.Models.Entity_Framework
         [InverseProperty(nameof(DescriptionCommande.Commandes))]
         public virtual DescriptionCommande? DescriptionCommande { get; set; }
 
-        [ForeignKey(nameof(IdAdresseLivraison))]
+        [ForeignKey(nameof(Adresse.IdAdresse))]
         [InverseProperty(nameof(Adresse.CommandesLivraison))]
         public virtual Adresse? AdresseLivraison { get; set; }
 
-        [ForeignKey(nameof(IdAdresseFacturation))]
+        [ForeignKey(nameof(Adresse.IdAdresse))]
         [InverseProperty(nameof(Adresse.CommandesFacturation))]
         public virtual Adresse? AdresseFacturation { get; set; }
 
-        [ForeignKey(nameof(CodePromo)]
+        [ForeignKey(nameof(IdCodePromo))]
         [InverseProperty(nameof(CodePromo.CommandesFacturation))]
         public virtual CodePromo? Code { get; set; }
 

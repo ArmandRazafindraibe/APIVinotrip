@@ -26,7 +26,7 @@ namespace APIVinotrip.Models.Entity_Framework
         public string? LienVisite { get; set; }
 
         // Navigation properties
-        [ForeignKey("IdPartenaire")]
+        [ForeignKey(nameof(IdPartenaire))]
         [InverseProperty(nameof(Partenaire.Visites))]
         public virtual Partenaire? Partenaire { get; set; }
 

@@ -25,11 +25,11 @@ namespace APIVinotrip.Models.Entity_Framework
         [StringLength(10)]
         public string? TelPartenaire { get; set; }
 
-        [ForeignKey("IdTypeDegustation")]
+        [ForeignKey(nameof(IdTypeDegustation))]
         [InverseProperty(nameof(TypeDegustation.Caves))]
         public virtual TypeDegustation? TypeDegustation { get; set; }
 
-        [ForeignKey("IdPartenaire")]
+        [ForeignKey(nameof(IdPartenaire))]
         [InverseProperty(nameof(Partenaire.Cave))]
         public virtual Partenaire? Partenaire { get; set; }
     }

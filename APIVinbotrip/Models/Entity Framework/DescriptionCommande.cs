@@ -59,7 +59,7 @@ namespace APIVinotrip.Models.Entity_Framework
         public bool? ValidationClient { get; set; }
 
         // Navigation properties
-        [ForeignKey("IdCommande")]
+        [ForeignKey(nameof(IdCommande))]
         [InverseProperty(nameof(Commande.DescriptionsCommande))]
         public virtual Commande? Commande { get; set; }
 

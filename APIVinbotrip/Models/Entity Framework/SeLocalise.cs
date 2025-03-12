@@ -18,11 +18,11 @@ namespace APIVinotrip.Models.Entity_Framework
         public int IdCategorieVignoble { get; set; }
 
         // Navigation properties
-        [ForeignKey("idRoute")]
+        [ForeignKey(nameof(IdRoute))]
         [InverseProperty(nameof(RouteDesVins.SaLocalites))]
         public virtual RouteDesVins? Route { get; set; }
 
-        [ForeignKey("IdCategorieVignoble")]
+        [ForeignKey(nameof(IdCategorieVignoble))]
         [InverseProperty(nameof(CategorieVignoble.SaLocalites))]
         public virtual CategorieVignoble? CategorieVignoble { get; set; }
     }

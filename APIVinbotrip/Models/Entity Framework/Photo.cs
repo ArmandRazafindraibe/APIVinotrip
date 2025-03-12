@@ -15,7 +15,7 @@ namespace APIVinbotrip.Models.Entity_Framework
 
         // Additional properties for Photo
 
-        [ForeignKey("IdSejour")]
+        [ForeignKey(nameof(IdSejour))]
         [InverseProperty(nameof(Sejour.Photos))]
         public virtual Sejour? Sejour { get; set; }
     }

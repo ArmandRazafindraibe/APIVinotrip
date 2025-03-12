@@ -55,7 +55,7 @@ namespace APIVinotrip.Models.Entity_Framework
         public DateTime? DateCreationToken { get; set; }
 
         // Navigation properties
-        [ForeignKey("idRole")]
+        [ForeignKey(nameof(IdRole))]
         [InverseProperty(nameof(Role.Clients))]
         public virtual Role? Role { get; set; }
 
@@ -63,14 +63,14 @@ namespace APIVinotrip.Models.Entity_Framework
         [InverseProperty(nameof(Adresse.Client))]
         public virtual ICollection<Adresse> Adresses { get; set; } = new List<Adresse>();
 
-        [InverseProperty(nameof(Commande.Client))]
+        [InverseProperty(nameof(Commande.ClientAcheteur))]
         public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
 
-        [InverseProperty(nameof(Commande.ClientBeneficaire))]
+        [InverseProperty(nameof(Commande.ClientBeneficiaire))]
         public virtual ICollection<Commande> CommandesOfferts { get; set; } = new List<Commande>();
 
         [InverseProperty(nameof(Avis.Client))]
-        public virtual ICollection<Avis> Avis { get; set; } = new List<Avis>();
+        public virtual ICollection<Avis> LesAvis { get; set; } = new List<Avis>();
 
         [InverseProperty(nameof(CarteBancaire.Client))]
         public virtual ICollection<CarteBancaire> CartesBancaires { get; set; } = new List<CarteBancaire>();

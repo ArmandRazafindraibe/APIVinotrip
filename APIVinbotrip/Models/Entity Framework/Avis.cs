@@ -35,12 +35,12 @@ namespace APIVinbotrip.Models.Entity_Framework
         [StringLength(512)]
         public string? PhotoAvis { get; set; }
 
-        [ForeignKey("IdSejour")]
+        [ForeignKey(nameof(IdSejour))]
         [InverseProperty(nameof(Sejour.LesAvisSejour))]
         public virtual Sejour? Sejour { get; set; }
 
-        [ForeignKey("IdClient")]
-        [InverseProperty(nameof(Client.Avis))]
+        [ForeignKey(nameof(IdClient))]
+        [InverseProperty(nameof(Client.LesAvis))]
         public virtual Client? Client { get; set; }
 
         

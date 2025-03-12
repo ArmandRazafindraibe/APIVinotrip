@@ -28,7 +28,7 @@ namespace APIVinotrip.Models.Entity_Framework
         public bool? Actif { get; set; }
 
         // Navigation properties
-        [ForeignKey("IdClient")]
+        [ForeignKey(nameof(IdClient))]
         [InverseProperty(nameof(Client.CartesBancaires))]
         public virtual Client? Client { get; set; }
 

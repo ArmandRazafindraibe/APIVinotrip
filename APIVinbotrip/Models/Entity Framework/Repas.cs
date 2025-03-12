@@ -25,7 +25,7 @@ namespace APIVinotrip.Models.Entity_Framework
         public decimal? PrixRepas { get; set; }
 
 
-        [ForeignKey("IdPartenaire")]
+        [ForeignKey(nameof(IdPartenaire))]
         [InverseProperty(nameof(Partenaire.LesRepas))]
         public virtual Partenaire? Partenaire { get; set; }
 

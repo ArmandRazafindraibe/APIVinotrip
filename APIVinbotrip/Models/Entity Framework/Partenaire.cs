@@ -25,7 +25,7 @@ namespace APIVinotrip.Models.Entity_Framework
 
         // Collection navigation properties
         [InverseProperty(nameof(Etape.Partenaire))]
-        public virtual ICollection<Etape> Etapes { get; set; } = new List<Etape>();
+        public virtual ICollection<Etape> LesEtapes { get; set; } = new List<Etape>();
 
         [InverseProperty(nameof(EstProposePar.Partenaire))]
         public virtual Adresse? PartenaireProposant { get; set; } 

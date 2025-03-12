@@ -22,7 +22,7 @@ namespace APIVinotrip.Models.Entity_Framework
         [InverseProperty(nameof(Partenaire.PartenaireProposant))]
         public Partenaire? Partenaire { get; set; }
 
-        [ForeignKey("idActivite")]
+        [ForeignKey(nameof(IdActivite))]
         [InverseProperty(nameof(Activite.PartenaireProposant))]
         public Activite? Activite { get; set; }
 
