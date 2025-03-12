@@ -32,5 +32,8 @@ namespace APIVinotrip.Models.Entity_Framework
 
         [InverseProperty(nameof(Inclus.Repas))]
         public virtual ICollection<Inclus> InclusCollection { get; set; } = new List<Inclus>();
+
+        [InverseProperty(nameof(Detient.RepasDetient))]
+        public virtual ICollection<Detient> DetientCollection { get; set; } = new List<Detient>();
     }
 }

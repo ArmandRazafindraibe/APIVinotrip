@@ -55,6 +55,9 @@ namespace APIVinbotrip.Models.Entity_Framework
         [InverseProperty(nameof(CategorieSejour.Sejours))]
         public virtual CategorieSejour? CategorieSejour { get; set; }
 
+        [InverseProperty(nameof(DescriptionPanier.Sejour))]
+        public virtual ICollection<DescriptionPanier>? DescriptionsPanierSejour { get; set; } = new List<DescriptionPanier>();
+
         [InverseProperty(nameof(Theme.Sejours))]
         public virtual Theme? Theme { get; set; }
 

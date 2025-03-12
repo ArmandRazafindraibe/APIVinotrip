@@ -13,7 +13,13 @@ namespace APIVinbotrip.Models.Entity_Framework
 		[Column("idDescriptionPanier")]
 		public int IdDescriptionPanier { get; set; }
 
-		[Column("quantite")]
+        [Column("idSejour")]
+        public int? IdSejour { get; set; }
+
+        [Column("idPanier")]
+        public int? IdPanier { get; set; }
+
+        [Column("quantite")]
 		public int? Quantite { get; set; }
 
 		[Column("dateDebut")]
@@ -46,22 +52,22 @@ namespace APIVinbotrip.Models.Entity_Framework
 		[Column("disponibiliteHebergement")]
 		public bool? DisponibiliteHebergement { get; set; }
 
-		[InverseProperty(nameof(Detient.IdDescriptionPanier))]
-		public virtual ICollection<Detient> ListeRepas { get; set; } = new List<Detient>();
+		[InverseProperty(nameof(Detient.DescriptionPanierDetient))]
+		public virtual ICollection<Detient> DetientCollection { get; set; } = new List<Detient>();
 
 		[InverseProperty(nameof(Comporte.DescriptionPanierComporte))]
 		public virtual ICollection<Comporte> ListeDescriptions { get; set; } = new List<Comporte>();
 
-        [ForeignKey("IdSejour")]
-        [InverseProperty(nameof(Sejour.DescriptionsPanier))]
+        [ForeignKey(nameof(IdSejour))]
+        [InverseProperty(nameof(Sejour.DescriptionsPanierSejour))]
         public virtual Sejour? Sejour { get; set; }
 
-        [ForeignKey("IdPanier")]
-        [InverseProperty(nameof(Panier.DescriptionsPanier))]
+        [ForeignKey(nameof(IdPanier))]
+        [InverseProperty(nameof(Panier.DescriptionsPanierPanier))]
         public virtual Panier? Panier { get; set; }
 
         [ForeignKey("IdHebergement")]
-        [InverseProperty(nameof(Hebergement.DescriptionsPanier))]
+        [InverseProperty(nameof(Hebergement.DescriptionsPanierHebergement))]
         public virtual Hebergement? Hebergement { get; set; }
     }
 }
