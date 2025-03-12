@@ -47,8 +47,9 @@ namespace APIVinbotrip.Models.Entity_Framework
         public virtual Partenaire? Partenaire { get; set; }
 
         // Collection navigation properties
-        [InverseProperty(nameof(Appartient.Etape))]
-        public virtual ICollection<Appartient> AppartientCollection { get; set; } = new List<Appartient>();
+        [InverseProperty(nameof(Inclus.Etape))]
+        public virtual ICollection<Inclus> InclusCollection { get; set; } = new List<Inclus>();
+
 
     }
 

@@ -33,5 +33,7 @@ namespace APIVinotrip.Models.Entity_Framework
         // Collection navigation properties
         [InverseProperty(nameof(Appartient.Visite))]
         public virtual ICollection<Appartient> AppartientCollection { get; set; } = new List<Appartient>();
+
+
     }
 }
