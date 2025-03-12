@@ -1,0 +1,43 @@
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace APIVinotrip.Models.Entity_Framework
+{
+    [Table("RESTAURANT")]
+    public partial class Restaurant
+    {
+        [Key]
+        [Column("idPartenaire")]
+        public int IdPartenaire { get; set; }
+
+        [Column("idTypeCuisine")]
+        public int? IdTypeCuisine { get; set; }
+
+        [Column("nomPartenaire")]
+        [StringLength(50)]
+        public string? NomPartenaire { get; set; }
+
+        [Column("mailPartenaire")]
+        [StringLength(100)]
+        public string? MailPartenaire { get; set; }
+
+        [Column("telPartenaire")]
+        [StringLength(10)]
+        public string? TelPartenaire { get; set; }
+
+        [Column("nombreEtoilesRestaurant")]
+        public int? NombreEtoilesRestaurant { get; set; }
+
+        [Column("specialiteRestaurant")]
+        [StringLength(50)]
+        public string? SpecialiteRestaurant { get; set; }
+        
+        [ForeignKey("IdTypeCuisine")]
+        [InverseProperty(nameof(TypeCuisine.Restaurants))]
+        public virtual TypeCuisine? TypeCuisine { get; set; }
+
+        [ForeignKey("IdPartenaire")]
+        [InverseProperty(nameof(Partenaire.Restaurant))]
+        public virtual Partenaire? Partenaire { get; set; }
+    }
+}
