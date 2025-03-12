@@ -9,7 +9,7 @@ namespace APIVinbotrip.Models.Entity_Framework
     {
         [Key]
         [Column("idCodePromo")]
-        public int IdPhoto { get; set; }
+        public int IdCodePromo { get; set; }
 
         [Column("libelleCodePromo")]
         [StringLength(15)]
