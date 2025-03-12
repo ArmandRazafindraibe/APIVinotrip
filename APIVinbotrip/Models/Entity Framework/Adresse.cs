@@ -51,8 +51,17 @@ namespace APIVinotrip.Models.Entity_Framework
         [InverseProperty(nameof(Client.Adresses))]
         public virtual Client? Client { get; set; }
 
-        
+        [ForeignKey("IdPartenaire")]
+        [InverseProperty(nameof(Partenaire.AdressesPartenaires))]
+        public virtual Partenaire? Partenaire { get; set; }
+
         [InverseProperty(nameof(Commande.AdresseLivraison))]
         public virtual ICollection<Commande> CommandesLivraison { get; set; } = new List<Commande>();
+
+        [InverseProperty(nameof(Commande.AdresseFacturation))]
+        public virtual ICollection<Commande> CommandesFacturation { get; set; } = new List<Commande>();
+
+        [InverseProperty(nameof(EstProposePar.SeTrouvant))]
+        public virtual ICollection<EstProposePar> AdresseActivite { get; set; } = new List<EstProposePar>();
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.Entity_Framework
 {
-    [Table("ROLE")]
+    [Table("ROLES")]
     public partial class Role
     {
         [Key]

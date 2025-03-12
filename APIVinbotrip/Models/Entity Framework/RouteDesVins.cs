@@ -24,7 +24,7 @@ namespace APIVinotrip.Models.Entity_Framework
         public string? PhotoRoute { get; set; }
 
         // Collection navigation properties
-        [InverseProperty(nameof(SaLocalite.Route))]
-        public virtual ICollection<SaLocalite> SaLocalites { get; set; } = new List<SaLocalite>();
+        [InverseProperty(nameof(SeLocalise.Route))]
+        public virtual ICollection<SeLocalise> SaLocalites { get; set; } = new List<SeLocalise>();
     }
 }
