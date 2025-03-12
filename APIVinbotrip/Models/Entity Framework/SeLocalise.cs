@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace APIVinotrip.Models.Entity_Framework
 {
     [Table("SE_LOCALISE")]
-    public partial class SELocalise
+    public partial class SeLocalise
     {
         [Key]
         [Column("idRoute")]
@@ -18,7 +18,7 @@ namespace APIVinotrip.Models.Entity_Framework
         public int IdCategorieVignoble { get; set; }
 
         // Navigation properties
-        [ForeignKey("IdRoute")]
+        [ForeignKey("idRoute")]
         [InverseProperty(nameof(RouteDesVins.SaLocalites))]
         public virtual RouteDesVins? Route { get; set; }
 

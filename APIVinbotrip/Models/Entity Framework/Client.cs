@@ -55,7 +55,7 @@ namespace APIVinotrip.Models.Entity_Framework
         public DateTime? DateCreationToken { get; set; }
 
         // Navigation properties
-        [ForeignKey("IdRole")]
+        [ForeignKey("idRole")]
         [InverseProperty(nameof(Role.Clients))]
         public virtual Role? Role { get; set; }
 
@@ -65,6 +65,9 @@ namespace APIVinotrip.Models.Entity_Framework
 
         [InverseProperty(nameof(Commande.Client))]
         public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+
+        [InverseProperty(nameof(Commande.ClientBeneficaire))]
+        public virtual ICollection<Commande> CommandesOfferts { get; set; } = new List<Commande>();
 
         [InverseProperty(nameof(Avis.Client))]
         public virtual ICollection<Avis> Avis { get; set; } = new List<Avis>();

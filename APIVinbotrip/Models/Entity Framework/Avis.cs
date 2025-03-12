@@ -36,7 +36,7 @@ namespace APIVinbotrip.Models.Entity_Framework
         public string? PhotoAvis { get; set; }
 
         [ForeignKey("IdSejour")]
-        [InverseProperty(nameof(Sejour.Avis))]
+        [InverseProperty(nameof(Sejour.LesAvisSejour))]
         public virtual Sejour? Sejour { get; set; }
 
         [ForeignKey("IdClient")]

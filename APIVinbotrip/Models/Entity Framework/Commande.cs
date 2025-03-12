@@ -45,25 +45,39 @@ namespace APIVinotrip.Models.Entity_Framework
         public DateTime? DateCommande { get; set; }
 
         // Navigation properties
-        [ForeignKey("IdClient")]
+        [ForeignKey(nameof(IdClient))]
         [InverseProperty(nameof(Client.Commandes))]
-        public virtual Client? Client { get; set; }
+        public virtual Client? ClientAcheteur { get; set; }
 
-        [ForeignKey("IdCB")]
+        [ForeignKey(nameof(IdClient))]
+        [InverseProperty(nameof(Client.CommandesOfferts))]
+        public virtual Client? ClientBeneficiaire { get; set; }
+
+        [ForeignKey(nameof(IdCB))]
         [InverseProperty(nameof(CarteBancaire.Commandes))]
         public virtual CarteBancaire? CarteBancaire { get; set; }
 
-        [ForeignKey("IdDescriptionClient")]
+        [ForeignKey(nameof(IdDescriptionClient))]
         [InverseProperty(nameof(DescriptionCommande.Commandes))]
         public virtual DescriptionCommande? DescriptionCommande { get; set; }
 
-        [ForeignKey("IdAdresseLivraison")]
+        [ForeignKey(nameof(IdAdresseLivraison))]
         [InverseProperty(nameof(Adresse.CommandesLivraison))]
         public virtual Adresse? AdresseLivraison { get; set; }
+
+        [ForeignKey(nameof(IdAdresseFacturation))]
+        [InverseProperty(nameof(Adresse.CommandesFacturation))]
+        public virtual Adresse? AdresseFacturation { get; set; }
+
+        [ForeignKey(nameof(CodePromo)]
+        [InverseProperty(nameof(CodePromo.CommandesFacturation))]
+        public virtual CodePromo? Code { get; set; }
+
+
 
         [InverseProperty(nameof(DescriptionCommande.Commande))]
         public virtual ICollection<DescriptionCommande> DescriptionsCommande { get; set; } = new List<DescriptionCommande>();
 
-        // Add other possible collection navigation properties as needed based on the diagram
+        
     }
 }

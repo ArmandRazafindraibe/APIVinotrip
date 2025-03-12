@@ -1,7 +1,5 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using APIVinbotrip.Models.Entity_Framework;
 
 namespace APIVinotrip.Models.Entity_Framework
 {
@@ -16,18 +14,23 @@ namespace APIVinotrip.Models.Entity_Framework
         public int? IdPartenaire { get; set; }
 
         [Column("descriptionRepas")]
-        [StringLength(4098)]
+        [StringLength(4096)]
         public string? DescriptionRepas { get; set; }
 
         [Column("photoRepas")]
         [StringLength(512)]
         public string? PhotoRepas { get; set; }
 
-        [Column("prixRepas", TypeName = "decimal(8,2)")]
-        public decimal PrixRepas { get; set; }
+        [Column("prixRepas", TypeName = "NUMERIC(8,2)")]
+        public decimal? PrixRepas { get; set; }
+
 
         [ForeignKey("IdPartenaire")]
-        [InverseProperty(nameof(Partenaire.Repas))]
+        [InverseProperty(nameof(Partenaire.LesRepas))]
         public virtual Partenaire? Partenaire { get; set; }
+
+
+        [InverseProperty(nameof(Inclus.Repas))]
+        public virtual ICollection<Inclus> InclusCollection { get; set; } = new List<Inclus>();
     }
 }

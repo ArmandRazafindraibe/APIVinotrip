@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APIVinotrip.Models.Entity_Framework;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -50,7 +51,7 @@ namespace APIVinbotrip.Models.Entity_Framework
         [Column("idCategorieParticipant")]
         public int IdCategorieParticipant { get; set; }
 
-        // Navigation properties (One-to-One relationships)
+       
         [InverseProperty(nameof(CategorieSejour.Sejours))]
         public virtual CategorieSejour? CategorieSejour { get; set; }
 
@@ -69,14 +70,16 @@ namespace APIVinbotrip.Models.Entity_Framework
         [InverseProperty(nameof(Localite.Sejours))]
         public virtual Localite? Localite { get; set; }
 
-        // Collection navigation properties (One-to-Many relationships)
+        
         [InverseProperty(nameof(Etape.Sejour))]
         public virtual ICollection<Etape> Etapes { get; set; } = new List<Etape>();
 
         [InverseProperty(nameof(Avis.Sejour))]
-        public virtual ICollection<Avis> Avis { get; set; } = new List<Avis>();
+        public virtual ICollection<Avis> LesAvisSejour { get; set; } = new List<Avis>();
 
         [InverseProperty(nameof(Photo.Sejour))]
         public virtual ICollection<Photo> Photos { get; set; } = new List<Photo>();
+
+
     }
 }
