@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinbotrip.Models.Entity_Framework
 {
-    [Table("CATEGORIEPARTICIPANT")]
+    [Table("CATEGORIEEPARTICIPANT")]
     public partial class CategorieParticipant
     {
         [Key]
@@ -13,7 +13,7 @@ namespace APIVinbotrip.Models.Entity_Framework
         [Column("libelleCategorieParticipant")]
         [StringLength(50)]
         public string? LibelleCategorieParticipant { get; set; }
-
+ 
         [InverseProperty(nameof(Sejour.CategorieParticipant))]
         public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
     }
