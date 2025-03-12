@@ -19,6 +19,9 @@ namespace APIVinbotrip.Models.Entity_Framework
         [Column("idPanier")]
         public int? IdPanier { get; set; }
 
+        [Column("idHebergement")]
+        public int? IdHebergement { get; set; }
+
         [Column("quantite")]
 		public int? Quantite { get; set; }
 
@@ -66,7 +69,7 @@ namespace APIVinbotrip.Models.Entity_Framework
         [InverseProperty(nameof(Panier.DescriptionsPanier))]
         public virtual Panier? Panier { get; set; }
 
-        [ForeignKey("IdHebergement")]
+        [ForeignKey(nameof(IdHebergement))]
         [InverseProperty(nameof(Hebergement.DescriptionsPanier))]
         public virtual Hebergement? Hebergement { get; set; }
     }
