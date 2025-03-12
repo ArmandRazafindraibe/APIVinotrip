@@ -10,5 +10,7 @@ namespace APIVinotrip.Models.Entity_Framework
         public int  IdFavoris{ get; set; }
 
 
+
+
     }
 }

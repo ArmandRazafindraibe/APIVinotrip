@@ -10,32 +10,38 @@ namespace APIVinotrip.Models.Entity_Framework
         [Column("idCommande")]
         public int IdCommande { get; set; }
 
-        [Column("referenceCommande")]
+        [Column("idCodePromo")]
         [StringLength(20)]
-        public string? ReferenceCommande { get; set; }
+        public string? IdCodePromo { get; set; }
 
         [Column("idCB")]
         public int? IdCB { get; set; }
 
-        [Column("idClient")]
-        public int? IdClient { get; set; }
+        [Column("idAdresseFacturation")]
+        public int? IdAdresseFacturation { get; set; }
+
+        [Column("idClientAcheteur")]
+        public int? IdClientAcheteur { get; set; }
+
+        [Column("idClientBeneficiaire")]
+        public int? IdClientBeneficiaire { get; set; }
 
         [Column("idAdresseLivraison")]
         public int? IdAdresseLivraison { get; set; }
 
-        [Column("idCommentaire")]
-        public int? IdCommentaire { get; set; }
+        [Column("idPanier")]
+        public int? IdPanier { get; set; }
+
+        [Column("validationClient")]
+        public bool ValidationClient { get; set; }
 
         [Column("codeReduction")]
         [StringLength(20)]
         public string? CodeReduction { get; set; }
 
-        [Column("idDescriptionClient")]
-        public int? IdDescriptionClient { get; set; }
-
-        [Column("prixTotalCommande")]
+        [Column("etatCommande")]
         [StringLength(50)]
-        public string? PrixTotalCommande { get; set; }
+        public string? EtatCommande { get; set; }
 
         [Column("typePayementCommande")]
         [StringLength(50)]
@@ -45,11 +51,11 @@ namespace APIVinotrip.Models.Entity_Framework
         public DateTime? DateCommande { get; set; }
 
         // Navigation properties
-        [ForeignKey(nameof(IdClient))]
+        [ForeignKey(nameof(Client.IdClient))]
         [InverseProperty(nameof(Client.Commandes))]
         public virtual Client? ClientAcheteur { get; set; }
 
-        [ForeignKey(nameof(IdClient))]
+        [ForeignKey(nameof(Client.IdClient))]
         [InverseProperty(nameof(Client.CommandesOfferts))]
         public virtual Client? ClientBeneficiaire { get; set; }
 
@@ -57,9 +63,9 @@ namespace APIVinotrip.Models.Entity_Framework
         [InverseProperty(nameof(CarteBancaire.Commandes))]
         public virtual CarteBancaire? CarteBancaire { get; set; }
 
-        [ForeignKey(nameof(IdDescriptionClient))]
-        [InverseProperty(nameof(DescriptionCommande.Commandes))]
-        public virtual DescriptionCommande? DescriptionCommande { get; set; }
+        [ForeignKey(nameof(IdPanier))]
+        [InverseProperty(nameof(Panier.Commande))]
+        public virtual Panier? PanierCommande { get; set; }
 
         [ForeignKey(nameof(Adresse.IdAdresse))]
         [InverseProperty(nameof(Adresse.CommandesLivraison))]
