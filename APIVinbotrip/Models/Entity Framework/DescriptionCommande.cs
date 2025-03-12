@@ -74,16 +74,16 @@ namespace APIVinotrip.Models.Entity_Framework
 
         [ForeignKey(nameof(IdCB))]
         [InverseProperty(nameof(CarteBancaire.DescriptionsCommande))]
-        public virtual CarteBancaire? CarteBancaire { get; set; }
+        public virtual CarteBancaire? DescriptionsCommandeCB { get; set; }
 
 
         [ForeignKey(nameof(IdSejour))]
-        [InverseProperty(nameof(Sejour.DescriptionsCommande))]
+        [InverseProperty(nameof(Sejour.DescriptioncommandesNavigation))]
         public virtual Sejour? Sejours { get; set; }
 
 
         [ForeignKey(nameof(IdHebergement))]
-        [InverseProperty(nameof(Hebergement.DescriptionsCommande))]
+        [InverseProperty(nameof(Hebergements.DescriptionsCommande))]
         public virtual Hebergement? Hebergements { get; set; }
 
 

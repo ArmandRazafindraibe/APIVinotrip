@@ -2,94 +2,96 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Intrinsics.X86;
 
 namespace APIVinbotrip.Models.Entity_Framework
 {
-    [Table("SEJOUR")]
+    [Table("sejour")]
+
     public partial class Sejour
     {
         [Key]
-        [Column("idSejour")]
-        public int IdSejour { get; set; }
+        [Column("idsejour")]
+        public int Idsejour { get; set; }
 
-        [Column("titreSejour")]
+        [Column("idduree")]
+        public int Idduree { get; set; }
+
+        [Column("idcategorievignoble")]
+        public int Idcategorievignoble { get; set; }
+
+        [Column("idcategoriesejour")]
+        public int Idcategoriesejour { get; set; }
+
+        [Column("idlocalite")]
+        public int? Idlocalite { get; set; }
+
+        [Column("idtheme")]
+        public int Idtheme { get; set; }
+
+        [Column("idcategorieparticipant")]
+        public int Idcategorieparticipant { get; set; }
+
+        [Column("titresejour")]
         [StringLength(100)]
-        public string? TitreSejour { get; set; }
+        public string? Titresejour { get; set; }
 
-        [Column("photoSejour")]
+        [Column("photosejour")]
         [StringLength(512)]
-        public string? PhotoSejour { get; set; }
+        public string? Photosejour { get; set; }
 
-        [Column("descriptionSejour")]
+        [Column("descriptionsejour")]
         [StringLength(4096)]
-        public string? DescriptionSejour { get; set; }
+        public string? Descriptionsejour { get; set; }
 
-        [Column("prixSejour", TypeName = "NUMERIC(8,2)")]
-        public decimal? PrixSejour { get; set; }
+        [Column("prixsejour",TypeName = "NUMERIC(8,2)")]
+        public decimal? Prixsejour { get; set; }
 
         [Column("publie")]
         public bool? Publie { get; set; }
 
-        [Column("nouveauPrixSejour", TypeName = "NUMERIC(8,2)")]
-        public decimal? NouveauPrixSejour { get; set; }
+        [Column("nouveauprixsejour", TypeName = "NUMERIC(8,2)")]
+        public decimal? Nouveauprixsejour { get; set; }
 
-        [Column("idDuree")]
-        public int IdDuree { get; set; }
+        [InverseProperty(nameof(Avis.IdSejour))]
+        public virtual ICollection<Avis> AvisNavigation { get; set; } = new List<Avis>();
 
-        [Column("idCategorieVignoble")]
-        public int IdCategorieVignoble { get; set; }
-
-        [Column("idLocalite")]
-        public int IdLocalite { get; set; }
-
-        [Column("idTheme")]
-        public int IdTheme { get; set; }
-
-        [Column("idCategorieSejour")]
-        public int IdCategorieSejour { get; set; }
-
-        [Column("idCategorieParticipant")]
-        public int IdCategorieParticipant { get; set; }
-
-       
-        [InverseProperty(nameof(CategorieSejour.Sejours))]
-        public virtual CategorieSejour? CategorieSejour { get; set; }
+        [InverseProperty(nameof(DescriptionCommande.Sejours))]
+        public virtual ICollection<DescriptionCommande> DescriptioncommandesNavigation { get; set; } = new List<DescriptionCommande>();
 
         [InverseProperty(nameof(DescriptionPanier.Sejour))]
-        public virtual ICollection<DescriptionPanier>? DescriptionsPanierSejour { get; set; } = new List<DescriptionPanier>();
+        public virtual ICollection<DescriptionPanier> Descriptionpaniers { get; set; } = new List<DescriptionPanier>();
 
-        [InverseProperty(nameof(Theme.Sejours))]
-        public virtual Theme? Theme { get; set; }
-
-        [InverseProperty(nameof(CategorieVignoble.Sejours))]
-        public virtual CategorieVignoble? CategorieVignoble { get; set; }
-
-        [InverseProperty(nameof(Duree.Sejours))]
-        public virtual Duree? Duree { get; set; }
-
-        [InverseProperty(nameof(CategorieParticipant.Sejours))]
-        public virtual CategorieParticipant? CategorieParticipant { get; set; }
-
-        [InverseProperty(nameof(Localite.Sejours))]
-        public virtual Localite? Localite { get; set; }
-
-        
         [InverseProperty(nameof(Etape.Sejour))]
         public virtual ICollection<Etape> Etapes { get; set; } = new List<Etape>();
 
-        [InverseProperty(nameof(Avis.Sejour))]
-        public virtual ICollection<Avis> LesAvisSejour { get; set; } = new List<Avis>();
+        [ForeignKey(nameof(Idcategorieparticipant))]
+        [InverseProperty(nameof(CategorieParticipant.Sejours))]
+        public virtual CategorieParticipant IdcategorieparticipantNavigation { get; set; } = null!;
+
+        [ForeignKey(nameof(Idcategoriesejour))]
+        [InverseProperty(nameof(CategorieSejour.Sejours))]
+        public virtual CategorieSejour IdcategoriesejourNavigation { get; set; } = null!;
+
+        [ForeignKey(nameof(Idcategorievignoble))]
+        [InverseProperty(nameof(CategorieVignoble.Sejours))]
+        public virtual CategorieVignoble IdcategorievignobleNavigation { get; set; } = null!;
+
+        [ForeignKey(nameof(Idduree))]
+        [InverseProperty(nameof(Duree.Sejours))]
+        public virtual Duree IddureeNavigation { get; set; } = null!;
+
+        [ForeignKey(nameof(Idlocalite))]
+        [InverseProperty(nameof(Localite.Sejours))]
+        public virtual Localite? IdlocaliteNavigation { get; set; }
+
+        [ForeignKey(nameof(Idtheme))]
+        [InverseProperty(nameof(Theme.Sejours))]
+        public virtual Theme IdthemeNavigation { get; set; } = null!;
 
         [InverseProperty(nameof(Photo.Sejour))]
         public virtual ICollection<Photo> Photos { get; set; } = new List<Photo>();
 
-        [InverseProperty(nameof(Favoris.Sejours))]
-        public virtual ICollection<Favoris> ListeFavoris { get; set; } = new List<Favoris>();
-
-
-        [InverseProperty(nameof(DescriptionCommande.Sejours))]
-        public virtual ICollection<Favoris> DescriptionsCommande { get; set; } = new List<Favoris>();
-
-
     }
+
 }
