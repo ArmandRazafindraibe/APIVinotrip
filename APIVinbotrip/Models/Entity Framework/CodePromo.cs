@@ -18,7 +18,7 @@ namespace APIVinbotrip.Models.Entity_Framework
         [Column("reduction")]
         public int? Reduction { get; set; }
 
-        [InverseProperty(nameof(Panier.IdCodePromo))]
+        [InverseProperty(nameof(Panier.CodesPromos))]
         public virtual ICollection<Panier> Paniers { get; set; } = new List<Panier>();
 
         [InverseProperty(nameof(Commande.CodeReduction))]

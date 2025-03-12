@@ -41,5 +41,8 @@ namespace APIVinotrip.Models.Entity_Framework
 
         [InverseProperty(nameof(Cave.Partenaire))]
         public virtual ICollection<Cave> Caves { get; set; } = new List<Cave>();
+
+        [InverseProperty(nameof(Adresse.Partenaire))]
+        public virtual ICollection<Partenaire> AdressesPartenaires { get; set; } = new List<Partenaire>();
     }
 }

@@ -32,5 +32,6 @@ namespace APIVinotrip.Models.Entity_Framework
         [ForeignKey(nameof(IdPartenaire))]
         [InverseProperty(nameof(Partenaire.Cave))]
         public virtual Partenaire? Partenaire { get; set; }
+
     }
 }

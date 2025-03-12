@@ -19,8 +19,8 @@ namespace APIVinotrip.Models.Entity_Framework
         [Column("quantite")]
         public int? Quantite { get; set; }
 
-        [Column("idCP")]
-        public int? IdCP { get; set; }
+        [Column("idCB")]
+        public int? IdCB { get; set; }
 
         [Column("quantite")]
         public int? Quantite2 { get; set; }
@@ -66,5 +66,9 @@ namespace APIVinotrip.Models.Entity_Framework
         // Collection navigation properties
         [InverseProperty(nameof(Commande.DescriptionCommande))]
         public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+
+        [ForeignKey(nameof(IdCB))]
+        [InverseProperty(nameof(CarteBancaire.DescriptionsCommande))]
+        public virtual CarteBancaire? CarteBancaire { get; set; }
     }
 }

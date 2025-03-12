@@ -18,6 +18,9 @@ namespace APIVinotrip.Models.Entity_Framework
         [Column("idClient")]
         public int? IdClient { get; set; }
 
+        [Column("idPartenaire")]
+        public int? IdPartenaire { get; set; }
+
         [Column("nomAdresseDestinationFacture")]
         [StringLength(50)]
         public string? NomAdresseDestinationFacture { get; set; }
@@ -47,11 +50,11 @@ namespace APIVinotrip.Models.Entity_Framework
         public string? NomAdresse { get; set; }
 
         
-        [ForeignKey("IdClient")]
+        [ForeignKey(nameof(IdClient))]
         [InverseProperty(nameof(Client.Adresses))]
         public virtual Client? Client { get; set; }
 
-        [ForeignKey("IdPartenaire")]
+        [ForeignKey(nameof(IdPartenaire))]
         [InverseProperty(nameof(Partenaire.AdressesPartenaires))]
         public virtual Partenaire? Partenaire { get; set; }
 
