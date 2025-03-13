@@ -22,14 +22,14 @@ public partial class Propose
     public int Idadresse { get; set; }
 
     [ForeignKey("Idactivite")]
-    [InverseProperty("Propose4s")]
+    [InverseProperty("Proposes")]
     public virtual Activite IdactiviteNavigation { get; set; } = null!;
 
     [ForeignKey("Idadresse")]
-    [InverseProperty("Propose4s")]
+    [InverseProperty("Proposes")]
     public virtual Adresse IdadresseNavigation { get; set; } = null!;
 
     [ForeignKey("Idpartenaire")]
-    [InverseProperty("Propose4s")]
+    [InverseProperty("Proposes")]
     public virtual Autresociete IdpartenaireNavigation { get; set; } = null!;
 }

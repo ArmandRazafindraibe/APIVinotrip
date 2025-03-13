@@ -6,7 +6,6 @@ using System.Xml.Linq;
 namespace APIVinotrip.Models.EntityFramework
 {
     [Table("autresociete")]
-    [Index("Idpartenaire", Name = "autresociete_pk", IsUnique = true)]
     public partial class Autresociete
     {
         [Key]
@@ -30,7 +29,7 @@ namespace APIVinotrip.Models.EntityFramework
         public virtual Partenaire IdpartenaireNavigation { get; set; } = null!;
 
         [InverseProperty("IdpartenaireNavigation")]
-        public virtual ICollection<Propose> Proposes { get; set; } = new List<Propose>();
+        public virtual ICollection<Propose> EstProposePars { get; set; } = new List<Propose>();
     }
 }
 

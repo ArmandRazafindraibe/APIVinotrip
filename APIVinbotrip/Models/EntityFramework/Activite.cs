@@ -34,5 +34,8 @@ namespace APIVinotrip.Models.EntityFramework
         [ForeignKey("Idactivite")]
         [InverseProperty("Idactivites")]
         public virtual ICollection<Etape> Idetapes { get; set; } = new List<Etape>();
+
+        [InverseProperty("IdactiviteNavigation")]
+        public virtual ICollection<Propose> EstProposePars { get; set; } = new List<Propose>();
     }
 }
