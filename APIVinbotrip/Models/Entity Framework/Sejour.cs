@@ -92,6 +92,10 @@ namespace APIVinbotrip.Models.Entity_Framework
         [InverseProperty(nameof(Photo.Sejour))]
         public virtual ICollection<Photo> Photos { get; set; } = new List<Photo>();
 
+        [ForeignKey(nameof(Idsejour))]
+        [InverseProperty(nameof(Client.Idsejours))]
+        public virtual ICollection<Client> Idclients { get; set; } = new List<Client>();
+
     }
 
 }

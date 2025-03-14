@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using APIVinbotrip.Models.Entity_Framework;
 
 namespace APIVinotrip.Models.Entity_Framework
 {
@@ -27,6 +28,10 @@ namespace APIVinotrip.Models.Entity_Framework
         [ForeignKey(nameof(IdPartenaire))]
         [InverseProperty(nameof(Cave.Visites))]
         public virtual Cave? Cave { get; set; }
+
+        [ForeignKey(nameof(IdVisite))]
+        [InverseProperty(nameof(Etape.Visites))]
+        public virtual ICollection<Etape> Idetapes { get; set; } = new List<Etape>();
 
 
     }

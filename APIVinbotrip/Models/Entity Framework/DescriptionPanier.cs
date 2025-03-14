@@ -68,5 +68,9 @@ namespace APIVinbotrip.Models.Entity_Framework
         [ForeignKey(nameof(IdHebergement))]
         [InverseProperty(nameof(Hebergement.DescriptionsPanier))]
         public virtual Hebergement? Hebergement { get; set; }
+
+        [ForeignKey(nameof(IdDescriptionPanier))]
+        [InverseProperty(nameof(Activite.Iddescriptionpaniers))]
+        public virtual ICollection<Activite> Idactivites { get; set; } = new List<Activite>();
     }
 }

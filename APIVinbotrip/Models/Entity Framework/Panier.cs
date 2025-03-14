@@ -22,7 +22,7 @@ namespace APIVinotrip.Models.Entity_Framework
 
         [ForeignKey(nameof(IdCodePromo))]
         [InverseProperty(nameof(CodePromo.Paniers))]
-        public virtual ICollection<CodePromo> CodesPromos { get; set; } = new List<CodePromo>();
+        public virtual CodePromo? CodesPromos { get; set; }
 
         [InverseProperty(nameof(Commande.PanierCommande))]
         public virtual Commande? Commandes { get; set; }

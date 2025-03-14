@@ -25,6 +25,6 @@ namespace APIVinbotrip.Models.Entity_Framework
 
             [ForeignKey(nameof(IdCategorieVignoble))]    
             [InverseProperty(nameof(CategorieVignoble.Localites))]
-            public virtual ICollection<CategorieVignoble> CategoriesVignoble { get; set; } = new List<CategorieVignoble>();
+            public virtual CategorieVignoble? CategoriesVignoble { get; set; }
     }
 }

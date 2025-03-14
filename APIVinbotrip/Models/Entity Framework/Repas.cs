@@ -30,6 +30,6 @@ namespace APIVinotrip.Models.Entity_Framework
         public virtual Restaurant? RestaurantRepas { get; set; }
 
 
-     
+
     }
 }

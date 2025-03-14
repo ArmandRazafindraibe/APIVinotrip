@@ -40,6 +40,8 @@ namespace APIVinotrip.Models.Entity_Framework
 
         [Column("dateDerniereActiviteClient")]
         public DateTime? DateDerniereActiviteClient { get; set; }
+        [Column("a2f")]
+        public bool A2f { get; set; }
 
         [Column("idRole")]
         public int? IdRole { get; set; }
@@ -75,6 +77,11 @@ namespace APIVinotrip.Models.Entity_Framework
         [InverseProperty(nameof(CarteBancaire.Client))]
         public virtual ICollection<CarteBancaire> CartesBancaires { get; set; } = new List<CarteBancaire>();
 
-      
+        [ForeignKey(nameof(IdClient))]
+
+        [InverseProperty(nameof(Sejour.Idclients))]
+        public virtual ICollection<Sejour> Idsejours { get; set; } = new List<Sejour>();
+
+
     }
 }

@@ -70,7 +70,11 @@ namespace APIVinotrip.Models.Entity_Framework
         [InverseProperty(nameof(Commande.DescriptionsCommande))]
         public virtual Commande? Commande { get; set; }
 
-        
+        [ForeignKey(nameof(IdDescriptionCommande))]
+        [InverseProperty(nameof(Activite.DescriptionCommandes))]
+        public virtual ICollection<Activite> Idactivites { get; set; } = new List<Activite>();
+
+
 
         [ForeignKey(nameof(IdCB))]
         [InverseProperty(nameof(CarteBancaire.DescriptionsCommande))]
