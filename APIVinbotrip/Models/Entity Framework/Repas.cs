@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using APIVinbotrip.Models.Entity_Framework;
 
 namespace APIVinotrip.Models.Entity_Framework
 {
@@ -30,6 +31,17 @@ namespace APIVinotrip.Models.Entity_Framework
         public virtual Restaurant? RestaurantRepas { get; set; }
 
 
+        [ForeignKey(nameof(IdRepas))]
+        [InverseProperty(nameof(DescriptionCommande.Idrepas))]
+        public virtual ICollection<DescriptionCommande> Iddescriptioncommandes { get; set; } = new List<DescriptionCommande>();
+
+        [ForeignKey(nameof(IdRepas))]
+        [InverseProperty(nameof(Etape.Idrepas))]
+        public virtual ICollection<Etape> Idetapes { get; set; } = new List<Etape>();
+
+        [ForeignKey(nameof(IdRepas))]
+        [InverseProperty(nameof(DescriptionPanier.Idrepas))]
+        public virtual ICollection<DescriptionPanier> Iddescriptionpaniers { get; set; } = new List<DescriptionPanier>();
 
     }
 }

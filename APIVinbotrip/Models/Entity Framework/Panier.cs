@@ -25,6 +25,6 @@ namespace APIVinotrip.Models.Entity_Framework
         public virtual CodePromo? CodesPromos { get; set; }
 
         [InverseProperty(nameof(Commande.PanierCommande))]
-        public virtual Commande? Commandes { get; set; }
+        public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
     }
 }

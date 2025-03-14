@@ -54,6 +54,11 @@ namespace APIVinbotrip.Models.Entity_Framework
         [InverseProperty(nameof(Activite.Idetapes))]
         public virtual ICollection<Activite> Idactivites { get; set; } = new List<Activite>();
 
+        [ForeignKey(nameof(IdEtape))]
+        [InverseProperty(nameof(Repas.Idetapes))]
+        public virtual ICollection<Repas> Idrepas { get; set; } = new List<Repas>();
+
+
 
 
     }

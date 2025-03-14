@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace APIVinotrip.Models.Entity_Framework
 {
@@ -25,5 +26,9 @@ namespace APIVinotrip.Models.Entity_Framework
         [ForeignKey(nameof(IdPartenaire))]
         [InverseProperty(nameof(Partenaire.AutreSocietePartenaire))]
         public virtual Partenaire? Partenaire { get; set; }
+
+
+        [InverseProperty(nameof(EstProposePar.IdpartenaireNavigation))]
+        public virtual ICollection<EstProposePar> EstProposePars { get; set; } = new List<EstProposePar>();
     }
 }

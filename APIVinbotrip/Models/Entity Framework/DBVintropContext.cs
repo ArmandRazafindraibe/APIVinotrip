@@ -275,11 +275,11 @@ public partial class DbtestContext : DbContext
             entity.Property(e => e.DateCommande).HasDefaultValueSql("'2025-01-01'::date");
             entity.Property(e => e.EtatCommande).HasDefaultValueSql("'En attente de validation'::character varying");
 
-            entity.HasOne(d => d.IdadressefacturationNavigation).WithMany(p => p.CommandeIdadressefacturationNavigations)
+            entity.HasOne(d => d.AdresseFacturation).WithMany(p => p.CommandesFacturation)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_commande_associati_adresse2");
 
-            entity.HasOne(d => d.IdadresselivraisonNavigation).WithMany(p => p.CommandeIdadresselivraisonNavigations)
+            entity.HasOne(d => d.AdresseFacturation).WithMany(p => p.CommandesLivraison)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_commande_associati_adresse");
 
@@ -291,7 +291,7 @@ public partial class DbtestContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_commande_associati_client2");
 
-            entity.HasOne(d => d.ClientBeneficiaire).WithMany(p => p.CommandeIdclientbeneficiaireNavigations)
+            entity.HasOne(d => d.ClientBeneficiaire).WithMany(p => p.CommandesOfferts)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_commande_associati_client");
 
@@ -299,7 +299,7 @@ public partial class DbtestContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_commande_diminue_codeprom");
 
-            entity.HasOne(d => d.IdpanierNavigation).WithMany(p => p.Commandes)
+            entity.HasOne(d => d.PanierCommande).WithMany(p => p.Commandes)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_commande_associe_panier");
         });
@@ -318,11 +318,11 @@ public partial class DbtestContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_descript_associati_commande");
 
-            entity.HasOne(d => d.IdhebergementNavigation).WithMany(p => p.Descriptioncommandes)
+            entity.HasOne(d => d.Hebergements).WithMany(p => p.DescriptionsCommande)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_descript_associati_hebergem");
 
-            entity.HasOne(d => d.IdsejourNavigation).WithMany(p => p.Descriptioncommandes)
+            entity.HasOne(d => d.Sejours).WithMany(p => p.DescriptioncommandesNavigation)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_descript_associati_sejour");
         });
@@ -383,7 +383,7 @@ public partial class DbtestContext : DbContext
         {
             entity.HasKey(e => e.IdHebergement).HasName("pk_hebergement");
 
-            entity.HasOne(d => d.HebergementHotel).WithMany(p => p.HotelHebergement)
+            entity.HasOne(d => d.HebergementHotel).WithMany(p => p.Hebergements)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_hebergem_propose_3_hotel");
         });
@@ -445,11 +445,11 @@ public partial class DbtestContext : DbContext
             entity.HasMany(d => d.Iddescriptioncommandes).WithMany(p => p.Idrepas)
                 .UsingEntity<Dictionary<string, object>>(
                     "Mange1",
-                    r => r.HasOne<Descriptioncommande>().WithMany()
+                    r => r.HasOne<DescriptionCommande>().WithMany()
                         .HasForeignKey("Iddescriptioncommande")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_associat_associati_descript"),
-                    l => l.HasOne<Repa>().WithMany()
+                    l => l.HasOne<Repas>().WithMany()
                         .HasForeignKey("Idrepas")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_associat_associati_repas"),
@@ -462,11 +462,11 @@ public partial class DbtestContext : DbContext
             entity.HasMany(d => d.Iddescriptionpaniers).WithMany(p => p.Idrepas)
                 .UsingEntity<Dictionary<string, object>>(
                     "Detient",
-                    r => r.HasOne<Descriptionpanier>().WithMany()
+                    r => r.HasOne<DescriptionPanier>().WithMany()
                         .HasForeignKey("Iddescriptionpanier")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_associat_associati_descript"),
-                    l => l.HasOne<Repa>().WithMany()
+                    l => l.HasOne<Repas>().WithMany()
                         .HasForeignKey("Idrepas")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_associat_associati_repas"),
@@ -483,7 +483,7 @@ public partial class DbtestContext : DbContext
                         .HasForeignKey("Idetape")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_appartie_appartien_etape"),
-                    l => l.HasOne<Repa>().WithMany()
+                    l => l.HasOne<Repas>().WithMany()
                         .HasForeignKey("Idrepas")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_appartie_appartien_repas"),

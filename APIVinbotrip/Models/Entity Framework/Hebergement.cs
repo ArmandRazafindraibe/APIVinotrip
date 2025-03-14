@@ -40,6 +40,6 @@ namespace APIVinotrip.Models.Entity_Framework
         public virtual ICollection<DescriptionPanier>? DescriptionsPanier { get; set; }
 
         [InverseProperty(nameof(DescriptionCommande.Hebergements))]
-        public virtual ICollection<DescriptionPanier>? DescriptionsCommande { get; set; }
+        public virtual ICollection<DescriptionCommande>? DescriptionsCommande { get; set; }
     }
 }

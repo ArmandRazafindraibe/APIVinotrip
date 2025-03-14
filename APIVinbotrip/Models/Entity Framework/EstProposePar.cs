@@ -23,13 +23,13 @@ public partial class EstProposePar
 
     [ForeignKey(nameof(Idactivite))]
     [InverseProperty(nameof(Activite.IdActivite))]
-    public virtual Activite IdactiviteNavigation { get; set; } = null!;
+    public virtual Activite? IdactiviteNavigation { get; set; } 
 
     [ForeignKey(nameof(Idadresse))]
-    [InverseProperty("EstProposePars")]
+    [InverseProperty(nameof(Adresse.EstProposePars))]
     public virtual Adresse IdadresseNavigation { get; set; } = null!;
 
     [ForeignKey(nameof(Idpartenaire))]
-    [InverseProperty("EstProposePars")]
+    [InverseProperty(nameof(AutreSociete.EstProposePars))]
     public virtual AutreSociete IdpartenaireNavigation { get; set; } = null!;
 }

@@ -85,6 +85,6 @@ namespace APIVinotrip.Models.Entity_Framework
         [InverseProperty(nameof(DescriptionCommande.Commande))]
         public virtual ICollection<DescriptionCommande> DescriptionsCommande { get; set; } = new List<DescriptionCommande>();
 
-        
+
     }
 }

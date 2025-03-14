@@ -63,6 +63,8 @@ namespace APIVinotrip.Models.Entity_Framework
 
         [InverseProperty(nameof(Commande.AdresseFacturation))]
         public virtual ICollection<Commande> CommandesFacturation { get; set; } = new List<Commande>();
+        [InverseProperty(nameof(EstProposePar.IdadresseNavigation))]
+        public virtual ICollection<EstProposePar> EstProposePars { get; set; } = new List<EstProposePar>();
 
     }
 }
