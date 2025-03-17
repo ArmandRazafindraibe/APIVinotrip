@@ -1,6 +1,14 @@
+using APIVinotrip.Models.EntityFramework;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<DBVinotripContext>(options =>
+  options.UseNpgsql(builder.Configuration.GetConnectionString("DBVinotripContextRemote")));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
