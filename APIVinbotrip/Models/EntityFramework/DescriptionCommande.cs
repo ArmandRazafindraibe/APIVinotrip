@@ -4,62 +4,62 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("DESCRIPTIONCOMMANDE")]
+    [Table("descriptioncommande")]
     public partial class DescriptionCommande
     {
         [Key]
-        [Column("idDescriptionCommande")]
+        [Column("iddescriptioncommande")]
         public int IdDescriptionCommande { get; set; }
 
-        [Column("idCommande")]
+        [Column("idcommande")]
         public int? IdCommande { get; set; }
 
-        [Column("idHebergement")]
+        [Column("idhebergement")]
         public int? IdHebergement { get; set; }
 
-        [Column("idPassegeiment")]
+        [Column("idpassegeiment")]
         public int? IdPassegeiment { get; set; }
 
-        [Column("idSejour")]
+        [Column("idsejour")]
         public int? IdSejour { get; set; }
 
         [Column("quantite")]
         public int? Quantite { get; set; }
 
-        [Column("idCB")]
+        [Column("idcb")]
         public int? IdCB { get; set; }
 
-        [Column("prixOeuf")]
+        [Column("prixoeuf")]
         public int? PrixOeuf { get; set; }
 
-        [Column("dateFin")]
+        [Column("datefin")]
         public DateTime? DateFin { get; set; }
 
-        [Column("nbAdultes")]
+        [Column("nbadultes")]
         public int? NbAdultes { get; set; }
 
-        [Column("nbEnfants")]
+        [Column("nbenfants")]
         public int? NbEnfants { get; set; }
 
-        [Column("nbChambresSimple")]
+        [Column("nbchambressimple")]
         public int? NbChambresSimple { get; set; }
 
-        [Column("nbChambresDouble")]
+        [Column("nbchambresdouble")]
         public int? NbChambresDouble { get; set; }
 
-        [Column("nbChambresTriple")]
+        [Column("nbchambrestriple")]
         public int? NbChambresTriple { get; set; }
 
-        [Column("pDej")]
+        [Column("pdej")]
         public bool? PDej { get; set; }
 
-        [Column("isPDej")]
+        [Column("ispdej")]
         public bool? IsPDej { get; set; }
 
-        [Column("encaissementMangement")]
+        [Column("encaissementmangement")]
         public bool? EncaissementMangement { get; set; }
 
-        [Column("validationClient")]
+        [Column("validationclient")]
         public bool? ValidationClient { get; set; }
 
         // Navigation properties

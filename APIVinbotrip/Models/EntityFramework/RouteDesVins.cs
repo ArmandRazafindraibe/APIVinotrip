@@ -4,22 +4,22 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("ROUTE_DES_VINS")]
+    [Table("route_des_vins")]
     public partial class RouteDesVins
     {
         [Key]
-        [Column("idRoute")]
+        [Column("idroute")]
         public int IdRoute { get; set; }
 
-        [Column("libRoute")]
+        [Column("libroute")]
         [StringLength(50)]
         public string? LibRoute { get; set; }
 
-        [Column("descriptionRoute")]
+        [Column("descriptionroute")]
         [StringLength(2048)]
         public string? DescriptionRoute { get; set; }
 
-        [Column("photoRoute")]
+        [Column("photoroute")]
         [StringLength(512)]
         public string? PhotoRoute { get; set; }
 

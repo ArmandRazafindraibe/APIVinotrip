@@ -4,48 +4,48 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("ADRESSE")]
+    [Table("adresse")]
     public partial class Adresse
     {
         [Key]
-        [Column("idAdresse")]
+        [Column("idadresse")]
         public int IdAdresse { get; set; }
 
-        [Column("nAdresse")]
+        [Column("nadresse")]
         [StringLength(50)]
         public string? NAdresse { get; set; }
 
-        [Column("idClient")]
+        [Column("idclient")]
         public int? IdClient { get; set; }
 
-        [Column("idPartenaire")]
+        [Column("idpartenaire")]
         public int? IdPartenaire { get; set; }
 
-        [Column("nomAdresseDestinationFacture")]
+        [Column("nomadressedestinationfacture")]
         [StringLength(50)]
         public string? NomAdresseDestinationFacture { get; set; }
 
-        [Column("nomAdresseDestinataire")]
+        [Column("nomadressedestinataire")]
         [StringLength(50)]
         public string? NomAdresseDestinataire { get; set; }
 
-        [Column("rueAdresse")]
+        [Column("rueadresse")]
         [StringLength(100)]
         public string? RueAdresse { get; set; }
 
-        [Column("villeAdresse")]
+        [Column("villeadresse")]
         [StringLength(50)]
         public string? VilleAdresse { get; set; }
 
-        [Column("paysAdresse")]
+        [Column("paysadresse")]
         [StringLength(50)]
         public string? PaysAdresse { get; set; }
 
-        [Column("cpAdresse")]
+        [Column("cpadresse")]
         [StringLength(8)]
         public string? CpAdresse { get; set; }
 
-        [Column("nomAdresse")]
+        [Column("nomadresse")]
         [StringLength(10)]
         public string? NomAdresse { get; set; }
 

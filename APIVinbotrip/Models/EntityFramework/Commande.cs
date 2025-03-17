@@ -4,51 +4,51 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("COMMANDE")]
+    [Table("commande")]
     public partial class Commande
     {
         [Key]
-        [Column("idCommande")]
+        [Column("idcommande")]
         public int IdCommande { get; set; }
 
-        [Column("idCodePromo")]
+        [Column("idcodepromo")]
         [StringLength(20)]
         public int IdCodePromo { get; set; }
 
-        [Column("idCB")]
+        [Column("idcb")]
         public int? IdCB { get; set; }
 
-        [Column("idAdresseFacturation")]
+        [Column("idadressefacturation")]
         public int? IdAdresseFacturation { get; set; }
 
-        [Column("idClientAcheteur")]
+        [Column("idclientacheteur")]
         public int? IdClientAcheteur { get; set; }
 
-        [Column("idClientBeneficiaire")]
+        [Column("idclientbeneficiaire")]
         public int? IdClientBeneficiaire { get; set; }
 
-        [Column("idAdresseLivraison")]
+        [Column("idadresselivraison")]
         public int? IdAdresseLivraison { get; set; }
 
-        [Column("idPanier")]
+        [Column("idpanier")]
         public int? IdPanier { get; set; }
 
         [Column("validationClient")]
         public bool ValidationClient { get; set; }
 
-        [Column("codeReduction")]
+        [Column("codereduction")]
         [StringLength(20)]
-        public string? CodeReduction { get; set; }
+        public string? codereduction { get; set; }
 
-        [Column("etatCommande")]
+        [Column("etatcommande")]
         [StringLength(50)]
         public string? EtatCommande { get; set; }
 
-        [Column("typePayementCommande")]
+        [Column("typepayementcommande")]
         [StringLength(50)]
         public string? TypePayementCommande { get; set; }
 
-        [Column("dateCommande")]
+        [Column("datecommande")]
         public DateTime? DateCommande { get; set; }
 
         // Navigation properties

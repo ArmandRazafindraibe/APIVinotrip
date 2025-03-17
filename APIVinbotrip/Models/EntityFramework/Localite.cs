@@ -4,20 +4,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("LOCALITE")]
+    [Table("localite")]
     public partial class Localite
     {
             [Key]
-            [Column("idLocalite")]
+            [Column("idlocalite")]
             public int IdLocalite { get; set; }
 
 
 
-            [Column("libelleLocalite")]
+            [Column("libellelocalite")]
             [StringLength(50)]
             public string? LibelleLocalite { get; set; }
 
-            [Column("idCategorieVignoble")]
+            [Column("idcategorievignoble")]
             public int? IdCategorieVignoble { get; set; }
 
             [InverseProperty(nameof(Sejour.IdlocaliteNavigation))]

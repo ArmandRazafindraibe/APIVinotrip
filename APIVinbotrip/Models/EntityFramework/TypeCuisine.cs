@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("TYPECUISINE")]
+    [Table("typecuisine")]
     public partial class TypeCuisine
     {
         [Key]
-        [Column("idTypeCuisine")]
+        [Column("idtypecuisine")]
         public int IdTypeCuisine { get; set; }
 
-        [Column("libelleTypeCuisine")]
+        [Column("libelletypecuisine")]
         [StringLength(50)]
         public string? LibelleTypeCuisine { get; set; }
 

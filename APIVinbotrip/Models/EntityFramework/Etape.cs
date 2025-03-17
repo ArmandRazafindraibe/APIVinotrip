@@ -4,36 +4,36 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("ETAPE")]
+    [Table("etape")]
     public partial class Etape
     {
         [Key]
-        [Column("idEtape")]
+        [Column("idetape")]
         public int IdEtape { get; set; }
 
-        [Column("idSejour")]
+        [Column("idsejour")]
         public int? IdSejour { get; set; }
 
-        [Column("idHebergement")]
+        [Column("idhebergement")]
         public int? IdHebergement { get; set; }
 
-        [Column("titreEtape")]
+        [Column("titreetape")]
         [StringLength(100)]
         public string? TitreEtape { get; set; }
 
-        [Column("descriptionEtape")]
+        [Column("descriptionetape")]
         [StringLength(4096)]
         public string? DescriptionEtape { get; set; }
 
-        [Column("photoEtape")]
+        [Column("photoetape")]
         [StringLength(512)]
         public string? PhotoEtape { get; set; }
 
-        [Column("URLEtape")]
+        [Column("urletape")]
         [StringLength(150)]
         public string? URLEtape { get; set; }
 
-        [Column("videoEtape")]
+        [Column("videoetape")]
         [StringLength(512)]
         public string? VideoEtape { get; set; }
 

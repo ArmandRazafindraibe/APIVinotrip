@@ -4,55 +4,55 @@ using System.Data;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("CLIENT")]
+    [Table("client")]
     public partial class Client
     {
         [Key]
-        [Column("idClient")]
+        [Column("idclient")]
         public int IdClient { get; set; }
 
-        [Column("nomClient")]
+        [Column("nomclient")]
         [StringLength(50)]
         public string? NomClient { get; set; }
 
-        [Column("prenomClient")]
+        [Column("prenomclient")]
         [StringLength(50)]
         public string? PrenomClient { get; set; }
 
-        [Column("emailClient")]
+        [Column("emailclient")]
         [StringLength(100)]
         public string? EmailClient { get; set; }
 
-        [Column("mdpClient")]
+        [Column("mdpclient")]
         [StringLength(50)]
         public string? MdpClient { get; set; }
 
-        [Column("dateNaissanceClient")]
+        [Column("datenaissanceclient")]
         public DateTime? DateNaissanceClient { get; set; }
 
-        [Column("dateCreationCompteClient")]
+        [Column("datecreationcompteclient")]
         public DateTime? DateCreationCompteClient { get; set; }
 
-        [Column("telClient")]
+        [Column("telclient")]
         [StringLength(12)]
         public string? TelClient { get; set; }
 
-        [Column("dateDerniereActiviteClient")]
+        [Column("datederniereactiviteclient")]
         public DateTime? DateDerniereActiviteClient { get; set; }
         [Column("a2f")]
         public bool A2f { get; set; }
 
-        [Column("idRole")]
+        [Column("idrole")]
         public int? IdRole { get; set; }
 
-        [Column("bloquingClient")]
+        [Column("bloquingclient")]
         public bool? BloquingClient { get; set; }
 
-        [Column("tokenResetMDP")]
+        [Column("tokenresetmdp")]
         [StringLength(50)]
         public string? TokenResetMDP { get; set; }
 
-        [Column("dateCreationToken")]
+        [Column("datecreationtoken")]
         public DateTime? DateCreationToken { get; set; }
 
         // Navigation properties

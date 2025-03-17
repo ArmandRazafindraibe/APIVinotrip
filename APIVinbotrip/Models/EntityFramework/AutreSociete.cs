@@ -4,18 +4,18 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("AUTRESOCIETE")]
+    [Table("autresociete")]
     public partial class AutreSociete
     {
         [Key]
-        [Column("idPartenaire")]
+        [Column("idpartenaire")]
         public int IdPartenaire { get; set; }
 
-        [Column("nomPartenaire")]
+        [Column("nompartenaire")]
         [StringLength(50)]
         public string? NomPartenaire { get; set; }
 
-        [Column("mailPartenaire")]
+        [Column("mailpartenaire")]
         [StringLength(100)]
         public string? MailPartenaire { get; set; }
 

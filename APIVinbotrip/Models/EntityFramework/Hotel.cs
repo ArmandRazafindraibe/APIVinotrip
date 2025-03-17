@@ -3,29 +3,29 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("HOTEL")]
+    [Table("hotel")]
     public partial class Hotel
     {
         [Key]
-        [Column("idPartenaire")]
+        [Column("idpartenaire")]
         public int IdPartenaire { get; set; }
 
-        [Column("nomPartenaire")]
+        [Column("nompartenaire")]
         [StringLength(50)]
         public string? NomPartenaire { get; set; }
 
-        [Column("mailPartenaire")]
+        [Column("mailpartenaire")]
         [StringLength(100)]
         public string? MailPartenaire { get; set; }
 
-        [Column("telPartenaire")]
+        [Column("telpartenaire")]
         [StringLength(10)]
         public string? TelPartenaire { get; set; }
 
-        [Column("nombreChambresHotel")]
+        [Column("nombrechambreshotel")]
         public int? NombreChambresHotel { get; set; }
 
-        [Column("categorieHotel")]
+        [Column("categoriehotel")]
         public int? CategorieHotel { get; set; }
 
         [ForeignKey(nameof(IdPartenaire))]

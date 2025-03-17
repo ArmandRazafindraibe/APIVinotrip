@@ -4,25 +4,25 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("REPAS")]
+    [Table("repas")]
     public partial class Repas
     {
         [Key]
-        [Column("idRepas")]
+        [Column("idrepas")]
         public int IdRepas { get; set; }
 
-        [Column("idPartenaire")]
+        [Column("idpartenaire")]
         public int? IdPartenaire { get; set; }
 
-        [Column("descriptionRepas")]
+        [Column("descriptionrepas")]
         [StringLength(4096)]
         public string? DescriptionRepas { get; set; }
 
-        [Column("photoRepas")]
+        [Column("photorepas")]
         [StringLength(512)]
         public string? PhotoRepas { get; set; }
 
-        [Column("prixRepas", TypeName = "NUMERIC(8,2)")]
+        [Column("prixrepas", TypeName = "NUMERIC(8,2)")]
         public decimal? PrixRepas { get; set; }
 
 

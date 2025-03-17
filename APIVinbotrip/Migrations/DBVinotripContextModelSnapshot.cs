@@ -27,23 +27,23 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdActivite")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idActivite");
+                        .HasColumnName("idactivite");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdActivite"));
 
                     b.Property<string>("LibelleActivite")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("libelleActivite");
+                        .HasColumnName("libelleactivite");
 
                     b.Property<decimal?>("PrixActivite")
                         .HasColumnType("NUMERIC(8,2)")
-                        .HasColumnName("prixActivite");
+                        .HasColumnName("prixactivite");
 
                     b.HasKey("IdActivite")
                         .HasName("pk_activite");
 
-                    b.ToTable("ACTIVITE");
+                    b.ToTable("activite");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Adresse", b =>
@@ -51,59 +51,59 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdAdresse")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idAdresse");
+                        .HasColumnName("idadresse");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdAdresse"));
 
                     b.Property<string>("CpAdresse")
                         .HasMaxLength(8)
                         .HasColumnType("character varying(8)")
-                        .HasColumnName("cpAdresse");
+                        .HasColumnName("cpadresse");
 
                     b.Property<int?>("IdClient")
                         .HasColumnType("integer")
-                        .HasColumnName("idClient");
+                        .HasColumnName("idclient");
 
                     b.Property<int?>("IdPartenaire")
                         .HasColumnType("integer")
-                        .HasColumnName("idPartenaire");
+                        .HasColumnName("idpartenaire");
 
                     b.Property<string>("NAdresse")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nAdresse");
+                        .HasColumnName("nadresse");
 
                     b.Property<string>("NomAdresse")
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)")
-                        .HasColumnName("nomAdresse");
+                        .HasColumnName("nomadresse");
 
                     b.Property<string>("NomAdresseDestinataire")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nomAdresseDestinataire");
+                        .HasColumnName("nomadressedestinataire");
 
                     b.Property<string>("NomAdresseDestinationFacture")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nomAdresseDestinationFacture");
+                        .HasColumnName("nomadressedestinationfacture");
 
                     b.Property<string>("PaysAdresse")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("paysAdresse")
+                        .HasColumnName("paysadresse")
                         .HasDefaultValueSql("'France'::character varying");
 
                     b.Property<string>("RueAdresse")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("rueAdresse");
+                        .HasColumnName("rueadresse");
 
                     b.Property<string>("VilleAdresse")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("villeAdresse");
+                        .HasColumnName("villeadresse");
 
                     b.HasKey("IdAdresse")
                         .HasName("pk_adresse");
@@ -112,24 +112,24 @@ namespace APIVinotrip.Migrations
 
                     b.HasIndex("IdPartenaire");
 
-                    b.ToTable("ADRESSE");
+                    b.ToTable("adresse");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.AutreSociete", b =>
                 {
                     b.Property<int>("IdPartenaire")
                         .HasColumnType("integer")
-                        .HasColumnName("idPartenaire");
+                        .HasColumnName("idpartenaire");
 
                     b.Property<string>("MailPartenaire")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("mailPartenaire");
+                        .HasColumnName("mailpartenaire");
 
                     b.Property<string>("NomPartenaire")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nomPartenaire");
+                        .HasColumnName("nompartenaire");
 
                     b.Property<string>("Telpartenaire")
                         .HasMaxLength(10)
@@ -140,7 +140,7 @@ namespace APIVinotrip.Migrations
                     b.HasKey("IdPartenaire")
                         .HasName("pk_autresociete");
 
-                    b.ToTable("AUTRESOCIETE");
+                    b.ToTable("autresociete");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Avis", b =>
@@ -148,40 +148,40 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdAvis")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idAvis");
+                        .HasColumnName("idavis");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdAvis"));
 
                     b.Property<DateTime?>("DateAvis")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dateAvis");
+                        .HasColumnName("dateavis");
 
                     b.Property<string>("DescriptionAvis")
                         .HasMaxLength(2048)
                         .HasColumnType("character varying(2048)")
-                        .HasColumnName("descriptionAvis");
+                        .HasColumnName("descriptionavis");
 
                     b.Property<int?>("IdClient")
                         .HasColumnType("integer")
-                        .HasColumnName("idClient");
+                        .HasColumnName("idclient");
 
                     b.Property<int?>("IdSejour")
                         .HasColumnType("integer")
-                        .HasColumnName("idSejour");
+                        .HasColumnName("idsejour");
 
                     b.Property<int?>("NoteAvis")
                         .HasColumnType("integer")
-                        .HasColumnName("noteAvis");
+                        .HasColumnName("noteavis");
 
                     b.Property<string>("PhotoAvis")
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)")
-                        .HasColumnName("photoAvis");
+                        .HasColumnName("photoavis");
 
                     b.Property<string>("TitreAvis")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("titreAvis");
+                        .HasColumnName("titreavis");
 
                     b.HasKey("IdAvis")
                         .HasName("pk_avis");
@@ -190,7 +190,7 @@ namespace APIVinotrip.Migrations
 
                     b.HasIndex("IdSejour");
 
-                    b.ToTable("AVIS");
+                    b.ToTable("avis");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.CarteBancaire", b =>
@@ -198,7 +198,7 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdCB")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idCB");
+                        .HasColumnName("idcb");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCB"));
 
@@ -210,30 +210,30 @@ namespace APIVinotrip.Migrations
 
                     b.Property<DateTime?>("DateExpirationCreditCard")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dateExpirationCreditCard")
+                        .HasColumnName("dateexpirationcreditcard")
                         .IsFixedLength();
 
                     b.Property<int?>("IdClient")
                         .HasColumnType("integer")
-                        .HasColumnName("idClient");
+                        .HasColumnName("idclient");
 
                     b.Property<string>("NumeroCB")
                         .HasMaxLength(50)
                         .HasColumnType("character(50)")
-                        .HasColumnName("numeroCB")
+                        .HasColumnName("numerocb")
                         .IsFixedLength();
 
                     b.Property<string>("NumeroCVCCarte")
                         .HasMaxLength(5)
                         .HasColumnType("character varying(5)")
-                        .HasColumnName("numeroCVCCarte");
+                        .HasColumnName("numerocvccarte");
 
                     b.HasKey("IdCB")
                         .HasName("pk_carte_bancaire");
 
                     b.HasIndex("IdClient");
 
-                    b.ToTable("CARTE_BANCAIRE");
+                    b.ToTable("carte_bancaire");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.CategorieParticipant", b =>
@@ -241,19 +241,19 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdCategorieParticipant")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idCategorieParticipant");
+                        .HasColumnName("idcategorieparticipant");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCategorieParticipant"));
 
                     b.Property<string>("LibelleCategorieParticipant")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("libelleCategorieParticipant");
+                        .HasColumnName("libellecategorieparticipant");
 
                     b.HasKey("IdCategorieParticipant")
                         .HasName("pk_categorieparticipant");
 
-                    b.ToTable("CATEGORIEEPARTICIPANT");
+                    b.ToTable("categorieeparticipant");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.CategorieSejour", b =>
@@ -261,19 +261,19 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdCategorieSejour")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idCategorieSejour");
+                        .HasColumnName("idcategoriesejour");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCategorieSejour"));
 
                     b.Property<string>("LibelleCategoriesSejour")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("libelleCategoriesSejour");
+                        .HasColumnName("libellecategoriessejour");
 
                     b.HasKey("IdCategorieSejour")
                         .HasName("pk_categoriesejour");
 
-                    b.ToTable("CATEGORIESEJOUR");
+                    b.ToTable("categoriesejour");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.CategorieVignoble", b =>
@@ -281,53 +281,53 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdCategorieVignoble")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idCategorieVignoble");
+                        .HasColumnName("idcategorievignoble");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCategorieVignoble"));
 
                     b.Property<string>("LibelleCategorieVignoble")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("libelleCategorieVignoble");
+                        .HasColumnName("libellecategorievignoble");
 
                     b.HasKey("IdCategorieVignoble")
                         .HasName("pk_categorievignoble");
 
-                    b.ToTable("CATEGORIEVIGNOBLE");
+                    b.ToTable("categorievignoble");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Cave", b =>
                 {
                     b.Property<int>("IdPartenaire")
                         .HasColumnType("integer")
-                        .HasColumnName("idPartenaire");
+                        .HasColumnName("idpartenaire");
 
                     b.Property<int?>("IdTypeDegustation")
                         .HasColumnType("integer")
-                        .HasColumnName("idTypeDegustation");
+                        .HasColumnName("idtypedegustation");
 
                     b.Property<string>("MailPartenaire")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("mailPartenaire");
-
-                    b.Property<string>("NomPartenaire")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("nomPartenaire");
+                        .HasColumnName("mailpartenaire");
 
                     b.Property<string>("TelPartenaire")
                         .HasMaxLength(10)
                         .HasColumnType("character(10)")
-                        .HasColumnName("telPartenaire")
+                        .HasColumnName("telpartenaire")
                         .IsFixedLength();
+
+                    b.Property<string>("nompartenaire")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("nompartenaire");
 
                     b.HasKey("IdPartenaire")
                         .HasName("pk_cave");
 
                     b.HasIndex("IdTypeDegustation");
 
-                    b.ToTable("CAVE");
+                    b.ToTable("cave");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Client", b =>
@@ -335,7 +335,7 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdClient")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idClient");
+                        .HasColumnName("idclient");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdClient"));
 
@@ -347,59 +347,59 @@ namespace APIVinotrip.Migrations
 
                     b.Property<bool?>("BloquingClient")
                         .HasColumnType("boolean")
-                        .HasColumnName("bloquingClient");
+                        .HasColumnName("bloquingclient");
 
                     b.Property<DateTime?>("DateCreationCompteClient")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dateCreationCompteClient");
+                        .HasColumnName("datecreationcompteclient");
 
                     b.Property<DateTime?>("DateCreationToken")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dateCreationToken");
+                        .HasColumnName("datecreationtoken");
 
                     b.Property<DateTime?>("DateDerniereActiviteClient")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dateDerniereActiviteClient");
+                        .HasColumnName("datederniereactiviteclient");
 
                     b.Property<DateTime?>("DateNaissanceClient")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dateNaissanceClient");
+                        .HasColumnName("datenaissanceclient");
 
                     b.Property<string>("EmailClient")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("emailClient");
+                        .HasColumnName("emailclient");
 
                     b.Property<int?>("IdRole")
                         .HasColumnType("integer")
-                        .HasColumnName("idRole");
+                        .HasColumnName("idrole");
 
                     b.Property<string>("MdpClient")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("mdpClient");
+                        .HasColumnName("mdpclient");
 
                     b.Property<string>("NomClient")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nomClient");
+                        .HasColumnName("nomclient");
 
                     b.Property<string>("PrenomClient")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("prenomClient");
+                        .HasColumnName("prenomclient");
 
                     b.Property<string>("TelClient")
                         .HasMaxLength(12)
                         .HasColumnType("character(12)")
-                        .HasColumnName("telClient")
+                        .HasColumnName("telclient")
                         .IsFixedLength();
 
                     b.Property<string>("TokenResetMDP")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .HasColumnType("character(50)")
-                        .HasColumnName("tokenResetMDP")
+                        .HasColumnName("tokenresetmdp")
                         .HasDefaultValueSql("NULL::bpchar")
                         .IsFixedLength();
 
@@ -408,7 +408,7 @@ namespace APIVinotrip.Migrations
 
                     b.HasIndex("IdRole");
 
-                    b.ToTable("CLIENT");
+                    b.ToTable("client");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.CodePromo", b =>
@@ -416,14 +416,14 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdCodePromo")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idCodePromo");
+                        .HasColumnName("idcodepromo");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCodePromo"));
 
                     b.Property<string>("LibelleCodePromo")
                         .HasMaxLength(15)
                         .HasColumnType("character varying(15)")
-                        .HasColumnName("libelleCodePromo");
+                        .HasColumnName("libellecodepromo");
 
                     b.Property<int?>("Reduction")
                         .HasColumnType("integer")
@@ -432,7 +432,7 @@ namespace APIVinotrip.Migrations
                     b.HasKey("IdCodePromo")
                         .HasName("pk_codepromo");
 
-                    b.ToTable("CODEPROMO");
+                    b.ToTable("codepromo");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Commande", b =>
@@ -440,65 +440,65 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdCommande")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idCommande");
+                        .HasColumnName("idcommande");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCommande"));
-
-                    b.Property<string>("CodeReduction")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("codeReduction");
 
                     b.Property<DateTime?>("DateCommande")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dateCommande")
+                        .HasColumnName("datecommande")
                         .HasDefaultValueSql("'2025-01-01'::date");
 
                     b.Property<string>("EtatCommande")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("etatCommande")
+                        .HasColumnName("etatcommande")
                         .HasDefaultValueSql("'En attente de validation'::character varying");
 
                     b.Property<int?>("IdAdresseFacturation")
                         .HasColumnType("integer")
-                        .HasColumnName("idAdresseFacturation");
+                        .HasColumnName("idadressefacturation");
 
                     b.Property<int?>("IdAdresseLivraison")
                         .HasColumnType("integer")
-                        .HasColumnName("idAdresseLivraison");
+                        .HasColumnName("idadresselivraison");
 
                     b.Property<int?>("IdCB")
                         .HasColumnType("integer")
-                        .HasColumnName("idCB");
+                        .HasColumnName("idcb");
 
                     b.Property<int?>("IdClientAcheteur")
                         .HasColumnType("integer")
-                        .HasColumnName("idClientAcheteur");
+                        .HasColumnName("idclientacheteur");
 
                     b.Property<int?>("IdClientBeneficiaire")
                         .HasColumnType("integer")
-                        .HasColumnName("idClientBeneficiaire");
+                        .HasColumnName("idclientbeneficiaire");
 
                     b.Property<int>("IdCodePromo")
                         .HasMaxLength(20)
                         .HasColumnType("integer")
-                        .HasColumnName("idCodePromo");
+                        .HasColumnName("idcodepromo");
 
                     b.Property<int?>("IdPanier")
                         .HasColumnType("integer")
-                        .HasColumnName("idPanier");
+                        .HasColumnName("idpanier");
 
                     b.Property<string>("TypePayementCommande")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("typePayementCommande");
+                        .HasColumnName("typepayementcommande");
 
                     b.Property<bool>("ValidationClient")
                         .HasColumnType("boolean")
                         .HasColumnName("validationClient");
+
+                    b.Property<string>("codereduction")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("codereduction");
 
                     b.HasKey("IdCommande")
                         .HasName("pk_commande");
@@ -517,7 +517,7 @@ namespace APIVinotrip.Migrations
 
                     b.HasIndex("IdPanier");
 
-                    b.ToTable("COMMANDE");
+                    b.ToTable("commande");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.DescriptionCommande", b =>
@@ -525,69 +525,69 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdDescriptionCommande")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idDescriptionCommande");
+                        .HasColumnName("iddescriptioncommande");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdDescriptionCommande"));
 
                     b.Property<DateTime?>("DateFin")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dateFin");
+                        .HasColumnName("datefin");
 
                     b.Property<bool?>("EncaissementMangement")
                         .HasColumnType("boolean")
-                        .HasColumnName("encaissementMangement");
+                        .HasColumnName("encaissementmangement");
 
                     b.Property<int?>("IdCB")
                         .HasColumnType("integer")
-                        .HasColumnName("idCB");
+                        .HasColumnName("idcb");
 
                     b.Property<int?>("IdCommande")
                         .HasColumnType("integer")
-                        .HasColumnName("idCommande");
+                        .HasColumnName("idcommande");
 
                     b.Property<int?>("IdHebergement")
                         .HasColumnType("integer")
-                        .HasColumnName("idHebergement");
+                        .HasColumnName("idhebergement");
 
                     b.Property<int?>("IdPassegeiment")
                         .HasColumnType("integer")
-                        .HasColumnName("idPassegeiment");
+                        .HasColumnName("idpassegeiment");
 
                     b.Property<int?>("IdSejour")
                         .HasColumnType("integer")
-                        .HasColumnName("idSejour");
+                        .HasColumnName("idsejour");
 
                     b.Property<bool?>("IsPDej")
                         .HasColumnType("boolean")
-                        .HasColumnName("isPDej");
+                        .HasColumnName("ispdej");
 
                     b.Property<int?>("NbAdultes")
                         .HasColumnType("integer")
-                        .HasColumnName("nbAdultes");
+                        .HasColumnName("nbadultes");
 
                     b.Property<int?>("NbChambresDouble")
                         .HasColumnType("integer")
-                        .HasColumnName("nbChambresDouble");
+                        .HasColumnName("nbchambresdouble");
 
                     b.Property<int?>("NbChambresSimple")
                         .HasColumnType("integer")
-                        .HasColumnName("nbChambresSimple");
+                        .HasColumnName("nbchambressimple");
 
                     b.Property<int?>("NbChambresTriple")
                         .HasColumnType("integer")
-                        .HasColumnName("nbChambresTriple");
+                        .HasColumnName("nbchambrestriple");
 
                     b.Property<int?>("NbEnfants")
                         .HasColumnType("integer")
-                        .HasColumnName("nbEnfants");
+                        .HasColumnName("nbenfants");
 
                     b.Property<bool?>("PDej")
                         .HasColumnType("boolean")
-                        .HasColumnName("pDej");
+                        .HasColumnName("pdej");
 
                     b.Property<int?>("PrixOeuf")
                         .HasColumnType("integer")
-                        .HasColumnName("prixOeuf");
+                        .HasColumnName("prixoeuf");
 
                     b.Property<int?>("Quantite")
                         .HasColumnType("integer")
@@ -597,7 +597,7 @@ namespace APIVinotrip.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(false)
-                        .HasColumnName("validationClient");
+                        .HasColumnName("validationclient");
 
                     b.HasKey("IdDescriptionCommande")
                         .HasName("pk_descriptioncommande");
@@ -610,7 +610,7 @@ namespace APIVinotrip.Migrations
 
                     b.HasIndex("IdSejour");
 
-                    b.ToTable("DESCRIPTIONCOMMANDE");
+                    b.ToTable("descriptioncommande");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.DescriptionPanier", b =>
@@ -618,57 +618,57 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdDescriptionPanier")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idDescriptionPanier");
+                        .HasColumnName("iddescriptionpanier");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdDescriptionPanier"));
 
                     b.Property<DateTime?>("DateDebut")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dateDebut");
+                        .HasColumnName("datedebut");
 
                     b.Property<DateTime?>("DateFin")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dateFin");
+                        .HasColumnName("datefin");
 
                     b.Property<bool?>("DisponibiliteHebergement")
                         .HasColumnType("boolean")
-                        .HasColumnName("disponibiliteHebergement");
+                        .HasColumnName("disponibilitehebergement");
 
                     b.Property<bool?>("ECoffret")
                         .HasColumnType("boolean")
-                        .HasColumnName("eCoffret");
+                        .HasColumnName("ecoffret");
 
                     b.Property<int?>("IdHebergement")
                         .HasColumnType("integer")
-                        .HasColumnName("idHebergement");
+                        .HasColumnName("idhebergement");
 
                     b.Property<int?>("IdPanier")
                         .HasColumnType("integer")
-                        .HasColumnName("idPanier");
+                        .HasColumnName("idpanier");
 
                     b.Property<int?>("IdSejour")
                         .HasColumnType("integer")
-                        .HasColumnName("idSejour");
+                        .HasColumnName("idsejour");
 
                     b.Property<int?>("NbAdultes")
                         .HasColumnType("integer")
-                        .HasColumnName("nbAdultes");
+                        .HasColumnName("nbadultes");
 
                     b.Property<int?>("NbChambresDouble")
                         .HasColumnType("integer")
-                        .HasColumnName("nbChambresDouble");
+                        .HasColumnName("nbchambresdouble");
 
                     b.Property<int?>("NbChambresSimple")
                         .HasColumnType("integer")
-                        .HasColumnName("nbChambresSimple");
+                        .HasColumnName("nbchambressimple");
 
                     b.Property<int?>("NbChambresTriple")
                         .HasColumnType("integer")
-                        .HasColumnName("nbChambresTriple");
+                        .HasColumnName("nbchambrestriple");
 
                     b.Property<int?>("NbEnfants")
                         .HasColumnType("integer")
-                        .HasColumnName("nbEnfants");
+                        .HasColumnName("nbenfants");
 
                     b.Property<bool?>("Offrir")
                         .HasColumnType("boolean")
@@ -687,7 +687,7 @@ namespace APIVinotrip.Migrations
 
                     b.HasIndex("IdSejour");
 
-                    b.ToTable("DESCRIPTIONPANIER");
+                    b.ToTable("descriptionpanier");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Duree", b =>
@@ -695,19 +695,19 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdDuree")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idDuree");
+                        .HasColumnName("idduree");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdDuree"));
 
                     b.Property<string>("LibelleDuree")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("libelleDuree");
+                        .HasColumnName("libelleduree");
 
                     b.HasKey("IdDuree")
                         .HasName("pk_duree");
 
-                    b.ToTable("DUREE");
+                    b.ToTable("duree");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.EstProposePar", b =>
@@ -731,7 +731,7 @@ namespace APIVinotrip.Migrations
 
                     b.HasIndex("Idadresse");
 
-                    b.ToTable("EstProposePars");
+                    b.ToTable("estproposepar");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Etape", b =>
@@ -746,35 +746,35 @@ namespace APIVinotrip.Migrations
                     b.Property<string>("DescriptionEtape")
                         .HasMaxLength(4096)
                         .HasColumnType("character varying(4096)")
-                        .HasColumnName("descriptionEtape");
+                        .HasColumnName("descriptionetape");
 
                     b.Property<int?>("IdHebergement")
                         .HasColumnType("integer")
-                        .HasColumnName("idHebergement");
+                        .HasColumnName("idhebergement");
 
                     b.Property<int?>("IdSejour")
                         .HasColumnType("integer")
-                        .HasColumnName("idSejour");
+                        .HasColumnName("idsejour");
 
                     b.Property<string>("PhotoEtape")
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)")
-                        .HasColumnName("photoEtape");
+                        .HasColumnName("photoetape");
 
                     b.Property<string>("TitreEtape")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("titreEtape");
+                        .HasColumnName("titreetape");
 
                     b.Property<string>("URLEtape")
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)")
-                        .HasColumnName("URLEtape");
+                        .HasColumnName("urletape");
 
                     b.Property<string>("VideoEtape")
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)")
-                        .HasColumnName("videoEtape");
+                        .HasColumnName("videoetape");
 
                     b.HasKey("IdEtape")
                         .HasName("pk_etape");
@@ -783,7 +783,7 @@ namespace APIVinotrip.Migrations
 
                     b.HasIndex("IdSejour");
 
-                    b.ToTable("ETAPE");
+                    b.ToTable("etape");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Hebergement", b =>
@@ -791,75 +791,75 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdHebergement")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idHebergement");
+                        .HasColumnName("idhebergement");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdHebergement"));
 
                     b.Property<string>("DescriptionHebergement")
                         .HasMaxLength(4096)
                         .HasColumnType("character varying(4096)")
-                        .HasColumnName("descriptionHebergement");
+                        .HasColumnName("descriptionhebergement");
 
                     b.Property<int>("IdPartenaire")
                         .HasColumnType("integer")
-                        .HasColumnName("idPartenaire");
+                        .HasColumnName("idpartenaire");
 
                     b.Property<string>("LienHebergement")
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)")
-                        .HasColumnName("lienHebergement");
+                        .HasColumnName("lienhebergement");
 
                     b.Property<string>("PhotoHebergement")
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)")
-                        .HasColumnName("photoHebergement");
+                        .HasColumnName("photohebergement");
 
                     b.Property<decimal?>("PrixHebergement")
                         .HasColumnType("NUMERIC(8,2)")
-                        .HasColumnName("prixHebergement");
+                        .HasColumnName("prixhebergement");
 
                     b.HasKey("IdHebergement")
                         .HasName("pk_hebergement");
 
                     b.HasIndex("IdPartenaire");
 
-                    b.ToTable("HEBERGEMENT");
+                    b.ToTable("hebergement");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Hotel", b =>
                 {
                     b.Property<int>("IdPartenaire")
                         .HasColumnType("integer")
-                        .HasColumnName("idPartenaire");
+                        .HasColumnName("idpartenaire");
 
                     b.Property<int?>("CategorieHotel")
                         .HasColumnType("integer")
-                        .HasColumnName("categorieHotel");
+                        .HasColumnName("categoriehotel");
 
                     b.Property<string>("MailPartenaire")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("mailPartenaire");
+                        .HasColumnName("mailpartenaire");
 
                     b.Property<string>("NomPartenaire")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nomPartenaire");
+                        .HasColumnName("nompartenaire");
 
                     b.Property<int?>("NombreChambresHotel")
                         .HasColumnType("integer")
-                        .HasColumnName("nombreChambresHotel");
+                        .HasColumnName("nombrechambreshotel");
 
                     b.Property<string>("TelPartenaire")
                         .HasMaxLength(10)
                         .HasColumnType("character(10)")
-                        .HasColumnName("telPartenaire")
+                        .HasColumnName("telpartenaire")
                         .IsFixedLength();
 
                     b.HasKey("IdPartenaire")
                         .HasName("pk_hotel");
 
-                    b.ToTable("HOTEL");
+                    b.ToTable("hotel");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Localite", b =>
@@ -867,25 +867,25 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdLocalite")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idLocalite");
+                        .HasColumnName("idlocalite");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdLocalite"));
 
                     b.Property<int?>("IdCategorieVignoble")
                         .HasColumnType("integer")
-                        .HasColumnName("idCategorieVignoble");
+                        .HasColumnName("idcategorievignoble");
 
                     b.Property<string>("LibelleLocalite")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("libelleLocalite");
+                        .HasColumnName("libellelocalite");
 
                     b.HasKey("IdLocalite")
                         .HasName("pk_localite");
 
                     b.HasIndex("IdCategorieVignoble");
 
-                    b.ToTable("LOCALITE");
+                    b.ToTable("localite");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Panier", b =>
@@ -893,24 +893,24 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdPanier")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idPanier");
+                        .HasColumnName("idpanier");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdPanier"));
 
                     b.Property<DateTime?>("DateAjoutPanier")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dateAjoutPanier");
+                        .HasColumnName("dateajoutpanier");
 
                     b.Property<int?>("IdCodePromo")
                         .HasColumnType("integer")
-                        .HasColumnName("idCodePromo");
+                        .HasColumnName("idcodepromo");
 
                     b.HasKey("IdPanier")
                         .HasName("pk_panier");
 
                     b.HasIndex("IdCodePromo");
 
-                    b.ToTable("PANIER");
+                    b.ToTable("panier");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Partenaire", b =>
@@ -918,30 +918,30 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdPartenaire")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idPartenaire");
+                        .HasColumnName("idpartenaire");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdPartenaire"));
 
                     b.Property<string>("MailPartenaire")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("mailPartenaire");
+                        .HasColumnName("mailpartenaire");
 
                     b.Property<string>("NomPartenaire")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nomPartenaire");
+                        .HasColumnName("nompartenaire");
 
                     b.Property<string>("TelPartenaire")
                         .HasMaxLength(10)
                         .HasColumnType("character(10)")
-                        .HasColumnName("telPartenaire")
+                        .HasColumnName("telpartenaire")
                         .IsFixedLength();
 
                     b.HasKey("IdPartenaire")
                         .HasName("pk_partenaire");
 
-                    b.ToTable("PARTENAIRE");
+                    b.ToTable("partenaire");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Photo", b =>
@@ -949,20 +949,20 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdPhoto")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idPhoto");
+                        .HasColumnName("idphoto");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdPhoto"));
 
                     b.Property<int>("IdSejour")
                         .HasColumnType("integer")
-                        .HasColumnName("idSejour");
+                        .HasColumnName("idsejour");
 
                     b.HasKey("IdPhoto")
                         .HasName("pk_photos");
 
                     b.HasIndex("IdSejour");
 
-                    b.ToTable("PHOTO");
+                    b.ToTable("photo");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Repas", b =>
@@ -970,34 +970,34 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdRepas")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idRepas");
+                        .HasColumnName("idrepas");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdRepas"));
 
                     b.Property<string>("DescriptionRepas")
                         .HasMaxLength(4096)
                         .HasColumnType("character varying(4096)")
-                        .HasColumnName("descriptionRepas");
+                        .HasColumnName("descriptionrepas");
 
                     b.Property<int?>("IdPartenaire")
                         .HasColumnType("integer")
-                        .HasColumnName("idPartenaire");
+                        .HasColumnName("idpartenaire");
 
                     b.Property<string>("PhotoRepas")
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)")
-                        .HasColumnName("photoRepas");
+                        .HasColumnName("photorepas");
 
                     b.Property<decimal?>("PrixRepas")
                         .HasColumnType("NUMERIC(8,2)")
-                        .HasColumnName("prixRepas");
+                        .HasColumnName("prixrepas");
 
                     b.HasKey("IdRepas")
                         .HasName("pk_repas");
 
                     b.HasIndex("IdPartenaire");
 
-                    b.ToTable("REPAS");
+                    b.ToTable("repas");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Reponse", b =>
@@ -1005,60 +1005,60 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdReponse")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idReponse");
+                        .HasColumnName("idreponse");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdReponse"));
 
                     b.Property<string>("DescriptionReponse")
                         .HasMaxLength(2056)
                         .HasColumnType("character varying(2056)")
-                        .HasColumnName("descriptionReponse");
+                        .HasColumnName("descriptionreponse");
 
                     b.Property<int?>("IdAvis")
                         .HasColumnType("integer")
-                        .HasColumnName("idAvis");
+                        .HasColumnName("idavis");
 
                     b.HasKey("IdReponse")
                         .HasName("pk_reponse");
 
                     b.HasIndex("IdAvis");
 
-                    b.ToTable("REPONSE");
+                    b.ToTable("reponse");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Restaurant", b =>
                 {
                     b.Property<int>("IdPartenaire")
                         .HasColumnType("integer")
-                        .HasColumnName("idPartenaire");
+                        .HasColumnName("idpartenaire");
 
                     b.Property<int?>("IdTypeCuisine")
                         .HasColumnType("integer")
-                        .HasColumnName("idTypeCuisine");
+                        .HasColumnName("idtypecuisine");
 
                     b.Property<string>("MailPartenaire")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("mailPartenaire");
+                        .HasColumnName("mailpartenaire");
 
                     b.Property<string>("NomPartenaire")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nomPartenaire");
+                        .HasColumnName("nompartenaire");
 
                     b.Property<int?>("NombreEtoilesRestaurant")
                         .HasColumnType("integer")
-                        .HasColumnName("nombreEtoilesRestaurant");
+                        .HasColumnName("nombreetoilesrestaurant");
 
                     b.Property<string>("SpecialiteRestaurant")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("specialiteRestaurant");
+                        .HasColumnName("specialiterestaurant");
 
                     b.Property<string>("TelPartenaire")
                         .HasMaxLength(10)
                         .HasColumnType("character(10)")
-                        .HasColumnName("telPartenaire")
+                        .HasColumnName("telpartenaire")
                         .IsFixedLength();
 
                     b.HasKey("IdPartenaire")
@@ -1066,7 +1066,7 @@ namespace APIVinotrip.Migrations
 
                     b.HasIndex("IdTypeCuisine");
 
-                    b.ToTable("RESTAURANT");
+                    b.ToTable("restaurant");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Role", b =>
@@ -1074,19 +1074,19 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdRole")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idRole");
+                        .HasColumnName("idrole");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdRole"));
 
                     b.Property<string>("LibelleRole")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("libelleRole");
+                        .HasColumnName("libellerole");
 
                     b.HasKey("IdRole")
                         .HasName("pk_roles");
 
-                    b.ToTable("ROLES");
+                    b.ToTable("roles");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.RouteDesVins", b =>
@@ -1094,29 +1094,29 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdRoute")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idRoute");
+                        .HasColumnName("idroute");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdRoute"));
 
                     b.Property<string>("DescriptionRoute")
                         .HasMaxLength(2048)
                         .HasColumnType("character varying(2048)")
-                        .HasColumnName("descriptionRoute");
+                        .HasColumnName("descriptionroute");
 
                     b.Property<string>("LibRoute")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("libRoute");
+                        .HasColumnName("libroute");
 
                     b.Property<string>("PhotoRoute")
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)")
-                        .HasColumnName("photoRoute");
+                        .HasColumnName("photoroute");
 
                     b.HasKey("IdRoute")
                         .HasName("pk_route_des_vins");
 
-                    b.ToTable("ROUTE_DES_VINS");
+                    b.ToTable("route_des_vins");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Sejour", b =>
@@ -1204,19 +1204,19 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdTheme")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idTheme");
+                        .HasColumnName("idtheme");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdTheme"));
 
                     b.Property<string>("LibelleTheme")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("libelleTheme");
+                        .HasColumnName("libelletheme");
 
                     b.HasKey("IdTheme")
                         .HasName("pk_theme");
 
-                    b.ToTable("THEME");
+                    b.ToTable("theme");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.TypeCuisine", b =>
@@ -1224,19 +1224,19 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdTypeCuisine")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idTypeCuisine");
+                        .HasColumnName("idtypecuisine");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdTypeCuisine"));
 
                     b.Property<string>("LibelleTypeCuisine")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("libelleTypeCuisine");
+                        .HasColumnName("libelletypecuisine");
 
                     b.HasKey("IdTypeCuisine")
                         .HasName("pk_typecuisine");
 
-                    b.ToTable("TYPECUISINE");
+                    b.ToTable("typecuisine");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.TypeDegustation", b =>
@@ -1244,19 +1244,19 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdTypeDegustation")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idTypeDegustation");
+                        .HasColumnName("idtypedegustation");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdTypeDegustation"));
 
                     b.Property<string>("LibelleTypeDegustation")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("libelleTypeDegustation");
+                        .HasColumnName("libelletypedegustation");
 
                     b.HasKey("IdTypeDegustation")
                         .HasName("pk_typedegustation");
 
-                    b.ToTable("TYPEDEGUSTATION");
+                    b.ToTable("typedegustation");
                 });
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Visite", b =>
@@ -1264,18 +1264,18 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdVisite")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idVisite");
+                        .HasColumnName("idvisite");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdVisite"));
 
                     b.Property<string>("DescriptionVisite")
                         .HasMaxLength(4096)
                         .HasColumnType("character varying(4096)")
-                        .HasColumnName("descriptionVisite");
+                        .HasColumnName("descriptionvisite");
 
                     b.Property<int?>("IdPartenaire")
                         .HasColumnType("integer")
-                        .HasColumnName("idPartenaire");
+                        .HasColumnName("idpartenaire");
 
                     b.Property<string>("LienVisite")
                         .HasMaxLength(512)
@@ -1292,15 +1292,15 @@ namespace APIVinotrip.Migrations
 
                     b.HasIndex("IdPartenaire");
 
-                    b.ToTable("VISITE");
+                    b.ToTable("visite");
                 });
 
             modelBuilder.Entity("Appartient", b =>
                 {
-                    b.Property<int>("Idvisite")
+                    b.Property<int>("idvisite")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Idetape")
+                    b.Property<int>("idetape")
                         .HasColumnType("integer");
 
                     b.Property<int>("IdEtape")
@@ -1309,20 +1309,20 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdVisite")
                         .HasColumnType("integer");
 
-                    b.HasKey("Idvisite", "Idetape")
+                    b.HasKey("idvisite", "idetape")
                         .HasName("pk_appartient");
 
-                    b.HasIndex("Idetape");
+                    b.HasIndex("idetape");
 
                     b.ToTable("appartient", (string)null);
                 });
 
             modelBuilder.Entity("Comporte", b =>
                 {
-                    b.Property<int>("Idactivite")
+                    b.Property<int>("idactivite")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Iddescriptionpanier")
+                    b.Property<int>("iddescriptionpanier")
                         .HasColumnType("integer");
 
                     b.Property<int>("IdActivite")
@@ -1331,20 +1331,20 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdDescriptionPanier")
                         .HasColumnType("integer");
 
-                    b.HasKey("Idactivite", "Iddescriptionpanier")
+                    b.HasKey("idactivite", "iddescriptionpanier")
                         .HasName("pk_comporte");
 
-                    b.HasIndex("Iddescriptionpanier");
+                    b.HasIndex("iddescriptionpanier");
 
                     b.ToTable("comporte", (string)null);
                 });
 
             modelBuilder.Entity("Constitue", b =>
                 {
-                    b.Property<int>("Idactivite")
+                    b.Property<int>("idactivite")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Idetape")
+                    b.Property<int>("idetape")
                         .HasColumnType("integer");
 
                     b.Property<int>("IdActivite")
@@ -1353,20 +1353,20 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdEtape")
                         .HasColumnType("integer");
 
-                    b.HasKey("Idactivite", "Idetape")
+                    b.HasKey("idactivite", "idetape")
                         .HasName("pk_constitue");
 
-                    b.HasIndex("Idetape");
+                    b.HasIndex("idetape");
 
                     b.ToTable("constitue", (string)null);
                 });
 
             modelBuilder.Entity("Detient", b =>
                 {
-                    b.Property<int>("Idrepas")
+                    b.Property<int>("idrepas")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Iddescriptionpanier")
+                    b.Property<int>("iddescriptionpanier")
                         .HasColumnType("integer");
 
                     b.Property<int>("IdDescriptionPanier")
@@ -1375,39 +1375,42 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdRepas")
                         .HasColumnType("integer");
 
-                    b.HasKey("Idrepas", "Iddescriptionpanier")
+                    b.HasKey("idrepas", "iddescriptionpanier")
                         .HasName("pk_detient");
 
-                    b.HasIndex("Iddescriptionpanier");
+                    b.HasIndex("iddescriptionpanier");
 
                     b.ToTable("detient", (string)null);
                 });
 
             modelBuilder.Entity("Favori", b =>
                 {
-                    b.Property<int>("Idclient")
+                    b.Property<int>("idclient")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Idsejour")
+                    b.Property<int>("idsejour")
                         .HasColumnType("integer");
 
                     b.Property<int>("IdClient")
                         .HasColumnType("integer");
 
-                    b.HasKey("Idclient", "Idsejour")
+                    b.Property<int>("Idsejour")
+                        .HasColumnType("integer");
+
+                    b.HasKey("idclient", "idsejour")
                         .HasName("pk_favoris");
 
-                    b.HasIndex("Idsejour");
+                    b.HasIndex("idsejour");
 
                     b.ToTable("favoris", (string)null);
                 });
 
-            modelBuilder.Entity("Inclu", b =>
+            modelBuilder.Entity("Inclus", b =>
                 {
-                    b.Property<int>("Idrepas")
+                    b.Property<int>("idrepas")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Idetape")
+                    b.Property<int>("idetape")
                         .HasColumnType("integer");
 
                     b.Property<int>("IdEtape")
@@ -1416,58 +1419,61 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdRepas")
                         .HasColumnType("integer");
 
-                    b.HasKey("Idrepas", "Idetape")
+                    b.HasKey("idrepas", "idetape")
                         .HasName("pk_inclus");
 
-                    b.HasIndex("Idetape");
+                    b.HasIndex("idetape");
 
                     b.ToTable("inclus", (string)null);
                 });
 
             modelBuilder.Entity("Mange1", b =>
                 {
-                    b.Property<int>("Idrepas")
+                    b.Property<int>("idrepas")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Iddescriptioncommande")
+                    b.Property<int>("iddescriptioncommande")
                         .HasColumnType("integer");
 
                     b.Property<int>("IdRepas")
                         .HasColumnType("integer");
 
-                    b.HasKey("Idrepas", "Iddescriptioncommande")
+                    b.Property<int>("Iddescriptioncommande")
+                        .HasColumnType("integer");
+
+                    b.HasKey("idrepas", "iddescriptioncommande")
                         .HasName("pk_contient");
 
-                    b.HasIndex("Iddescriptioncommande");
+                    b.HasIndex("iddescriptioncommande");
 
                     b.ToTable("mange1", (string)null);
                 });
 
             modelBuilder.Entity("Possede", b =>
                 {
-                    b.Property<int>("Idactivite")
+                    b.Property<int>("idactivite")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Iddescriptioncommande")
+                    b.Property<int>("iddescriptioncommande")
                         .HasColumnType("integer");
 
                     b.Property<int>("IdDescriptionCommande")
                         .HasColumnType("integer");
 
-                    b.HasKey("Idactivite", "Iddescriptioncommande")
+                    b.HasKey("idactivite", "iddescriptioncommande")
                         .HasName("pk_possede");
 
-                    b.HasIndex("Iddescriptioncommande");
+                    b.HasIndex("iddescriptioncommande");
 
                     b.ToTable("possede", (string)null);
                 });
 
             modelBuilder.Entity("SeLocalise", b =>
                 {
-                    b.Property<int>("Idroute")
+                    b.Property<int>("idroute")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Idcategorievignoble")
+                    b.Property<int>("idcategorievignoble")
                         .HasColumnType("integer");
 
                     b.Property<int>("IdCategorieVignoble")
@@ -1476,10 +1482,10 @@ namespace APIVinotrip.Migrations
                     b.Property<int>("IdRoute")
                         .HasColumnType("integer");
 
-                    b.HasKey("Idroute", "Idcategorievignoble")
+                    b.HasKey("idroute", "idcategorievignoble")
                         .HasName("pk_se_localise");
 
-                    b.HasIndex("Idcategorievignoble");
+                    b.HasIndex("idcategorievignoble");
 
                     b.ToTable("se_localise", (string)null);
                 });
@@ -1918,14 +1924,14 @@ namespace APIVinotrip.Migrations
                 {
                     b.HasOne("APIVinotrip.Models.EntityFramework.Etape", null)
                         .WithMany()
-                        .HasForeignKey("Idetape")
+                        .HasForeignKey("idetape")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_appartie_appartien_etape");
 
                     b.HasOne("APIVinotrip.Models.EntityFramework.Visite", null)
                         .WithMany()
-                        .HasForeignKey("Idvisite")
+                        .HasForeignKey("idvisite")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_appartie_appartien_visite");
@@ -1935,14 +1941,14 @@ namespace APIVinotrip.Migrations
                 {
                     b.HasOne("APIVinotrip.Models.EntityFramework.Activite", null)
                         .WithMany()
-                        .HasForeignKey("Idactivite")
+                        .HasForeignKey("idactivite")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_associat_associati_activite");
 
                     b.HasOne("APIVinotrip.Models.EntityFramework.DescriptionPanier", null)
                         .WithMany()
-                        .HasForeignKey("Iddescriptionpanier")
+                        .HasForeignKey("iddescriptionpanier")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_associat_associati_descript");
@@ -1952,14 +1958,14 @@ namespace APIVinotrip.Migrations
                 {
                     b.HasOne("APIVinotrip.Models.EntityFramework.Activite", null)
                         .WithMany()
-                        .HasForeignKey("Idactivite")
+                        .HasForeignKey("idactivite")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_appartie_appartien_activite");
 
                     b.HasOne("APIVinotrip.Models.EntityFramework.Etape", null)
                         .WithMany()
-                        .HasForeignKey("Idetape")
+                        .HasForeignKey("idetape")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_appartie_appartien_etape");
@@ -1969,14 +1975,14 @@ namespace APIVinotrip.Migrations
                 {
                     b.HasOne("APIVinotrip.Models.EntityFramework.DescriptionPanier", null)
                         .WithMany()
-                        .HasForeignKey("Iddescriptionpanier")
+                        .HasForeignKey("iddescriptionpanier")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_associat_associati_descript");
 
                     b.HasOne("APIVinotrip.Models.EntityFramework.Repas", null)
                         .WithMany()
-                        .HasForeignKey("Idrepas")
+                        .HasForeignKey("idrepas")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_associat_associati_repas");
@@ -1986,31 +1992,31 @@ namespace APIVinotrip.Migrations
                 {
                     b.HasOne("APIVinotrip.Models.EntityFramework.Client", null)
                         .WithMany()
-                        .HasForeignKey("Idclient")
+                        .HasForeignKey("idclient")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_favoris_favoris_client");
 
                     b.HasOne("APIVinotrip.Models.EntityFramework.Sejour", null)
                         .WithMany()
-                        .HasForeignKey("Idsejour")
+                        .HasForeignKey("idsejour")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_favoris_favoris2_sejour");
                 });
 
-            modelBuilder.Entity("Inclu", b =>
+            modelBuilder.Entity("Inclus", b =>
                 {
                     b.HasOne("APIVinotrip.Models.EntityFramework.Etape", null)
                         .WithMany()
-                        .HasForeignKey("Idetape")
+                        .HasForeignKey("idetape")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_appartie_appartien_etape");
 
                     b.HasOne("APIVinotrip.Models.EntityFramework.Repas", null)
                         .WithMany()
-                        .HasForeignKey("Idrepas")
+                        .HasForeignKey("idrepas")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_appartie_appartien_repas");
@@ -2020,14 +2026,14 @@ namespace APIVinotrip.Migrations
                 {
                     b.HasOne("APIVinotrip.Models.EntityFramework.DescriptionCommande", null)
                         .WithMany()
-                        .HasForeignKey("Iddescriptioncommande")
+                        .HasForeignKey("iddescriptioncommande")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_associat_associati_descript");
 
                     b.HasOne("APIVinotrip.Models.EntityFramework.Repas", null)
                         .WithMany()
-                        .HasForeignKey("Idrepas")
+                        .HasForeignKey("idrepas")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_associat_associati_repas");
@@ -2037,14 +2043,14 @@ namespace APIVinotrip.Migrations
                 {
                     b.HasOne("APIVinotrip.Models.EntityFramework.Activite", null)
                         .WithMany()
-                        .HasForeignKey("Idactivite")
+                        .HasForeignKey("idactivite")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_associat_associati_activite");
 
                     b.HasOne("APIVinotrip.Models.EntityFramework.DescriptionCommande", null)
                         .WithMany()
-                        .HasForeignKey("Iddescriptioncommande")
+                        .HasForeignKey("iddescriptioncommande")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_associat_associati_descript");
@@ -2054,14 +2060,14 @@ namespace APIVinotrip.Migrations
                 {
                     b.HasOne("APIVinotrip.Models.EntityFramework.CategorieVignoble", null)
                         .WithMany()
-                        .HasForeignKey("Idcategorievignoble")
+                        .HasForeignKey("idcategorievignoble")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_se_local_se_locali_categori");
 
                     b.HasOne("APIVinotrip.Models.EntityFramework.RouteDesVins", null)
                         .WithMany()
-                        .HasForeignKey("Idroute")
+                        .HasForeignKey("idroute")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_se_local_se_locali_route_de");

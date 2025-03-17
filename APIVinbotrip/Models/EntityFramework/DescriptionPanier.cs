@@ -6,53 +6,53 @@ using APIVinotrip.Models.EntityFramework;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-	[Table("DESCRIPTIONPANIER")]
+	[Table("descriptionpanier")]
 	public partial class DescriptionPanier
 	{
 		[Key]
-		[Column("idDescriptionPanier")]
+		[Column("iddescriptionpanier")]
 		public int IdDescriptionPanier { get; set; }
 
-        [Column("idSejour")]
+        [Column("idsejour")]
         public int? IdSejour { get; set; }
 
-        [Column("idPanier")]
+        [Column("idpanier")]
         public int? IdPanier { get; set; }
 
-        [Column("idHebergement")]
+        [Column("idhebergement")]
         public int? IdHebergement { get; set; }
 
         [Column("quantite")]
 		public int? Quantite { get; set; }
 
-		[Column("dateDebut")]
+		[Column("datedebut")]
 		public DateTime? DateDebut { get; set; }
 
-		[Column("dateFin")]
+		[Column("datefin")]
 		public DateTime? DateFin { get; set; }
 
-		[Column("nbAdultes")]
+		[Column("nbadultes")]
 		public int? NbAdultes { get; set; }
 
-		[Column("nbEnfants")]
+		[Column("nbenfants")]
 		public int? NbEnfants { get; set; }
 
-		[Column("nbChambresSimple")]
+		[Column("nbchambressimple")]
 		public int? NbChambresSimple { get; set; }
 
-		[Column("nbChambresDouble")]
+		[Column("nbchambresdouble")]
 		public int? NbChambresDouble { get; set; }
 
-		[Column("nbChambresTriple")]
+		[Column("nbchambrestriple")]
 		public int? NbChambresTriple { get; set; }
 
 		[Column("offrir")]
 		public bool? Offrir { get; set; }
 
-		[Column("eCoffret")]
+		[Column("ecoffret")]
 		public bool? ECoffret { get; set; }
 
-		[Column("disponibiliteHebergement")]
+		[Column("disponibilitehebergement")]
 		public bool? DisponibiliteHebergement { get; set; }
 
 	

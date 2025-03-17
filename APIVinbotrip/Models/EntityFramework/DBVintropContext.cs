@@ -96,16 +96,16 @@ public partial class DBVinotripContext : DbContext
                 .UsingEntity<Dictionary<string, object>>(
                     "Possede",
                     r => r.HasOne<DescriptionCommande>().WithMany()
-                        .HasForeignKey("Iddescriptioncommande")
+                        .HasForeignKey("iddescriptioncommande")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_associat_associati_descript"),
                     l => l.HasOne<Activite>().WithMany()
-                        .HasForeignKey("Idactivite")
+                        .HasForeignKey("idactivite")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_associat_associati_activite"),
                     j =>
                     {
-                        j.HasKey("Idactivite", "Iddescriptioncommande").HasName("pk_possede");
+                        j.HasKey("idactivite", "iddescriptioncommande").HasName("pk_possede");
                         j.ToTable("possede");
                     });
 
@@ -113,16 +113,16 @@ public partial class DBVinotripContext : DbContext
                 .UsingEntity<Dictionary<string, object>>(
                     "Comporte",
                     r => r.HasOne<DescriptionPanier>().WithMany()
-                        .HasForeignKey("Iddescriptionpanier")
+                        .HasForeignKey("iddescriptionpanier")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_associat_associati_descript"),
                     l => l.HasOne<Activite>().WithMany()
-                        .HasForeignKey("Idactivite")
+                        .HasForeignKey("idactivite")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_associat_associati_activite"),
                     j =>
                     {
-                        j.HasKey("Idactivite", "Iddescriptionpanier").HasName("pk_comporte");
+                        j.HasKey("idactivite", "iddescriptionpanier").HasName("pk_comporte");
                         j.ToTable("comporte");
                     });
 
@@ -130,16 +130,16 @@ public partial class DBVinotripContext : DbContext
                 .UsingEntity<Dictionary<string, object>>(
                     "Constitue",
                     r => r.HasOne<Etape>().WithMany()
-                        .HasForeignKey("Idetape")
+                        .HasForeignKey("idetape")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_appartie_appartien_etape"),
                     l => l.HasOne<Activite>().WithMany()
-                        .HasForeignKey("Idactivite")
+                        .HasForeignKey("idactivite")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_appartie_appartien_activite"),
                     j =>
                     {
-                        j.HasKey("Idactivite", "Idetape").HasName("pk_constitue");
+                        j.HasKey("idactivite", "idetape").HasName("pk_constitue");
                         j.ToTable("constitue");
                     });
         });
@@ -247,16 +247,16 @@ public partial class DBVinotripContext : DbContext
                 .UsingEntity<Dictionary<string, object>>(
                     "Favori",
                     r => r.HasOne<Sejour>().WithMany()
-                        .HasForeignKey("Idsejour")
+                        .HasForeignKey("idsejour")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_favoris_favoris2_sejour"),
                     l => l.HasOne<Client>().WithMany()
-                        .HasForeignKey("Idclient")
+                        .HasForeignKey("idclient")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_favoris_favoris_client"),
                     j =>
                     {
-                        j.HasKey("Idclient", "Idsejour").HasName("pk_favoris");
+                        j.HasKey("idclient", "idsejour").HasName("pk_favoris");
                         j.ToTable("favoris");
 
                     });
@@ -445,16 +445,16 @@ public partial class DBVinotripContext : DbContext
                 .UsingEntity<Dictionary<string, object>>(
                     "Mange1",
                     r => r.HasOne<DescriptionCommande>().WithMany()
-                        .HasForeignKey("Iddescriptioncommande")
+                        .HasForeignKey("iddescriptioncommande")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_associat_associati_descript"),
                     l => l.HasOne<Repas>().WithMany()
-                        .HasForeignKey("Idrepas")
+                        .HasForeignKey("idrepas")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_associat_associati_repas"),
                     j =>
                     {
-                        j.HasKey("Idrepas", "Iddescriptioncommande").HasName("pk_contient");
+                        j.HasKey("idrepas", "iddescriptioncommande").HasName("pk_contient");
                         j.ToTable("mange1");
                     });
 
@@ -462,33 +462,33 @@ public partial class DBVinotripContext : DbContext
                 .UsingEntity<Dictionary<string, object>>(
                     "Detient",
                     r => r.HasOne<DescriptionPanier>().WithMany()
-                        .HasForeignKey("Iddescriptionpanier")
+                        .HasForeignKey("iddescriptionpanier")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_associat_associati_descript"),
                     l => l.HasOne<Repas>().WithMany()
-                        .HasForeignKey("Idrepas")
+                        .HasForeignKey("idrepas")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_associat_associati_repas"),
                     j =>
                     {
-                        j.HasKey("Idrepas", "Iddescriptionpanier").HasName("pk_detient");
+                        j.HasKey("idrepas", "iddescriptionpanier").HasName("pk_detient");
                         j.ToTable("detient");
                     });
 
             entity.HasMany(d => d.Idetapes).WithMany(p => p.Idrepas)
                 .UsingEntity<Dictionary<string, object>>(
-                    "Inclu",
+                    "Inclus",
                     r => r.HasOne<Etape>().WithMany()
-                        .HasForeignKey("Idetape")
+                        .HasForeignKey("idetape")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_appartie_appartien_etape"),
                     l => l.HasOne<Repas>().WithMany()
-                        .HasForeignKey("Idrepas")
+                        .HasForeignKey("idrepas")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_appartie_appartien_repas"),
                     j =>
                     {
-                        j.HasKey("Idrepas", "Idetape").HasName("pk_inclus");
+                        j.HasKey("idrepas", "idetape").HasName("pk_inclus");
                         j.ToTable("inclus");
                     });
         });
@@ -531,16 +531,16 @@ public partial class DBVinotripContext : DbContext
                 .UsingEntity<Dictionary<string, object>>(
                     "SeLocalise",
                     r => r.HasOne<CategorieVignoble>().WithMany()
-                        .HasForeignKey("Idcategorievignoble")
+                        .HasForeignKey("idcategorievignoble")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_se_local_se_locali_categori"),
                     l => l.HasOne<RouteDesVins>().WithMany()
-                        .HasForeignKey("Idroute")
+                        .HasForeignKey("idroute")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_se_local_se_locali_route_de"),
                     j =>
                     {
-                        j.HasKey("Idroute", "Idcategorievignoble").HasName("pk_se_localise");
+                        j.HasKey("idroute", "idcategorievignoble").HasName("pk_se_localise");
                         j.ToTable("se_localise");
                     });
         });
@@ -605,16 +605,16 @@ public partial class DBVinotripContext : DbContext
                 .UsingEntity<Dictionary<string, object>>(
                     "Appartient",
                     r => r.HasOne<Etape>().WithMany()
-                        .HasForeignKey("Idetape")
+                        .HasForeignKey("idetape")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_appartie_appartien_etape"),
                     l => l.HasOne<Visite>().WithMany()
-                        .HasForeignKey("Idvisite")
+                        .HasForeignKey("idvisite")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_appartie_appartien_visite"),
                     j =>
                     {
-                        j.HasKey("Idvisite", "Idetape").HasName("pk_appartient");
+                        j.HasKey("idvisite", "idetape").HasName("pk_appartient");
                         j.ToTable("appartient");
                     });
         });

@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("DUREE")]
+    [Table("duree")]
     public partial class Duree
     {
         [Key]
-        [Column("idDuree")]
+        [Column("idduree")]
         public int IdDuree { get; set; }
 
-        [Column("libelleDuree")]
+        [Column("libelleduree")]
         [StringLength(50)]
         public string? LibelleDuree { get; set; }
 

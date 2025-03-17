@@ -4,17 +4,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("PANIER")]
+    [Table("panier")]
     public partial class Panier
     {
         [Key]
-        [Column("idPanier")]
+        [Column("idpanier")]
         public int IdPanier { get; set; }
 
-        [Column("idCodePromo")]
+        [Column("idcodepromo")]
         public int? IdCodePromo { get; set; }
 
-        [Column("dateAjoutPanier")]
+        [Column("dateajoutpanier")]
         public DateTime? DateAjoutPanier { get; set; }
 
         [InverseProperty(nameof(DescriptionPanier.Panier))]

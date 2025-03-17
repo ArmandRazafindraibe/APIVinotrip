@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace  APIVinotrip.Models.EntityFramework;
 
-[PrimaryKey("Idpartenaire", "Idactivite", "Idadresse")]
+
+[Table("estproposepar")]
 public partial class EstProposePar
 {
     [Key]

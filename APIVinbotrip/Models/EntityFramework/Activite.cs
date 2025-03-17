@@ -4,19 +4,19 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("ACTIVITE")]
+    [Table("activite")]
     public partial class Activite
     {
 
         [Key]
-        [Column("idActivite")]
+        [Column("idactivite")]
         public int IdActivite { get; set; }
 
-        [Column("libelleActivite")]
+        [Column("libelleactivite")]
         [StringLength(100)]
         public string? LibelleActivite { get; set; }
 
-        [Column("prixActivite", TypeName = "NUMERIC(8,2)")]
+        [Column("prixactivite", TypeName = "NUMERIC(8,2)")]
         public decimal? PrixActivite { get; set; }
 
 

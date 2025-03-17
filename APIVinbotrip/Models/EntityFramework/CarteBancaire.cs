@@ -3,25 +3,25 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("CARTE_BANCAIRE")]
+    [Table("carte_bancaire")]
     public partial class CarteBancaire
     {
         [Key]
-        [Column("idCB")]
+        [Column("idcb")]
         public int IdCB { get; set; }
 
-        [Column("idClient")]
+        [Column("idclient")]
         public int? IdClient { get; set; }
 
-        [Column("numeroCB")]
+        [Column("numerocb")]
         [StringLength(50)]
         public string? NumeroCB { get; set; }
 
-        [Column("numeroCVCCarte")]
+        [Column("numerocvccarte")]
         [StringLength(5)]
         public string? NumeroCVCCarte { get; set; }
 
-        [Column("dateExpirationCreditCard")]
+        [Column("dateexpirationcreditcard")]
         public DateTime? DateExpirationCreditCard { get; set; }
 
         [Column("actif")]

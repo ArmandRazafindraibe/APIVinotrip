@@ -4,17 +4,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("REPONSE")]
+    [Table("reponse")]
     public partial class Reponse
     {
         [Key]
-        [Column("idReponse")]
+        [Column("idreponse")]
         public int IdReponse { get; set; }
 
-        [Column("idAvis")]
+        [Column("idavis")]
         public int? IdAvis { get; set; }
 
-        [Column("descriptionReponse")]
+        [Column("descriptionreponse")]
         [StringLength(2056)]
         public string? DescriptionReponse { get; set; }
 

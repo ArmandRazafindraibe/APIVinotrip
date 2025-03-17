@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("PHOTO")]
+    [Table("photo")]
     public partial class Photo
     {
         [Key]
-        [Column("idPhoto")]
+        [Column("idphoto")]
         public int IdPhoto { get; set; }
 
-        [Column("idSejour")]
+        [Column("idsejour")]
         public int IdSejour { get; set; }
 
         // Additional properties for Photo

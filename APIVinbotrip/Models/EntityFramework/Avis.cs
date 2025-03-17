@@ -4,34 +4,34 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("AVIS")]
+    [Table("avis")]
     public partial class Avis
     {
         [Key]
-        [Column("idAvis")]
+        [Column("idavis")]
         public int IdAvis { get; set; }
 
-        [Column("idSejour")]
+        [Column("idsejour")]
         public int? IdSejour { get; set; }
 
-        [Column("idClient")]
+        [Column("idclient")]
         public int? IdClient { get; set; }
 
-        [Column("dateAvis")]
+        [Column("dateavis")]
         public DateTime? DateAvis { get; set; }
 
-        [Column("titreAvis")]
+        [Column("titreavis")]
         [StringLength(100)]
         public string? TitreAvis { get; set; }
 
-        [Column("descriptionAvis")]
+        [Column("descriptionavis")]
         [StringLength(2048)]
         public string? DescriptionAvis { get; set; }
 
-        [Column("noteAvis")]
+        [Column("noteavis")]
         public int? NoteAvis { get; set; }
 
-        [Column("photoAvis")]
+        [Column("photoavis")]
         [StringLength(512)]
         public string? PhotoAvis { get; set; }
 

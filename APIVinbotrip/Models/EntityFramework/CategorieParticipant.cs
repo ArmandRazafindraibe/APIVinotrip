@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("CATEGORIEEPARTICIPANT")]
+    [Table("categorieeparticipant")]
     public partial class CategorieParticipant
     {
         [Key]
-        [Column("idCategorieParticipant")]
+        [Column("idcategorieparticipant")]
         public int IdCategorieParticipant { get; set; }
 
-        [Column("libelleCategorieParticipant")]
+        [Column("libellecategorieparticipant")]
         [StringLength(50)]
         public string? LibelleCategorieParticipant { get; set; }
  

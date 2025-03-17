@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("CODEPROMO")]
+    [Table("codepromo")]
     public partial class CodePromo
     {
         [Key]
-        [Column("idCodePromo")]
+        [Column("idcodepromo")]
         public int IdCodePromo { get; set; }
 
-        [Column("libelleCodePromo")]
+        [Column("libellecodepromo")]
         [StringLength(15)]
         public string? LibelleCodePromo { get; set; }
 
