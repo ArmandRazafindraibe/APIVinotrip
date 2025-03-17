@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace APIVinotrip.Models.Entity_Framework
+namespace APIVinotrip.Models.EntityFramework
 {
     [Table("CARTE_BANCAIRE")]
     public partial class CarteBancaire

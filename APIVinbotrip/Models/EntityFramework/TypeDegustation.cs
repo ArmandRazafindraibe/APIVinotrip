@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
-namespace APIVinotrip.Models.Entity_Framework
+namespace APIVinotrip.Models.EntityFramework
 {
     [Table("TYPEDEGUSTATION")]
     public partial class TypeDegustation

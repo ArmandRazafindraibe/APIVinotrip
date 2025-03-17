@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace APIVinotrip.Models.Entity_Framework
+namespace APIVinotrip.Models.EntityFramework
 {
     [Table("AUTRESOCIETE")]
     public partial class AutreSociete

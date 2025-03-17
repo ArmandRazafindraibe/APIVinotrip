@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace  APIVinotrip.Models.Entity_Framework;
+namespace  APIVinotrip.Models.EntityFramework;
 
 [PrimaryKey("Idpartenaire", "Idactivite", "Idadresse")]
 public partial class EstProposePar
