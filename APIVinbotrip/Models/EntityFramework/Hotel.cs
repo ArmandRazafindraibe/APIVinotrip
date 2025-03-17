@@ -32,10 +32,10 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(Partenaire.HotelPartenaire))]
         public virtual Partenaire? Partenaire { get; set; }
 
-        [InverseProperty(nameof(Hebergement.HebergementHotel))]
-        public virtual Partenaire? HotelHebergement { get; set; }
+        //[InverseProperty(nameof(Hebergement.HebergementHotel))]
+        //public virtual Hotel? HotelHebergement { get; set; }
 
-        [InverseProperty(nameof(Hebergement.IdPartenaire))]
-       public virtual ICollection<Hebergement> Hebergements { get; set; } = new List<Hebergement>();
+        [InverseProperty(nameof(Hebergement.HebergementHotel))]
+       public virtual ICollection<Hebergement> HotelHebergements { get; set; } = new List<Hebergement>();
     }
 }

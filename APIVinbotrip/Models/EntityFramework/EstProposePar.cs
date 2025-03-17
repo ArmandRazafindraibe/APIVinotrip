@@ -22,7 +22,7 @@ public partial class EstProposePar
     public int Idadresse { get; set; }
 
     [ForeignKey(nameof(Idactivite))]
-    [InverseProperty(nameof(Activite.IdActivite))]
+    [InverseProperty(nameof(Activite.EstProposePars))]
     public virtual Activite? IdactiviteNavigation { get; set; } 
 
     [ForeignKey(nameof(Idadresse))]

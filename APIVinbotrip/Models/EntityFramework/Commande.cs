@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using APIVinbotrip.Models.EntityFramework;
+
 
 namespace APIVinotrip.Models.EntityFramework
 {
@@ -13,7 +13,7 @@ namespace APIVinotrip.Models.EntityFramework
 
         [Column("idCodePromo")]
         [StringLength(20)]
-        public string? IdCodePromo { get; set; }
+        public int IdCodePromo { get; set; }
 
         [Column("idCB")]
         public int? IdCB { get; set; }
@@ -52,11 +52,11 @@ namespace APIVinotrip.Models.EntityFramework
         public DateTime? DateCommande { get; set; }
 
         // Navigation properties
-        [ForeignKey(nameof(Client.IdClient))]
+        [ForeignKey(nameof(IdClientAcheteur))]
         [InverseProperty(nameof(Client.Commandes))]
         public virtual Client? ClientAcheteur { get; set; }
 
-        [ForeignKey(nameof(Client.IdClient))]
+        [ForeignKey(nameof(IdClientBeneficiaire))]
         [InverseProperty(nameof(Client.CommandesOfferts))]
         public virtual Client? ClientBeneficiaire { get; set; }
 
@@ -68,17 +68,17 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(Panier.Commandes))]
         public virtual Panier? PanierCommande { get; set; }
 
-        [ForeignKey(nameof(Adresse.IdAdresse))]
+        [ForeignKey(nameof(IdAdresseLivraison))]
         [InverseProperty(nameof(Adresse.CommandesLivraison))]
         public virtual Adresse? AdresseLivraison { get; set; }
 
-        [ForeignKey(nameof(Adresse.IdAdresse))]
+        [ForeignKey(nameof(IdAdresseFacturation))]
         [InverseProperty(nameof(Adresse.CommandesFacturation))]
         public virtual Adresse? AdresseFacturation { get; set; }
 
         [ForeignKey(nameof(IdCodePromo))]
         [InverseProperty(nameof(CodePromo.Commandes))]
-        public virtual CodePromo? CodeCodeReduction { get; set; }
+        public virtual CodePromo? CodeReductionNavigation { get; set; }
 
 
 

@@ -1,4 +1,4 @@
-﻿using APIVinbotrip.Models.EntityFramework;
+﻿
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
@@ -16,7 +16,7 @@ namespace APIVinotrip.Models.EntityFramework
         public string? LibelleTheme { get; set; }
 
         // Collection navigation properties
-        [InverseProperty(nameof(Sejour.Idtheme))]
+        [InverseProperty(nameof(Sejour.IdthemeNavigation))]
         public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
     }
 }

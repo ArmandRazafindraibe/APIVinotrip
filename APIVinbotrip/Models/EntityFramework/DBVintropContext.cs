@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
-using APIVinbotrip.Models.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 
 namespace APIVinotrip.Models.EntityFramework;
-public partial class DbtestContext : DbContext
+public partial class DBVinotripContext : DbContext
 {
-    public DbtestContext()
+    public DBVinotripContext()
     {
     }
 
-    public DbtestContext(DbContextOptions<DbtestContext> options)
+    public DBVinotripContext(DbContextOptions<DBVinotripContext> options)
         : base(options)
     {
     }
@@ -85,7 +84,7 @@ public partial class DbtestContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Server=localhost;port=5432;Database=DBTest; uid=postgres; password=postgres;");
+        => optionsBuilder.UseNpgsql("Server=localhost;port=5432;Database=DBVinotrip; uid=postgres; password=postgres;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -279,7 +278,7 @@ public partial class DbtestContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_commande_associati_adresse2");
 
-            entity.HasOne(d => d.AdresseFacturation).WithMany(p => p.CommandesLivraison)
+            entity.HasOne(d => d.AdresseLivraison).WithMany(p => p.CommandesLivraison)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_commande_associati_adresse");
 
@@ -295,7 +294,7 @@ public partial class DbtestContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_commande_associati_client");
 
-            entity.HasOne(d => d.CodeCodeReduction).WithMany(p => p.Commandes)
+            entity.HasOne(d => d.CodeReductionNavigation).WithMany(p => p.Commandes)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_commande_diminue_codeprom");
 
@@ -383,7 +382,7 @@ public partial class DbtestContext : DbContext
         {
             entity.HasKey(e => e.IdHebergement).HasName("pk_hebergement");
 
-            entity.HasOne(d => d.HebergementHotel).WithMany(p => p.Hebergements)
+            entity.HasOne(d => d.HebergementHotel).WithMany(p => p.HotelHebergements)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_hebergem_propose_3_hotel");
         });

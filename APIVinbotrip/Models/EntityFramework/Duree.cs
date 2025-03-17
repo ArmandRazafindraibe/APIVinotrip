@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 
-namespace APIVinbotrip.Models.EntityFramework
+namespace APIVinotrip.Models.EntityFramework
 {
     [Table("DUREE")]
     public partial class Duree
@@ -15,7 +15,7 @@ namespace APIVinbotrip.Models.EntityFramework
         [StringLength(50)]
         public string? LibelleDuree { get; set; }
 
-        [InverseProperty(nameof(Sejour.Idduree))]
+        [InverseProperty(nameof(Sejour.IddureeNavigation))]
         public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
     }
 

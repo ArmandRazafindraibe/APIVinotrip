@@ -1,4 +1,4 @@
-﻿using APIVinbotrip.Models.EntityFramework;
+﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -30,7 +30,7 @@ namespace APIVinotrip.Models.EntityFramework
         public decimal? PrixHebergement { get; set; }
 
         [ForeignKey(nameof(IdPartenaire))]
-        [InverseProperty(nameof(Hotel.HotelHebergement))]
+        [InverseProperty(nameof(Hotel.HotelHebergements))]
         public virtual Hotel? HebergementHotel { get; set; }
 
         [InverseProperty(nameof(Etape.Hebergement))]

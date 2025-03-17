@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using APIVinotrip.Models.EntityFramework;
 
-namespace APIVinbotrip.Models.EntityFramework
+
+namespace APIVinotrip.Models.EntityFramework
 {
     [Table("CODEPROMO")]
     public partial class CodePromo
@@ -21,7 +21,7 @@ namespace APIVinbotrip.Models.EntityFramework
         [InverseProperty(nameof(Panier.CodesPromos))]
         public virtual ICollection<Panier> Paniers { get; set; } = new List<Panier>();
 
-        [InverseProperty(nameof(Commande.CodeReduction))]
+        [InverseProperty(nameof(Commande.CodeReductionNavigation))]
         public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
     }
 }

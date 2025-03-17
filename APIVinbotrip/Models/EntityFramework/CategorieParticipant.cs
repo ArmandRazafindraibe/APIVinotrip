@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace APIVinbotrip.Models.EntityFramework
+namespace APIVinotrip.Models.EntityFramework
 {
     [Table("CATEGORIEEPARTICIPANT")]
     public partial class CategorieParticipant

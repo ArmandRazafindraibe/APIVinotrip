@@ -1,5 +1,4 @@
-﻿using APIVinbotrip.Models.Entity_Framework;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 

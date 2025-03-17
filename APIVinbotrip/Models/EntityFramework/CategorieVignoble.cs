@@ -1,5 +1,4 @@
-﻿using APIVinbotrip.Models.EntityFramework;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
@@ -19,7 +18,7 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(Localite.CategoriesVignoble))]
         public virtual ICollection<Localite> Localites { get; set; } = new List<Localite>();
 
-        [InverseProperty(nameof(Sejour.Idcategorievignoble))]
+        [InverseProperty(nameof(Sejour.IdcategorievignobleNavigation))]
         public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
         [ForeignKey(nameof(IdCategorieVignoble))]
         [InverseProperty(nameof(RouteDesVins.Idcategorievignobles))]

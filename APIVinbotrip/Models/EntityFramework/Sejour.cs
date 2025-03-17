@@ -1,10 +1,9 @@
-﻿using APIVinotrip.Models.EntityFramework;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Intrinsics.X86;
 
-namespace APIVinbotrip.Models.EntityFramework
+namespace APIVinotrip.Models.EntityFramework
 {
     [Table("sejour")]
 
@@ -53,7 +52,7 @@ namespace APIVinbotrip.Models.EntityFramework
         [Column("nouveauprixsejour", TypeName = "NUMERIC(8,2)")]
         public decimal? Nouveauprixsejour { get; set; }
 
-        [InverseProperty(nameof(Avis.IdSejour))]
+        [InverseProperty(nameof(Avis.Sejour))]
         public virtual ICollection<Avis> AvisNavigation { get; set; } = new List<Avis>();
 
         [InverseProperty(nameof(DescriptionCommande.Sejours))]

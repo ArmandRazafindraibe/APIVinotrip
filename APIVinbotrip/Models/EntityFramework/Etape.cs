@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using APIVinotrip.Models.EntityFramework;
 
-namespace APIVinbotrip.Models.EntityFramework
+
+namespace APIVinotrip.Models.EntityFramework
 {
     [Table("ETAPE")]
     public partial class Etape
