@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using APIVinbotrip.Models.Entity_Framework;
 
-
-namespace APIVinotrip.Models.EntityFramework
+namespace APIVinotrip.Models.Entity_Framework
 {
     [Table("DESCRIPTIONCOMMANDE")]
     public partial class DescriptionCommande
@@ -28,6 +28,9 @@ namespace APIVinotrip.Models.EntityFramework
 
         [Column("idCB")]
         public int? IdCB { get; set; }
+
+        [Column("quantite")]
+        public int? Quantite2 { get; set; }
 
         [Column("prixOeuf")]
         public int? PrixOeuf { get; set; }
@@ -90,8 +93,8 @@ namespace APIVinotrip.Models.EntityFramework
 
 
 
-        //[InverseProperty(nameof(Commande.DescriptionsCommande))]
-        //public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+        [InverseProperty(nameof(Commande.DescriptionsCommande))]
+        public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
 
         [ForeignKey("Iddescriptioncommande")]
         [InverseProperty("Iddescriptioncommandes")]

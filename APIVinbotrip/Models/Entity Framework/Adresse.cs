@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using APIVinbotrip.Models.Entity_Framework;
 
-
-namespace APIVinotrip.Models.EntityFramework
+namespace APIVinotrip.Models.Entity_Framework
 {
     [Table("ADRESSE")]
     public partial class Adresse

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace APIVinotrip.Models.EntityFramework
+namespace APIVinotrip.Models.Entity_Framework
 {
     [Table("ROUTE_DES_VINS")]
     public partial class RouteDesVins

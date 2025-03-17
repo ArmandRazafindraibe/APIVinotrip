@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 
-namespace APIVinotrip.Models.EntityFramework
+namespace APIVinotrip.Models.Entity_Framework
 {
     [Table("CLIENT")]
     public partial class Client
