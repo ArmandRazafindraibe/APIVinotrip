@@ -21,6 +21,7 @@
 	  <Folder Include="Models\DataManager\" />
 	  <Folder Include="Models\Repository\" />
 	  <Folder Include="Controllers\" />
+	  <Folder Include="Controllers\" />
 	</ItemGroup>
 
 </Project>
