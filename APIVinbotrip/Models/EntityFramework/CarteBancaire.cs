@@ -13,6 +13,10 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("idclient")]
         public int? IdClient { get; set; }
 
+        [Column("titulairecb")]
+        [StringLength(100)]
+        public string? titulaireCb { get; set; }
+
         [Column("numerocb")]
         [StringLength(50)]
         public string? NumeroCB { get; set; }

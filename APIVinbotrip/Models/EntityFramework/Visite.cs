@@ -18,11 +18,11 @@ namespace APIVinotrip.Models.EntityFramework
         [StringLength(4096)]
         public string? DescriptionVisite { get; set; }
 
-        [Column("photoVisite")]
+        [Column("photovisite")]
         [StringLength(512)]
         public string? PhotoVisite { get; set; }
 
-        [Column("lienVisite")]
+        [Column("lienvisite")]
         [StringLength(512)]
         public string? LienVisite { get; set; }
         [ForeignKey(nameof(IdPartenaire))]
