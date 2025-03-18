@@ -1,0 +1,129 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using APIVinotrip.Models.EntityFramework;
+using APIVinotrip.Models.Repository;
+
+namespace APIVinotrip.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ClientsController : ControllerBase
+    {
+        private readonly DBVinotripContext _context;
+        private readonly IDataRepository<Client> dataRepository;
+
+        public ClientsController(IDataRepository<Client> dataRepo)
+
+        {
+            dataRepository = dataRepo;
+        }
+
+
+        // GET: api/Client
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Client>>> GetClients()
+        {
+            return dataRepository.GetAll();
+        }
+
+        // GET: api/Client/5
+        [HttpGet]
+        [Route("[action]/{id}")]
+        [ActionName("GetById")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<Client>> GetClientById(int id)
+        {
+            var utilisateur = await dataRepository.GetByIdAsync(id);
+            //var utilisateur = await _context.Client.FindAsync(id);
+            if (utilisateur == null)
+            {
+                return NotFound();
+            }
+            return utilisateur;
+        }
+
+        [HttpGet]
+        [Route("[action]/{email}")]
+        [ActionName("GetByEmail")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<Client>> GetClientByEmail(string email)
+        {
+            var utilisateur = await dataRepository.GetByStringAsync(email);
+            //var utilisateur = await _context.Client.FirstOrDefaultAsync(e => e.Mail.ToUpper() == email.ToUpper());
+            if (utilisateur == null)
+            {
+                return NotFound();
+            }
+            return utilisateur;
+        }
+
+        // PUT: api/Client/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> PutClient(int id, Client client)
+        {
+            if (id != client.IdClient)
+            {
+                return BadRequest();
+            }
+            var userToUpdate = await dataRepository.GetByIdAsync(id);
+            if (userToUpdate == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                await dataRepository.UpdateAsync(userToUpdate.Value, client);
+                return NoContent();
+            }
+        }
+
+        // POST: api/Client
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Client>> PostClient(Client client)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await dataRepository.AddAsync(client);
+            return CreatedAtAction("GetById", new { id = client.IdClient }, client); // GetById : nom de l’action
+        }
+
+        // DELETE: api/Client/5
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteClient(int id)
+        {
+            var utilisateur = await dataRepository.GetByIdAsync(id);
+            if (utilisateur == null)
+            {
+                return NotFound();
+            }
+            await dataRepository.DeleteAsync(utilisateur.Value);
+            return NoContent();
+        }
+
+
+        //private bool UtilisateurExists(int id)
+        //{
+        //    return _context.Client.Any(e => e.UtilisateurId == id);
+        //}
+    }
+}
