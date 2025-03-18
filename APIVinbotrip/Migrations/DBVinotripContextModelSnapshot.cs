@@ -71,7 +71,7 @@ namespace APIVinotrip.Migrations
 
 
                     b.Property<string>("NomAdresse")
-                        .HasMaxLength(10)
+                        .HasMaxLength(50)
                         .HasColumnType("character varying(10)")
                         .HasColumnName("nomadresse");
 

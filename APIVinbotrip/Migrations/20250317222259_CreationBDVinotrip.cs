@@ -468,7 +468,7 @@ namespace APIVinotrip.Migrations
                     villeadresse = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     paysadresse = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true, defaultValueSql: "'France'::character varying"),
                     cpadresse = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: true),
-                    numadresse = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true)
+                    nomadresse = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {

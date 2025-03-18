@@ -41,8 +41,8 @@ namespace APIVinotrip.Models.EntityFramework
         [StringLength(8)]
         public string? CpAdresse { get; set; }
 
-        [Column("numadresse")]
-        [StringLength(10)]
+        [Column("nomadresse")]
+        [StringLength(50)]
         public string? NomAdresse { get; set; }
 
         
