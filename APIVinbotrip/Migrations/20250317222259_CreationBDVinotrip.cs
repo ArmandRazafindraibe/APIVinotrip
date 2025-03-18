@@ -262,15 +262,17 @@ namespace APIVinotrip.Migrations
                 {
                     idclient = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    civiliteclient = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: true),
                     nomclient = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     prenomclient = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     emailclient = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    mdpclient = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    mdpclient = table.Column<string>(type: "character varying(50)", maxLength: 500, nullable: true),
                     datenaissanceclient = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     datecreationcompteclient = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     telclient = table.Column<string>(type: "character(12)", fixedLength: true, maxLength: 12, nullable: true),
                     datederniereactiviteclient = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     a2f = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    offrespromotionnellesclient= table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     idrole = table.Column<int>(type: "integer", nullable: true),
                     bloquingclient = table.Column<bool>(type: "boolean", nullable: true),
                     tokenresetmdp = table.Column<string>(type: "character(50)", fixedLength: true, maxLength: 50, nullable: true, defaultValueSql: "NULL::bpchar"),
@@ -460,13 +462,13 @@ namespace APIVinotrip.Migrations
                     nadresse = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     idclient = table.Column<int>(type: "integer", nullable: true),
                     idpartenaire = table.Column<int>(type: "integer", nullable: true),
-                    nomadressedestinationfacture = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    prenomadressedestination = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     nomadressedestinataire = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     rueadresse = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     villeadresse = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     paysadresse = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true, defaultValueSql: "'France'::character varying"),
                     cpadresse = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: true),
-                    nomadresse = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true)
+                    numadresse = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -492,6 +494,7 @@ namespace APIVinotrip.Migrations
                     idcb = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     idclient = table.Column<int>(type: "integer", nullable: true),
+                    titulairecb = table.Column<string>(type: "character varying(100)",  maxLength: 100, nullable: true),
                     numerocb = table.Column<string>(type: "character(50)", fixedLength: true, maxLength: 50, nullable: true),
                     numerocvccarte = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: true),
                     dateexpirationcreditcard = table.Column<DateTime>(type: "timestamp with time zone", fixedLength: true, nullable: true),
@@ -675,7 +678,7 @@ namespace APIVinotrip.Migrations
                 name: "etape",
                 columns: table => new
                 {
-                    idEtape = table.Column<int>(type: "integer", nullable: false)
+                    idetape = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     idsejour = table.Column<int>(type: "integer", nullable: true),
                     idhebergement = table.Column<int>(type: "integer", nullable: true),
@@ -687,7 +690,7 @@ namespace APIVinotrip.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_etape", x => x.idEtape);
+                    table.PrimaryKey("pk_etape", x => x.idetape);
                     table.ForeignKey(
                         name: "fk_etape_appartien_hebergem",
                         column: x => x.idhebergement,
@@ -825,8 +828,6 @@ namespace APIVinotrip.Migrations
                 {
                     idactivite = table.Column<int>(type: "integer", nullable: false),
                     iddescriptionpanier = table.Column<int>(type: "integer", nullable: false),
-                    IdActivite = table.Column<int>(type: "integer", nullable: false),
-                    IdDescriptionPanier = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -851,8 +852,6 @@ namespace APIVinotrip.Migrations
                 {
                     idrepas = table.Column<int>(type: "integer", nullable: false),
                     iddescriptionpanier = table.Column<int>(type: "integer", nullable: false),
-                    IdDescriptionPanier = table.Column<int>(type: "integer", nullable: false),
-                    IdRepas = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {

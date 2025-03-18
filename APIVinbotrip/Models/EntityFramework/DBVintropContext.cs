@@ -234,6 +234,7 @@ public partial class DBVinotripContext : DbContext
             entity.HasKey(e => e.IdClient).HasName("pk_client");
 
             entity.Property(e => e.A2f).HasDefaultValue(false);
+            entity.Property(e => e.offresPromotionnellesClient).HasDefaultValue(false);
             entity.Property(e => e.TelClient).IsFixedLength();
             entity.Property(e => e.TokenResetMDP)
                 .HasDefaultValueSql("NULL::bpchar")

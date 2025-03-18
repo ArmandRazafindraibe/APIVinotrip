@@ -11,6 +11,10 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("idclient")]
         public int IdClient { get; set; }
 
+        [Column("civiliteclient")]
+        [MaxLength(5)]
+        public string? CiviliteClient { get; set; }
+
         [Column("nomclient")]
         [StringLength(50)]
         public string? NomClient { get; set; }
@@ -24,7 +28,7 @@ namespace APIVinotrip.Models.EntityFramework
         public string? EmailClient { get; set; }
 
         [Column("mdpclient")]
-        [StringLength(50)]
+        [StringLength(500)]
         public string? MdpClient { get; set; }
 
         [Column("datenaissanceclient")]
@@ -41,6 +45,9 @@ namespace APIVinotrip.Models.EntityFramework
         public DateTime? DateDerniereActiviteClient { get; set; }
         [Column("a2f")]
         public bool A2f { get; set; }
+
+        [Column("offrespromotionnellesclient")]
+        public bool offresPromotionnellesClient { get; set; }
 
         [Column("idrole")]
         public int? IdRole { get; set; }

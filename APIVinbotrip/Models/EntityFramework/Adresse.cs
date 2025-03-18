@@ -11,21 +11,17 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("idadresse")]
         public int IdAdresse { get; set; }
 
-        [Column("nadresse")]
-        [StringLength(50)]
-        public string? NAdresse { get; set; }
-
         [Column("idclient")]
         public int? IdClient { get; set; }
 
         [Column("idpartenaire")]
         public int? IdPartenaire { get; set; }
 
-        [Column("nomadressedestinationfacture")]
+        [Column("nomadressedestination")]
         [StringLength(50)]
-        public string? NomAdresseDestinationFacture { get; set; }
+        public string? PrenomAdresseDestination { get; set; }
 
-        [Column("nomadressedestinataire")]
+        [Column("prenomadressedestinataire")]
         [StringLength(50)]
         public string? NomAdresseDestinataire { get; set; }
 
@@ -45,7 +41,7 @@ namespace APIVinotrip.Models.EntityFramework
         [StringLength(8)]
         public string? CpAdresse { get; set; }
 
-        [Column("nomadresse")]
+        [Column("numadresse")]
         [StringLength(10)]
         public string? NomAdresse { get; set; }
 

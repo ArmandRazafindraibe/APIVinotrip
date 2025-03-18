@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 #nullable disable
 
@@ -68,10 +69,6 @@ namespace APIVinotrip.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("idpartenaire");
 
-                    b.Property<string>("NAdresse")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("nadresse");
 
                     b.Property<string>("NomAdresse")
                         .HasMaxLength(10)
@@ -83,10 +80,10 @@ namespace APIVinotrip.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("nomadressedestinataire");
 
-                    b.Property<string>("NomAdresseDestinationFacture")
+                    b.Property<string>("PrenomAdresseDestination")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nomadressedestinationfacture");
+                        .HasColumnName("prenomadressedestination");
 
                     b.Property<string>("PaysAdresse")
                         .ValueGeneratedOnAdd()
@@ -164,6 +161,7 @@ namespace APIVinotrip.Migrations
                     b.Property<int?>("IdClient")
                         .HasColumnType("integer")
                         .HasColumnName("idclient");
+                    
 
                     b.Property<int?>("IdSejour")
                         .HasColumnType("integer")
@@ -344,6 +342,11 @@ namespace APIVinotrip.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("a2f");
+                    b.Property<bool>("offresPromotionnellesClient")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("offrespromotionnellesclient");
 
                     b.Property<bool?>("BloquingClient")
                         .HasColumnType("boolean")
@@ -369,6 +372,11 @@ namespace APIVinotrip.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("emailclient");
+
+                    b.Property<string>("CiviliteClient")
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)")
+                        .HasColumnName("civiliteclient");
 
                     b.Property<int?>("IdRole")
                         .HasColumnType("integer")
