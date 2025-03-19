@@ -1,4 +1,4 @@
-﻿using APIVinbotrip.Models.Entity_Framework;
+﻿using APIVinotrip.Models.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("SE_LOCALISE")]
+    [Table("se_localise")]
     public partial class SeLocalise
     {
         [Key]
@@ -14,16 +14,16 @@ namespace APIVinotrip.Models.EntityFramework
         public int IdRoute { get; set; }
 
         [Key]
-        [Column("idCategorieVignoble")]
+        [Column("idcategorievignoble")]
         public int IdCategorieVignoble { get; set; }
 
         // Navigation properties
         [ForeignKey(nameof(IdRoute))]
-        [InverseProperty(nameof(RouteDesVins.SaLocalites))]
-        public virtual RouteDesVins? Route { get; set; }
+        [InverseProperty(nameof(RouteDesVins.SesLocalites))]
+        public virtual ICollection<RouteDesVins>? Route { get; set; }
 
         [ForeignKey(nameof(IdCategorieVignoble))]
-        [InverseProperty(nameof(CategorieVignoble.SaLocalites))]
-        public virtual CategorieVignoble? CategorieVignoble { get; set; }
+        [InverseProperty(nameof(CategorieVignoble.SesLocalites))]
+        public virtual ICollection<CategorieVignoble> CategoriesVignoble { get; set; }=new List<CategorieVignoble>();
     }
 }

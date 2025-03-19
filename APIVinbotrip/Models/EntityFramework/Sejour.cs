@@ -95,6 +95,10 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(Client.Idsejours))]
         public virtual ICollection<Client> Idclients { get; set; } = new List<Client>();
 
+        
+        [InverseProperty(nameof(Favoris.Sejours))]
+        public virtual ICollection<Favoris> ListeFavoris { get; set; } = new List<Favoris>();
+
     }
 
 }

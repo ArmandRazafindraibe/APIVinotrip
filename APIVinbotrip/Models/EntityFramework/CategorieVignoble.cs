@@ -20,6 +20,10 @@ namespace APIVinotrip.Models.EntityFramework
 
         [InverseProperty(nameof(Sejour.IdcategorievignobleNavigation))]
         public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
+
+        [InverseProperty(nameof(SeLocalise.CategoriesVignoble))]
+        public virtual ICollection<SeLocalise> SesLocalites { get; set; } = new List<SeLocalise>();
+
         [ForeignKey(nameof(IdCategorieVignoble))]
         [InverseProperty(nameof(RouteDesVins.Idcategorievignobles))]
         public virtual ICollection<RouteDesVins> Idroutes { get; set; } = new List<RouteDesVins>();
