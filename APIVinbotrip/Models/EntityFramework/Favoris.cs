@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using APIVinotrip.Models.Entity_Framework;
 
 namespace APIVinotrip.Models.EntityFramework
 {

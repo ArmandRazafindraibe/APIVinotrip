@@ -3,21 +3,23 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("Inclus")]
+    [Table("inclus")]
     public partial class Inclus
     {
-        [Key, Column("idRepas")]
+        [Key]
+        [Column("idrepas")]
         public int IdRepas { get; set; }
 
-        [Key, Column("idEtape")]
+        [Key]
+        [Column("idetape")]
         public int IdEtape { get; set; }
 
         [ForeignKey(nameof(IdRepas))]
         [InverseProperty(nameof(Repas.Inclusions))]
-        public virtual Repas? LesRepas { get; set; }
+        public virtual Repas Repas { get; set; } = null!;
 
         [ForeignKey(nameof(IdEtape))]
         [InverseProperty(nameof(Etape.InclusCollection))]
-        public virtual Etape? SonEtape { get; set; }
+        public virtual Etape Etape { get; set; } = null!;
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using APIVinotrip.Models.EntityFramework.APIVinotrip.Models.EntityFramework;
 using Microsoft.CodeAnalysis.Elfie.Model.Structures;
 using Microsoft.EntityFrameworkCore;
 
@@ -80,6 +81,15 @@ public partial class DBVinotripContext : DbContext
     public virtual DbSet<TypeDegustation> Typedegustations { get; set; }
 
     public virtual DbSet<Visite> Visites { get; set; }
+    public virtual DbSet<Possede> Possedes { get; set; }
+    public virtual DbSet<Comporte> Comportes { get; set; }
+    public virtual DbSet<Constitue> Constitues { get; set; }
+    public virtual DbSet<Favoris> Favoris { get; set; }
+    public virtual DbSet<Mange1> Mange1s { get; set; }
+    public virtual DbSet<Detient> Detients { get; set; }
+    public virtual DbSet<Inclus> Inclus { get; set; }
+    public virtual DbSet<SeLocalise> SeLocalises { get; set; }
+    public virtual DbSet<Appartient> Appartients { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -537,24 +547,24 @@ public partial class DBVinotripContext : DbContext
         // Join table configurations
 
         // Possede (join table) configuration
-        modelBuilder.Entity<Inclus>()
-            .HasKey(e => new { e.idactivite, e.iddescriptioncommande })
+        modelBuilder.Entity<Possede>()
+            .HasKey(e => new { e.IdActivite, e.IdDescriptionCommande })
             .HasName("pk_possede");
 
-        modelBuilder.Entity<Inclus>()
+        modelBuilder.Entity<Possede>()
             .ToTable("possede");
 
-        modelBuilder.Entity<Inclus>()
+        modelBuilder.Entity<Possede>()
             .HasOne(p => p.Activite)
             .WithMany()
-            .HasForeignKey(p => p.idactivite)
+            .HasForeignKey(p => p.IdActivite)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_associat_associati_activite");
 
-        modelBuilder.Entity<Inclus>()
+        modelBuilder.Entity<Possede>()
             .HasOne(p => p.DescriptionCommande)
             .WithMany()
-            .HasForeignKey(p => p.iddescriptioncommande)
+            .HasForeignKey(p => p.IdDescriptionCommande)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_associat_associati_descript");
 
@@ -567,9 +577,9 @@ public partial class DBVinotripContext : DbContext
             .ToTable("comporte");
 
         modelBuilder.Entity<Comporte>()
-            .HasOne(c => c.Activite)
+            .HasOne(c => c.ActiviteComporte)
             .WithMany()
-            .HasForeignKey(c => c.idactivite)
+            .HasForeignKey(c => c.ActiviteComporte)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_associat_associati_activite");
 
@@ -582,7 +592,7 @@ public partial class DBVinotripContext : DbContext
 
         // Constitue (join table) configuration
         modelBuilder.Entity<Constitue>()
-            .HasKey(c => new { c.IdActivite, c.idetape })
+            .HasKey(c => new { c.Activite, c.Etape })
             .HasName("pk_constitue");
 
         modelBuilder.Entity<Constitue>()
@@ -591,42 +601,42 @@ public partial class DBVinotripContext : DbContext
         modelBuilder.Entity<Constitue>()
             .HasOne(c => c.Activite)
             .WithMany()
-            .HasForeignKey(c => c.idactivite)
+            .HasForeignKey(c => c.Activite)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_appartie_appartien_activite");
 
         modelBuilder.Entity<Constitue>()
             .HasOne(c => c.Etape)
             .WithMany()
-            .HasForeignKey(c => c.idetape)
+            .HasForeignKey(c => c.Etape)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_appartie_appartien_etape");
 
         // Favori (join table) configuration
         modelBuilder.Entity<Favoris>()
-            .HasKey(f => new { f.idclient, f.idsejour })
+            .HasKey(f => new { f.Clients, f.Sejours })
             .HasName("pk_favoris");
 
         modelBuilder.Entity<Favoris>()
             .ToTable("favoris");
 
         modelBuilder.Entity<Favoris>()
-            .HasOne(f => f.Client)
+            .HasOne(f => f.Clients)
             .WithMany()
-            .HasForeignKey(f => f.idclient)
+            .HasForeignKey(f => f.Clients)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_favoris_favoris_client");
 
         modelBuilder.Entity<Favoris>()
-            .HasOne(f => f.Sejour)
+            .HasOne(f => f.Sejours)
             .WithMany()
-            .HasForeignKey(f => f.idsejour)
+            .HasForeignKey(f => f.Sejours)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_favoris_favoris2_sejour");
 
         // Mange1 (join table) configuration
         modelBuilder.Entity<Mange1>()
-            .HasKey(m => new { m.idrepas, m.iddescriptioncommande })
+            .HasKey(m => new { m.IdRepas, m.IdDescriptionCommande })
             .HasName("pk_contient");
 
         modelBuilder.Entity<Mange1>()
@@ -635,14 +645,14 @@ public partial class DBVinotripContext : DbContext
         modelBuilder.Entity<Mange1>()
             .HasOne(m => m.Repas)
             .WithMany()
-            .HasForeignKey(m => m.idrepas)
+            .HasForeignKey(m => m.IdRepas)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_associat_associati_repas");
 
         modelBuilder.Entity<Mange1>()
             .HasOne(m => m.DescriptionCommande)
             .WithMany()
-            .HasForeignKey(m => m.iddescriptioncommande)
+            .HasForeignKey(m => m.IdDescriptionCommande)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_associat_associati_descript");
 
@@ -706,7 +716,7 @@ public partial class DBVinotripContext : DbContext
             .HasConstraintName("fk_se_local_se_locali_route_de");
 
         modelBuilder.Entity<SeLocalise>()
-            .HasOne(s => s.CategorieVignoble)
+            .HasOne(s => s.CategoriesVignoble)
             .WithMany()
             .HasForeignKey(s => s.IdCategorieVignoble)
             .OnDelete(DeleteBehavior.Restrict)
