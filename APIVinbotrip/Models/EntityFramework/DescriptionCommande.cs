@@ -93,8 +93,8 @@ namespace APIVinotrip.Models.EntityFramework
         //[InverseProperty(nameof(Commande.DescriptionsCommande))]
         //public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
 
-        [ForeignKey("Iddescriptioncommande")]
-        [InverseProperty("Iddescriptioncommandes")]
+        [ForeignKey(nameof(IdDescriptionCommande))]
+        [InverseProperty(nameof(Repas.Iddescriptioncommandes))]
         public virtual ICollection<Repas> Idrepas { get; set; } = new List<Repas>();
     }
 }

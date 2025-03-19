@@ -21,10 +21,10 @@ namespace APIVinotrip.Models.DataManager
         {
             return await vinotripDBContext.Commandes.FirstOrDefaultAsync(u => u.IdCommande == id);
         }
-        //public async Task<ActionResult<Commande>> GetByStringAsync(string mail)
-        //{
-        //    return await vinotripDBContext.Commandes.FirstOrDefaultAsync(u => u.ToUpper() == mail.ToUpper());
-        //}
+        public async Task<ActionResult<Commande>> GetByStringAsync(string mail)
+        {
+            return await vinotripDBContext.Commandes.FirstOrDefaultAsync(u=>u.EtatCommande == mail);
+        }
         public async Task AddAsync(Commande entity)
         {
             await vinotripDBContext.Commandes.AddAsync(entity);
@@ -59,9 +59,9 @@ namespace APIVinotrip.Models.DataManager
 
             await vinotripDBContext.SaveChangesAsync();
         }
-        public async Task DeleteAsync(Client client)
+        public async Task DeleteAsync(Commande commande)
         {
-            vinotripDBContext.Clients.Remove(client);
+            vinotripDBContext.Commandes.Remove(commande);
             await vinotripDBContext.SaveChangesAsync();
         }
     }
