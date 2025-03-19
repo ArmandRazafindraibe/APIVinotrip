@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using APIVinotrip.Models.EntityFramework.APIVinotrip.Models.EntityFramework;
 
 
 namespace APIVinotrip.Models.EntityFramework
@@ -98,5 +99,10 @@ namespace APIVinotrip.Models.EntityFramework
         [ForeignKey(nameof(IdDescriptionCommande))]
         [InverseProperty(nameof(Repas.Iddescriptioncommandes))]
         public virtual ICollection<Repas> Idrepas { get; set; } = new List<Repas>();
+
+        [InverseProperty(nameof(Possede.LaDescriptionCommande))]
+        public virtual ICollection<Possede> LesPossedes { get; set; } = null!;
+
     }
+
 }

@@ -18,11 +18,11 @@
 
             [ForeignKey(nameof(IdActivite))]
             [InverseProperty(nameof(Activite.LesPossedes))]
-            public virtual Activite Activite { get; set; } = null!;
+            public virtual Activite LActivite { get; set; } = null!;
 
             [ForeignKey(nameof(IdDescriptionCommande))]
             [InverseProperty(nameof(DescriptionCommande.LesPossedes))]
-            public virtual DescriptionCommande DescriptionCommande { get; set; } = null!;
+            public virtual DescriptionCommande LaDescriptionCommande { get; set; } = null!;
         }
     }
 }

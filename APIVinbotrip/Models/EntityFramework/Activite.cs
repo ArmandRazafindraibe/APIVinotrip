@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using APIVinotrip.Models.EntityFramework.APIVinotrip.Models.EntityFramework;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -39,6 +40,7 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(Constitue.Activites))]
         public virtual ICollection<Constitue> Constitues { get; set; } = null!;
 
-
+        [InverseProperty(nameof(Possede.LActivite))]
+        public virtual ICollection<Possede> LesPossedes { get; set; } = null!;
     }
 }
