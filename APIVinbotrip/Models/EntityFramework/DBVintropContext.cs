@@ -555,14 +555,14 @@ public partial class DBVinotripContext : DbContext
             .ToTable("possede");
 
         modelBuilder.Entity<Possede>()
-            .HasOne(p => p.Activite)
+            .HasOne(p => p.LActivite)
             .WithMany()
             .HasForeignKey(p => p.IdActivite)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_associat_associati_activite");
 
         modelBuilder.Entity<Possede>()
-            .HasOne(p => p.DescriptionCommande)
+            .HasOne(p => p.LaDescriptionCommande)
             .WithMany()
             .HasForeignKey(p => p.IdDescriptionCommande)
             .OnDelete(DeleteBehavior.Restrict)
@@ -592,38 +592,38 @@ public partial class DBVinotripContext : DbContext
 
         // Constitue (join table) configuration
         modelBuilder.Entity<Constitue>()
-            .HasKey(c => new { c.Activite, c.Etape })
+            .HasKey(c => new { c.Activites, c.SonEtape })
             .HasName("pk_constitue");
 
         modelBuilder.Entity<Constitue>()
             .ToTable("constitue");
 
         modelBuilder.Entity<Constitue>()
-            .HasOne(c => c.Activite)
+            .HasOne(c => c.Activites)
             .WithMany()
-            .HasForeignKey(c => c.Activite)
+            .HasForeignKey(c => c.Activites)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_appartie_appartien_activite");
 
         modelBuilder.Entity<Constitue>()
-            .HasOne(c => c.Etape)
+            .HasOne(c => c.SonEtape)
             .WithMany()
-            .HasForeignKey(c => c.Etape)
+            .HasForeignKey(c => c.IdEtape)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_appartie_appartien_etape");
 
         // Favori (join table) configuration
         modelBuilder.Entity<Favoris>()
-            .HasKey(f => new { f.Clients, f.Sejours })
+            .HasKey(f => new { f.LeClient, f.Sejours })
             .HasName("pk_favoris");
 
         modelBuilder.Entity<Favoris>()
             .ToTable("favoris");
 
         modelBuilder.Entity<Favoris>()
-            .HasOne(f => f.Clients)
+            .HasOne(f => f.LeClient)
             .WithMany()
-            .HasForeignKey(f => f.Clients)
+            .HasForeignKey(f => f.IdClient)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_favoris_favoris_client");
 
@@ -643,7 +643,7 @@ public partial class DBVinotripContext : DbContext
             .ToTable("mange1");
 
         modelBuilder.Entity<Mange1>()
-            .HasOne(m => m.Repas)
+            .HasOne(m => m.UnRepas)
             .WithMany()
             .HasForeignKey(m => m.IdRepas)
             .OnDelete(DeleteBehavior.Restrict)
@@ -731,14 +731,14 @@ public partial class DBVinotripContext : DbContext
             .ToTable("appartient");
 
         modelBuilder.Entity<Appartient>()
-            .HasOne(a => a.Visite)
+            .HasOne(a => a.LesVisite)
             .WithMany()
             .HasForeignKey(a => a.IdVisite)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_appartie_appartien_visite");
 
         modelBuilder.Entity<Appartient>()
-            .HasOne(a => a.Etape)
+            .HasOne(a => a.SonEtape)
             .WithMany()
             .HasForeignKey(a => a.IdEtape)
             .OnDelete(DeleteBehavior.Restrict)

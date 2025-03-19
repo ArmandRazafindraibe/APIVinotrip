@@ -16,7 +16,7 @@ namespace APIVinotrip.Models.EntityFramework
 
         [ForeignKey(nameof(IdClient))]
         [InverseProperty(nameof(Client.ListeFavoris))]
-        public virtual ICollection<Client> Clients { get; set; }=new List<Client>();
+        public virtual Client? LeClient { get; set; }
 
 
         [ForeignKey(nameof(IdSejour))]
