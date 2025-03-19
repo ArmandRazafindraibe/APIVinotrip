@@ -29,8 +29,9 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("idcb")]
         public int? IdCB { get; set; }
 
-        [Column("prixoeuf")]
-        public int? PrixOeuf { get; set; }
+
+        [Column("datedebut")]
+        public DateTime? DateDebut { get; set; }
 
         [Column("datefin")]
         public DateTime? DateFin { get; set; }
@@ -50,14 +51,14 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("nbchambrestriple")]
         public int? NbChambresTriple { get; set; }
 
-        [Column("pdej")]
-        public bool? PDej { get; set; }
-
-        [Column("ispdej")]
-        public bool? IsPDej { get; set; }
-
-        [Column("encaissementmangement")]
+        [Column("offrir")]
         public bool? EncaissementMangement { get; set; }
+
+        [Column("ecoffret")]
+        public bool? ECoffret { get; set; }
+
+        [Column("disponibiliteHebergement")]
+        public bool? DisponibiliteHebergement { get; set; }
 
         [Column("validationclient")]
         public bool? ValidationClient { get; set; }

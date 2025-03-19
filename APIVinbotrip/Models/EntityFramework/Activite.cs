@@ -36,5 +36,9 @@ namespace APIVinotrip.Models.EntityFramework
         public virtual ICollection<EstProposePar> EstProposePars { get; set; } = new List<EstProposePar>();
 
 
+        [InverseProperty(nameof(Constitue.Activites))]
+        public virtual ICollection<Constitue> Constitues { get; set; } = null!;
+
+
     }
 }
