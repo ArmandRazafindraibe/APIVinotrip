@@ -581,8 +581,8 @@ public partial class DBVinotripContext : DbContext
             .HasConstraintName("fk_associat_associati_descript");
 
         // Constitue (join table) configuration
-        modelBuilder.Entity< >()
-            .HasKey(c => new { c.idactivite, c.idetape })
+        modelBuilder.Entity<Constitue>()
+            .HasKey(c => new { c.IdActivite, c.idetape })
             .HasName("pk_constitue");
 
         modelBuilder.Entity<Constitue>()
