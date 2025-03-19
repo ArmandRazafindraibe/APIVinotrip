@@ -44,7 +44,7 @@ namespace APIVinotrip.Models.EntityFramework
         public virtual ICollection<DescriptionPanier> Iddescriptionpaniers { get; set; } = new List<DescriptionPanier>();
 
         [InverseProperty(nameof(Inclus.Repas))]
-        public virtual Repas? Inclusions { get; set; }
+        public virtual Inclus? Inclusions { get; set; }
 
         [InverseProperty(nameof(Detient.RepasDetient))]
         public virtual ICollection<Detient>? DetientCollection { get; set; } = new List<Detient>();
