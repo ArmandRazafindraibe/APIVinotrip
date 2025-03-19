@@ -4,20 +4,20 @@ using System.Diagnostics;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("COMPORTE")]
+    [Table("comporte")]
     public partial class Comporte
     {
         [Key]
-        [Column("idActivite")]
+        [Column("idactivite")]
         public int IdActivite { get; set; }
 
         [Key]
-        [Column("idDescriptionPanier")]
+        [Column("iddescriptionpanier")]
         public int IdDescriptionPanier { get; set; }
 
         [ForeignKey(nameof(IdActivite))]
         [InverseProperty(nameof(Activite.ListeActivites))]
-        public virtual Activite? ActiviteComporte { get; set; }
+        public virtual Activite? ActiviteComportant { get; set; }
 
         [ForeignKey(nameof(IdDescriptionPanier))]
         [InverseProperty(nameof(DescriptionPanier.ListeDescriptions))]

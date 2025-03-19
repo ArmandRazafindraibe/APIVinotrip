@@ -577,9 +577,9 @@ public partial class DBVinotripContext : DbContext
             .ToTable("comporte");
 
         modelBuilder.Entity<Comporte>()
-            .HasOne(c => c.ActiviteComporte)
+            .HasOne(c => c.ActiviteComportant)
             .WithMany()
-            .HasForeignKey(c => c.ActiviteComporte)
+            .HasForeignKey(c => c.ActiviteComportant)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_associat_associati_activite");
 
