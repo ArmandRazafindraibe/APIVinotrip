@@ -1,7 +1,6 @@
 ﻿using APIVinotrip.Models.EntityFramework.APIVinotrip.Models.EntityFramework;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace APIVinotrip.Models.EntityFramework
 {
@@ -20,8 +19,8 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("prixactivite", TypeName = "NUMERIC(8,2)")]
         public decimal? PrixActivite { get; set; }
 
-        [InverseProperty(nameof(Comporte.ActiviteComportant))]
-        public virtual ICollection<Comporte>? ListeActivites { get; set; }
+        [InverseProperty(nameof(Comporte.UneActivite))]
+        public virtual ICollection<Comporte> ListeActivites { get; set; } = new List<Comporte>();
 
         [InverseProperty(nameof(DescriptionCommande.Idactivites))]
         public virtual ICollection<DescriptionCommande> DescriptionCommandes { get; set; } = new List<DescriptionCommande>();
@@ -38,9 +37,9 @@ namespace APIVinotrip.Models.EntityFramework
         public virtual ICollection<EstProposePar> EstProposePars { get; set; } = new List<EstProposePar>();
 
         [InverseProperty(nameof(Constitue.Activites))]
-        public virtual ICollection<Constitue> Constitues { get; set; } = null!;
+        public virtual ICollection<Constitue> Constitues { get; set; } = new List<Constitue>();
 
         [InverseProperty(nameof(Possede.LActivite))]
-        public virtual ICollection<Possede> LesPossedes { get; set; } = null!;
+        public virtual ICollection<Possede> LesPossedes { get; set; } = new List<Possede>();
     }
 }

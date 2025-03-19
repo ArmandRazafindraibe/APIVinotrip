@@ -16,7 +16,7 @@ public partial class DBVinotripContext : DbContext
     {
     }
 
-    public virtual DbSet<Activite> Activites { get; set; }
+ public virtual DbSet<Activite> Activites { get; set; }
 
     public virtual DbSet<Adresse> Adresses { get; set; }
 
@@ -577,9 +577,9 @@ public partial class DBVinotripContext : DbContext
             .ToTable("comporte");
 
         modelBuilder.Entity<Comporte>()
-            .HasOne(c => c.ActiviteComportant)
+            .HasOne(c => c.UneActivite)
             .WithMany()
-            .HasForeignKey(c => c.ActiviteComportant)
+            .HasForeignKey(c => c.IdActivite)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_associat_associati_activite");
 

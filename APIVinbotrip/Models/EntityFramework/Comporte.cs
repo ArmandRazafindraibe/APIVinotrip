@@ -17,7 +17,7 @@ namespace APIVinotrip.Models.EntityFramework
 
         [ForeignKey(nameof(IdActivite))]
         [InverseProperty(nameof(Activite.ListeActivites))]
-        public virtual Activite? ActiviteComportant { get; set; }
+        public virtual Activite? UneActivite { get; set; }
 
         [ForeignKey(nameof(IdDescriptionPanier))]
         [InverseProperty(nameof(DescriptionPanier.ListeDescriptions))]

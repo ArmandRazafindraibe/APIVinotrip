@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    public class Mange1
+    public partial class Mange1
     {
         [Key]
         [Column("idrepas")]

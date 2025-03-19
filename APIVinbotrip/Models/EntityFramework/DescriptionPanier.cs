@@ -78,10 +78,10 @@ namespace APIVinotrip.Models.EntityFramework
         public virtual ICollection<Repas> Idrepas { get; set; } = new List<Repas>();
 
         [InverseProperty(nameof(Detient.DescriptionPanierDetient))]
-        public virtual ICollection<Detient>? DetientCollection { get; set; }
+        public virtual ICollection<Detient> DetientCollection { get; set; } = new List<Detient>();
 
         [InverseProperty(nameof(Comporte.DescriptionPanierComporte))]
-        public virtual ICollection<Comporte>? ListeDescriptions { get; set; }
+        public virtual ICollection<Comporte> ListeDescriptions { get; set; } = new List<Comporte>();
 
     }
 }

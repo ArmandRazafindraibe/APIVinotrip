@@ -21,6 +21,6 @@ namespace APIVinotrip.Models.EntityFramework
 
         [ForeignKey(nameof(IdDescriptionPanier))]
         [InverseProperty(nameof(DescriptionPanier.DetientCollection))]
-        public virtual ICollection<DescriptionPanier>? DescriptionPanierDetient { get; set; }
+        public virtual ICollection<DescriptionPanier> DescriptionPanierDetient { get; set; } = new List<DescriptionPanier>();
     }
 }   

@@ -91,7 +91,7 @@ namespace APIVinotrip.Models.EntityFramework
 
 
         [InverseProperty(nameof(Mange1.DescriptionCommande))]
-        public virtual ICollection<Mange1> RepasCommandes { get; set; } = null!;
+        public virtual ICollection<Mange1> RepasCommandes { get; set; } = new List<Mange1>();
 
         //[InverseProperty(nameof(Commande.DescriptionsCommande))]
         //public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
@@ -101,7 +101,7 @@ namespace APIVinotrip.Models.EntityFramework
         public virtual ICollection<Repas> Idrepas { get; set; } = new List<Repas>();
 
         [InverseProperty(nameof(Possede.LaDescriptionCommande))]
-        public virtual ICollection<Possede> LesPossedes { get; set; } = null!;
+        public virtual ICollection<Possede> LesPossedes { get; set; }  = new List<Possede>();
 
     }
 

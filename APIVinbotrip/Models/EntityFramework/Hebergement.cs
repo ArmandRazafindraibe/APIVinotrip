@@ -34,12 +34,12 @@ namespace APIVinotrip.Models.EntityFramework
         public virtual Hotel? HebergementHotel { get; set; }
 
         [InverseProperty(nameof(Etape.Hebergement))]
-        public virtual ICollection<Etape>? Etapes { get; set; }
+        public virtual ICollection<Etape>? Etapes { get; set; } = new List<Etape>();
 
         [InverseProperty(nameof(DescriptionPanier.Hebergement))]
-        public virtual ICollection<DescriptionPanier>? DescriptionsPanier { get; set; }
+        public virtual ICollection<DescriptionPanier>? DescriptionsPanier { get; set; } = new List<DescriptionPanier>();
 
         [InverseProperty(nameof(DescriptionCommande.Hebergements))]
-        public virtual ICollection<DescriptionCommande>? DescriptionsCommande { get; set; }
+        public virtual ICollection<DescriptionCommande>? DescriptionsCommande { get; set; } =  new List<DescriptionCommande>();
     }
 }

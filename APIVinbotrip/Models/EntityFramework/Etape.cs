@@ -59,13 +59,13 @@ namespace APIVinotrip.Models.EntityFramework
         public virtual ICollection<Repas> Idrepas { get; set; } = new List<Repas>();
 
         [InverseProperty(nameof(Inclus.Etape))]
-        public virtual ICollection<Inclus>? InclusCollection { get; set; }
+        public virtual ICollection<Inclus>? InclusCollection { get; set; } = new List<Inclus>();
 
         [InverseProperty(nameof(Constitue.SonEtape))]
-        public virtual ICollection<Constitue> Constitues { get; set; }
+        public virtual ICollection<Constitue> Constitues { get; set; } = new List<Constitue>();
 
         [InverseProperty(nameof(Appartient.SonEtape))]
-        public virtual ICollection<Appartient>? AppartientCollection { get; set; }
+        public virtual ICollection<Appartient> AppartientCollection { get; set; } = new List<Appartient>();
     }
 
 
