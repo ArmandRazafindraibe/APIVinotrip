@@ -89,7 +89,8 @@ namespace APIVinotrip.Models.EntityFramework
         public virtual Hebergement? Hebergements { get; set; }
 
 
-
+        [InverseProperty(nameof(Mange1.DescriptionCommande))]
+        public virtual ICollection<Mange1> RepasCommandes { get; set; } = null!;
 
         //[InverseProperty(nameof(Commande.DescriptionsCommande))]
         //public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();

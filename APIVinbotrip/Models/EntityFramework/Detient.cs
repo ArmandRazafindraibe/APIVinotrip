@@ -17,7 +17,7 @@ namespace APIVinotrip.Models.EntityFramework
 
         [ForeignKey(nameof(IdRepas))]
         [InverseProperty(nameof(Repas.DetientCollection))]
-        public virtual ICollection<Detient>? RepasDetient { get; set; } = new List<Detient>();
+        public virtual ICollection<Repas>? RepasDetient { get; set; } = new List<Repas>();
 
         [ForeignKey(nameof(IdDescriptionPanier))]
         [InverseProperty(nameof(DescriptionPanier.DetientCollection))]

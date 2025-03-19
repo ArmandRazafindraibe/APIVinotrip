@@ -33,6 +33,8 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(Etape.Visites))]
         public virtual ICollection<Etape> Idetapes { get; set; } = new List<Etape>();
 
+        [InverseProperty(nameof(Appartient.LaVisite))]
+        public virtual ICollection<Visite>? AppartientCollection { get; set; }
 
     }
 }

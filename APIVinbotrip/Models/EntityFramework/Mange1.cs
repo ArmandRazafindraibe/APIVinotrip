@@ -14,11 +14,11 @@ namespace APIVinotrip.Models.EntityFramework
         public int IdDescriptionCommande { get; set; }
 
         [ForeignKey(nameof(IdRepas))]
-        [InverseProperty(nameof(Repas.Mange1s))]
-        public virtual Repas Repas { get; set; } = null!;
+        [InverseProperty(nameof(Repas.RepasManges))]
+        public virtual Repas UnRepas { get; set; } = null!;
 
         [ForeignKey(nameof(IdDescriptionCommande))]
-        [InverseProperty(nameof(DescriptionCommande.Mange1s))]
+        [InverseProperty(nameof(DescriptionCommande.RepasCommandes))]
         public virtual DescriptionCommande DescriptionCommande { get; set; } = null!;
     }
 }
