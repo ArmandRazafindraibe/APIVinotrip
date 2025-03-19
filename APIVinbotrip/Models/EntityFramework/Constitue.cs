@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
+    [Table("constitue")]
     public partial class Constitue
     {
         [Key]
@@ -15,10 +16,10 @@ namespace APIVinotrip.Models.EntityFramework
 
         [ForeignKey(nameof(IdActivite))]
         [InverseProperty(nameof(Activite.Constitues))]
-        public virtual Activite Activite { get; set; } = null!;
+        public virtual ICollection<Activite> Activites { get; set; } = null!;
 
         [ForeignKey(nameof(IdEtape))]
         [InverseProperty(nameof(Etape.Constitues))]
-        public virtual Etape Etape { get; set; } = null!;
+        public virtual Etape SonEtape { get; set; } = null!;
     }
 }

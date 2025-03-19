@@ -45,7 +45,11 @@ namespace APIVinotrip.Models.EntityFramework
         [StringLength(50)]
         public string? NomAdresse { get; set; }
 
-        
+        [Column("numadresse")]
+        [StringLength(10)]
+        public string? NumAdresse { get; set; }
+
+
         [ForeignKey(nameof(IdClient))]
         [InverseProperty(nameof(Client.Adresses))]
         public virtual Client? Client { get; set; }

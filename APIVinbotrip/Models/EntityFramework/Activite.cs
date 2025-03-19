@@ -38,5 +38,9 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(Constitue.Activite))]
         public virtual ICollection<Constitue> Constitues { get; set; }
 
+        [InverseProperty(nameof(Constitue.Activites))]
+        public virtual ICollection<Constitue> Constitues { get; set; } = null!;
+
+
     }
 }
