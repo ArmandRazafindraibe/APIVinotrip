@@ -13,24 +13,24 @@ namespace APIVinotrip.Models.DataManager
         {
             vinotripDBContext = context;
         }
-        public ActionResult<IEnumerable<RouteDesVins>> GetAll()
+        public async Task<ActionResult<IEnumerable<RouteDesVins>>> GetAll()
         {
             return vinotripDBContext.RouteDesVins.ToList();
         }
-        public  ActionResult<RouteDesVins> GetById(int id)
+        public  async Task<ActionResult<RouteDesVins>> GetById(int id)
         {
             return  vinotripDBContext.RouteDesVins.FirstOrDefault(u => u.IdRoute == id);
         }
-        public  ActionResult<RouteDesVins> GetByString(string lib)
+        public  async Task<ActionResult<RouteDesVins>> GetByString(string lib)
         {
             return  vinotripDBContext.RouteDesVins.FirstOrDefault(u => u.LibRoute.ToUpper() == lib.ToUpper());
         }
-        public  void Add(RouteDesVins entity)
+        public  async  Task Add(RouteDesVins entity)
         {
              vinotripDBContext.RouteDesVins.Add(entity);
              vinotripDBContext.SaveChanges();
         }
-        public  void Update(RouteDesVins routeDesVins, RouteDesVins entity)
+        public  async Task Update(RouteDesVins routeDesVins, RouteDesVins entity)
         {
             vinotripDBContext.Entry(routeDesVins).State = EntityState.Modified;
             routeDesVins.IdRoute = entity.IdRoute;
@@ -39,7 +39,7 @@ namespace APIVinotrip.Models.DataManager
             routeDesVins.DescriptionRoute = entity.DescriptionRoute;         
             vinotripDBContext.SaveChanges();
         }
-        public  void Delete(RouteDesVins routeDesVins)
+        public  async Task Delete(RouteDesVins routeDesVins)
         {
             vinotripDBContext.RouteDesVins.Remove(routeDesVins);
             vinotripDBContext.SaveChanges();

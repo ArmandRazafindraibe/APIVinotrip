@@ -13,24 +13,24 @@ namespace APIVinotrip.Models.DataManager
         {
             vinotripDBContext = context;
         }
-        public ActionResult<IEnumerable<Sejour>> GetAll()
+        public async Task<ActionResult<IEnumerable<Sejour>>> GetAll()
         {
             return vinotripDBContext.Sejours.ToList();
         }
-        public ActionResult<Sejour> GetById(int id)
+        public async Task<ActionResult<Sejour>> GetById(int id)
         {
             return  vinotripDBContext.Sejours.FirstOrDefault(u => u.Idsejour == id);
         }
-        public  ActionResult<Sejour> GetByString(string nomsejour)
+        public  async Task<ActionResult<Sejour>> GetByString(string nomsejour)
         {
             return  vinotripDBContext.Sejours.FirstOrDefault(u => u.Titresejour.ToUpper() == nomsejour.ToUpper());
         }
-        public void Add(Sejour entity)
+        public async Task Add(Sejour entity)
         {
              vinotripDBContext.Sejours.Add(entity);
              vinotripDBContext.SaveChanges();
         }
-        public void Update(Sejour sejour, Sejour entity)
+        public async Task Update(Sejour sejour, Sejour entity)
         {
             vinotripDBContext.Entry(sejour).State = EntityState.Modified;
             sejour.Idsejour = entity.Idsejour;
@@ -49,7 +49,7 @@ namespace APIVinotrip.Models.DataManager
 
              vinotripDBContext.SaveChanges();
         }
-        public  void Delete(Sejour sejour)
+        public async Task Delete(Sejour sejour)
         {
             vinotripDBContext.Sejours.Remove(sejour);
              vinotripDBContext.SaveChanges();

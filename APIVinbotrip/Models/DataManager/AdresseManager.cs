@@ -13,24 +13,24 @@ namespace APIVinotrip.Models.DataManager
         {
             vinotripDBContext = context;
         }
-        public ActionResult<IEnumerable<Adresse>> GetAll()
+        public async Task<ActionResult<IEnumerable<Adresse>>> GetAll()
         {
             return vinotripDBContext.Adresses.ToList();
         }
-        public ActionResult<Adresse> GetById(int id)
+        public async Task<ActionResult<Adresse>> GetById(int id)
         {
             return  vinotripDBContext.Adresses.FirstOrDefault(u => u.IdAdresse == id);
         }
-        public  ActionResult<Adresse> GetByString(string nomadresse)
+        public  async Task<ActionResult<Adresse>> GetByString(string nomadresse)
         {
             return  vinotripDBContext.Adresses.FirstOrDefault(u => u.NomAdresse.ToUpper() == nomadresse.ToUpper());
         }
-        public void Add(Adresse entity)
+        public async Task Add(Adresse entity)
         {
              vinotripDBContext.Adresses.Add(entity);
              vinotripDBContext.SaveChanges();
         }
-        public void Update(Adresse adresse, Adresse entity)
+        public async Task Update(Adresse adresse, Adresse entity)
         {
             vinotripDBContext.Entry(adresse).State = EntityState.Modified;
             adresse.IdAdresse = entity.IdAdresse;
@@ -46,7 +46,7 @@ namespace APIVinotrip.Models.DataManager
             adresse.PaysAdresse = entity.PaysAdresse;
              vinotripDBContext.SaveChanges();
         }
-        public  void Delete(Adresse adresse)
+        public  async Task Delete(Adresse adresse)
         {
             vinotripDBContext.Adresses.Remove(adresse);
              vinotripDBContext.SaveChanges();

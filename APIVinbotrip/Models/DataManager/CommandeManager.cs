@@ -13,24 +13,24 @@ namespace APIVinotrip.Models.DataManager
         {
             vinotripDBContext = context;
         }
-        public ActionResult<IEnumerable<Commande>> GetAll()
+        public async Task<ActionResult<IEnumerable<Commande>>> GetAll()
         {
             return vinotripDBContext.Commandes.ToList();
         }
-        public  ActionResult<Commande> GetById(int id)
+        public  async Task<ActionResult<Commande>> GetById(int id)
         {
             return  vinotripDBContext.Commandes.FirstOrDefault(u => u.IdCommande == id);
         }
-        public  ActionResult<Commande> GetByString(string etat)
+        public  async Task<ActionResult<Commande>> GetByString(string etat)
         {
             return  vinotripDBContext.Commandes.FirstOrDefault(u=>u.EtatCommande.ToLower() == etat.ToLower());
         }
-        public async void Add(Commande entity)
+        public async  Task Add(Commande entity)
         {
              vinotripDBContext.Commandes.Add(entity);
              vinotripDBContext.SaveChanges();
         }
-        public async void Update(Commande commande, Commande entity)
+        public async  Task Update(Commande commande, Commande entity)
         {
             vinotripDBContext.Entry(commande).State = EntityState.Modified;
             commande.IdCommande = entity.IdCommande;
@@ -57,7 +57,7 @@ namespace APIVinotrip.Models.DataManager
 
              vinotripDBContext.SaveChanges();
         }
-        public async void Delete(Commande commande)
+        public async  Task Delete(Commande commande)
         {
             vinotripDBContext.Commandes.Remove(commande);
              vinotripDBContext.SaveChanges();

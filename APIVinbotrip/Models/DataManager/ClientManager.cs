@@ -13,24 +13,24 @@ namespace APIVinotrip.Models.DataManager
         {
             vinotripDBContext = context;
         }
-        public ActionResult<IEnumerable<Client>> GetAll()
+        public async Task<ActionResult<IEnumerable<Client>>> GetAll()
         {
             return vinotripDBContext.Clients.ToList();
         }
-        public  ActionResult<Client> GetById(int id)
+        public  async Task<ActionResult<Client>> GetById(int id)
         {
             return  vinotripDBContext.Clients.FirstOrDefault(u => u.IdClient == id);
         }
-        public  ActionResult<Client> GetByString(string mail)
+        public  async Task<ActionResult<Client>> GetByString(string mail)
         {
             return  vinotripDBContext.Clients.FirstOrDefault(u => u.EmailClient.ToUpper() == mail.ToUpper());
         }
-        public  void Add(Client entity)
+        public  async Task Add(Client entity)
         {
              vinotripDBContext.Clients.Add(entity);
              vinotripDBContext.SaveChanges();
         }
-        public  void Update(Client client, Client entity)
+        public  async Task Update(Client client, Client entity)
         {
             vinotripDBContext.Entry(client).State = EntityState.Modified;
             client.IdClient = entity.IdClient;
@@ -47,7 +47,7 @@ namespace APIVinotrip.Models.DataManager
             client.DateCreationToken = entity.DateCreationToken;
              vinotripDBContext.SaveChanges();
         }
-        public  void Delete(Client client)
+        public  async Task Delete(Client client)
         {
             vinotripDBContext.Clients.Remove(client);
              vinotripDBContext.SaveChanges();

@@ -13,24 +13,24 @@ namespace APIVinotrip.Models.DataManager
         {
             vinotripDBContext = context;
         }
-        public ActionResult<IEnumerable<Avis>> GetAll()
+        public async Task<ActionResult<IEnumerable<Avis>>> GetAll()
         {
             return vinotripDBContext.Avis.ToList();
         }
-        public ActionResult<Avis> GetById(int id)
+        public async Task<ActionResult<Avis>> GetById(int id)
         {
             return  vinotripDBContext.Avis.FirstOrDefault(u => u.IdAvis == id);
         }
-        public  ActionResult<Avis> GetByString(string nomavis)
+        public  async Task<ActionResult<Avis>> GetByString(string nomavis)
         {
             return  vinotripDBContext.Avis.FirstOrDefault(u => u.TitreAvis.ToUpper() == nomavis.ToUpper());
         }
-        public void Add(Avis entity)
+        public async Task Add(Avis entity)
         {
              vinotripDBContext.Avis.Add(entity);
              vinotripDBContext.SaveChanges();
         }
-        public void Update(Avis avis, Avis entity)
+        public async Task Update(Avis avis, Avis entity)
         {
             vinotripDBContext.Entry(avis).State = EntityState.Modified;
             avis.IdAvis = entity.IdAvis;
@@ -44,7 +44,7 @@ namespace APIVinotrip.Models.DataManager
 
              vinotripDBContext.SaveChanges();
         }
-        public  void Delete(Avis avis)
+        public  async Task Delete(Avis avis)
         {
             vinotripDBContext.Avis.Remove(avis);
              vinotripDBContext.SaveChanges();
