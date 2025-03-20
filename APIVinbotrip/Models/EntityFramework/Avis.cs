@@ -17,7 +17,7 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("idclient")]
         public int? IdClient { get; set; }
 
-        [Column("dateavis")]
+        [Column("dateavis", TypeName = "date")]
         public DateTime? DateAvis { get; set; }
 
         [Column("titreavis")]

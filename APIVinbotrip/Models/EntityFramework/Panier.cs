@@ -14,7 +14,7 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("idcodepromo")]
         public int? IdCodePromo { get; set; }
 
-        [Column("dateajoutpanier")]
+        [Column("dateajoutpanier", TypeName = "date")]
         public DateTime? DateAjoutPanier { get; set; }
 
         [InverseProperty(nameof(DescriptionPanier.Panier))]

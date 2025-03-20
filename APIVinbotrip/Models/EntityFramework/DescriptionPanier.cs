@@ -25,10 +25,10 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("quantite")]
 		public int? Quantite { get; set; }
 
-		[Column("datedebut")]
+		[Column("datedebut", TypeName = "date")]
 		public DateTime? DateDebut { get; set; }
 
-		[Column("datefin")]
+		[Column("datefin", TypeName = "date")]
 		public DateTime? DateFin { get; set; }
 
 		[Column("nbadultes")]

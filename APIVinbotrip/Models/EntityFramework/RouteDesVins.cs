@@ -11,7 +11,7 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("idroute")]
         public int IdRoute { get; set; }
 
-        [Column("libroute")]
+        [Column("titreroute")]
         [StringLength(50)]
         public string? LibRoute { get; set; }
 

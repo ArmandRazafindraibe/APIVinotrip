@@ -48,7 +48,7 @@ namespace APIVinotrip.Models.EntityFramework
         [StringLength(50)]
         public string? TypePayementCommande { get; set; }
 
-        [Column("datecommande")]
+        [Column("datecommande", TypeName = "date")]
         public DateTime? DateCommande { get; set; }
 
         // Navigation properties

@@ -25,7 +25,7 @@ namespace APIVinotrip.Models.EntityFramework
         [StringLength(5)]
         public string? NumeroCVCCarte { get; set; }
 
-        [Column("dateexpirationcreditcard")]
+        [Column("dateexpirationcreditcard", TypeName = "date")]
         public DateTime? DateExpirationCreditCard { get; set; }
 
         [Column("actif")]

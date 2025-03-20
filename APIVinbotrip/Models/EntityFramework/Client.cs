@@ -30,7 +30,7 @@ namespace APIVinotrip.Models.EntityFramework
         [StringLength(100)]
         public string? EmailClient { get; set; }
 
-        [Column("datenaissanceclient")]
+        [Column("datenaissanceclient", TypeName = "date")]
         public DateTime? DateNaissanceClient { get; set; }
 
         [Column("motdepasseclient")]
@@ -40,7 +40,7 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("offrespromotionnellesclient")]
         public bool offresPromotionnellesClient { get; set; }
 
-        [Column("datederniereactiviteclient")]
+        [Column("datederniereactiviteclient", TypeName = "date")]
         public DateTime? DateDerniereActiviteClient { get; set; }
 
         [Column("a2f")]
@@ -54,7 +54,7 @@ namespace APIVinotrip.Models.EntityFramework
         [StringLength(50)]
         public string? TokenResetMDP { get; set; }
 
-        [Column("datecreationtoken")]
+        [Column("datecreationtoken", TypeName = "date")]
         public DateTime? DateCreationToken { get; set; }
 
         // Navigation properties
