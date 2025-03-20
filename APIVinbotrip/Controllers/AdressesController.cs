@@ -33,14 +33,14 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Adresse>> GetAdresseById(int id)
         {
-            var adresse = dataRepository.GetById(id);
+            var adresse =  await dataRepository.GetById(id);
 
             if (adresse == null)
             {
                 return NotFound();
             }
 
-            return await  adresse;
+            return   adresse;
         }
 
         // GET: api/Adresses/5
@@ -51,14 +51,14 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Adresse>> GetAdresseByTitle(string title)
         {
-            var adresse = dataRepository.GetByString(title);
+            var adresse = await dataRepository.GetByString(title);
 
             if (adresse == null)
             {
                 return NotFound();
             }
 
-            return await adresse;
+            return  adresse;
         }
 
         // PUT: api/Adresses/5
@@ -98,7 +98,7 @@ namespace APIVinotrip.Controllers
                 return BadRequest(ModelState);
             }
 
-            dataRepository.Add(adresse);
+            await dataRepository.Add(adresse);
 
             return CreatedAtAction("GetById", new { id = adresse.IdAdresse }, adresse); // GetById : nom de l’action
         }

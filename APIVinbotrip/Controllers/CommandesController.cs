@@ -33,14 +33,14 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Commande>> GetCommandeById(int id)
         {
-            var commande = dataRepository.GetById(id);
+            var commande = await dataRepository.GetById(id);
 
             if (commande == null)
             {
                 return NotFound();
             }
 
-            return await commande;
+            return  commande;
         }
 
         // GET: api/Commandes/5
@@ -51,14 +51,14 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Commande>> GetCommandeByState(string etat)
         {
-            var commande = dataRepository.GetByString(etat);
+            var commande = await dataRepository.GetByString(etat);
 
             if (commande == null)
             {
                 return NotFound();
             }
 
-            return await commande;
+            return  commande;
         }
 
         // PUT: api/Commandes/5
@@ -98,7 +98,7 @@ namespace APIVinotrip.Controllers
                 return BadRequest(ModelState);
             }
 
-            dataRepository.Add(commande);
+            await dataRepository.Add(commande);
 
             return CreatedAtAction("GetById", new { id = commande.IdCommande }, commande); // GetById : nom de l’action
         }

@@ -33,14 +33,14 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<RouteDesVins>> GetRouteDesVinsById(int id)
         {
-            var routeDesVins = dataRepository.GetById(id);
+            var routeDesVins =  await dataRepository.GetById(id);
 
             if (routeDesVins == null)
             {
                 return NotFound();
             }
 
-            return await routeDesVins;
+            return  routeDesVins;
         }
 
         // GET: api/RouteDesVinss/5
@@ -51,14 +51,14 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<RouteDesVins>> GetRouteDesVinsByTitle(string titre)
         {
-            var routeDesVins = dataRepository.GetByString(titre);
+            var routeDesVins =  await dataRepository.GetByString(titre);
 
             if (routeDesVins == null)
             {
                 return NotFound();
             }
 
-            return await routeDesVins;
+            return  routeDesVins;
         }
 
         // PUT: api/RouteDesVinss/5
@@ -98,7 +98,7 @@ namespace APIVinotrip.Controllers
                 return BadRequest(ModelState);
             }
 
-            dataRepository.Add(routeDesVins);
+            await dataRepository.Add(routeDesVins);
 
             return CreatedAtAction("GetById", new { id = routeDesVins.IdRoute }, routeDesVins); // GetById : nom de l’action
         }

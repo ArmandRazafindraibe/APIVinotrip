@@ -38,13 +38,13 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Client>> GetClientById(int id)
         {
-            var utilisateur =  dataRepository.GetById(id);
+            var utilisateur = await dataRepository.GetById(id);
             //var utilisateur =  _context.Client.Find(id);
             if (utilisateur == null)
             {
                 return NotFound();
             }
-            return await utilisateur;
+            return  utilisateur;
         }
 
         [HttpGet]
@@ -54,13 +54,13 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Client>> GetClientByEmail(string email)
         {
-            var utilisateur =  dataRepository.GetByString(email);
+            var utilisateur =  await dataRepository.GetByString(email);
             //var utilisateur =  _context.Client.FirstOrDefault(e => e.Mail.ToUpper() == email.ToUpper());
             if (utilisateur == null)
             {
                 return NotFound();
             }
-            return await utilisateur;
+            return  utilisateur;
         }
 
         // PUT: api/Client/5
@@ -100,7 +100,7 @@ namespace APIVinotrip.Controllers
             {
                 return BadRequest(ModelState);
             }
-             dataRepository.Add(client);
+             await dataRepository.Add(client);
             return CreatedAtAction("GetById", new { id = client.IdClient }, client); // GetById : nom de l’action
         }
 

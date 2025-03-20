@@ -31,14 +31,14 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Sejour>> GetSejourById(int id)
         {
-            var sejour = dataRepository.GetById(id);
+            var sejour = await dataRepository.GetById(id);
 
             if (sejour == null)
             {
                 return NotFound();
             }
 
-            return await sejour;
+            return  sejour;
         }
 
         // GET: api/Sejours/5
@@ -49,14 +49,14 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Sejour>> GetSejourByTitle(string title)
         {
-            var sejour = dataRepository.GetByString(title);
+            var sejour = await dataRepository.GetByString(title);
 
             if (sejour == null)
             {
                 return  NotFound();
             }
 
-            return await sejour;
+            return  sejour;
         }
 
         // PUT: api/Sejours/5
@@ -96,7 +96,7 @@ namespace APIVinotrip.Controllers
                 return  BadRequest(ModelState);
             }
 
-            dataRepository.Add(sejour);
+            await dataRepository.Add(sejour);
 
             return  CreatedAtAction("GetById", new { id = sejour.Idsejour }, sejour); // GetById : nom de l’action
         }
@@ -107,12 +107,12 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteSejour(int id)
         {
-            var sejour = dataRepository.GetById(id);
+            var sejour =  await dataRepository.GetById(id);
             if (sejour == null)
             {
                 return  NotFound();
             }
-            dataRepository.Delete(sejour.Result.Value);
+            await dataRepository.Delete(sejour.Value);
             return  NoContent();
         }
 

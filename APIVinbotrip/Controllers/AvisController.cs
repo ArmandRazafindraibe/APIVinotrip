@@ -32,14 +32,14 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Avis>> GetAvisById(int id)
         {
-            var avis = dataRepository.GetById(id);
+            var avis =  await dataRepository.GetById(id);
 
             if (avis == null)
             {
                 return NotFound();
             }
 
-            return await avis;
+            return  avis;
         }
 
         // GET: api/Aviss/5
@@ -50,14 +50,14 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Avis>> GetAvisByTitle(string title)
         {
-            var avis = dataRepository.GetByString(title);
+            var avis = await dataRepository.GetByString(title);
 
             if (avis == null)
             {
                 return NotFound();
             }
 
-            return await avis;
+            return  avis;
         }
 
         // PUT: api/Aviss/5
@@ -97,7 +97,7 @@ namespace APIVinotrip.Controllers
                 return BadRequest(ModelState);
             }
 
-            dataRepository.Add(avis);
+            await dataRepository.Add(avis);
 
             return CreatedAtAction("GetById", new { id = avis.IdAvis }, avis); // GetById : nom de l’action
         }
