@@ -56,7 +56,7 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("offrir")]
         public bool? Offrir { get; set; }
 
-        [Column("disponibiliteHebergement")]
+        [Column("disponibilitehebergement")]
         public bool? DisponibiliteHebergement { get; set; }
 
         [Column("validationclient")]

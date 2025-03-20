@@ -7,11 +7,11 @@ namespace APIVinotrip.Models.EntityFramework
     public partial class Favoris
     {
         [Key]
-        [Column("idClient")]
+        [Column("idclient")]
         public int  IdClient{ get; set; }
 
         [Key]
-        [Column("idSejour")]
+        [Column("idsejour")]
         public int IdSejour { get; set; }
 
         [ForeignKey(nameof(IdClient))]

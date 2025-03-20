@@ -559,6 +559,30 @@ namespace APIVinotrip.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "repas",
+                schema: "public",
+                columns: table => new
+                {
+                    idrepas = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    idpartenaire = table.Column<int>(type: "integer", nullable: true),
+                    descriptionrepas = table.Column<string>(type: "character varying(4096)", maxLength: 4096, nullable: true),
+                    photorepas = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true),
+                    prixrepas = table.Column<decimal>(type: "numeric(8,2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_repas", x => x.idrepas);
+                    table.ForeignKey(
+                        name: "fk_repas_propose_2_restaura",
+                        column: x => x.idpartenaire,
+                        principalSchema: "public",
+                        principalTable: "restaurant",
+                        principalColumn: "idpartenaire",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "visite",
                 schema: "public",
                 columns: table => new
@@ -621,22 +645,22 @@ namespace APIVinotrip.Migrations
                 schema: "public",
                 columns: table => new
                 {
-                    idClient = table.Column<int>(type: "integer", nullable: false),
-                    idSejour = table.Column<int>(type: "integer", nullable: false)
+                    idclient = table.Column<int>(type: "integer", nullable: false),
+                    idsejour = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_favoris", x => new { x.idClient, x.idSejour });
+                    table.PrimaryKey("pk_favoris", x => new { x.idclient, x.idsejour });
                     table.ForeignKey(
                         name: "fk_favoris_favoris2_sejour",
-                        column: x => x.idSejour,
+                        column: x => x.idsejour,
                         principalSchema: "public",
                         principalTable: "sejour",
                         principalColumn: "idsejour",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "fk_favoris_favoris_client",
-                        column: x => x.idClient,
+                        column: x => x.idclient,
                         principalSchema: "public",
                         principalTable: "client",
                         principalColumn: "idclient",
@@ -795,7 +819,7 @@ namespace APIVinotrip.Migrations
                     idclientbeneficiaire = table.Column<int>(type: "integer", nullable: true),
                     idadresselivraison = table.Column<int>(type: "integer", nullable: true),
                     idpanier = table.Column<int>(type: "integer", nullable: true),
-                    validationClient = table.Column<bool>(type: "boolean", nullable: false),
+                    validationclient = table.Column<bool>(type: "boolean", nullable: false),
                     codereduction = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     etatcommande = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true, defaultValueSql: "'En attente de validation'::character varying"),
                     typepayementcommande = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
@@ -905,6 +929,33 @@ namespace APIVinotrip.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "detient",
+                schema: "public",
+                columns: table => new
+                {
+                    idrepas = table.Column<int>(type: "integer", nullable: false),
+                    iddescriptionpanier = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_detient", x => new { x.idrepas, x.iddescriptionpanier });
+                    table.ForeignKey(
+                        name: "fk_associat_associati_descript",
+                        column: x => x.iddescriptionpanier,
+                        principalSchema: "public",
+                        principalTable: "descriptionpanier",
+                        principalColumn: "iddescriptionpanier",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "fk_associat_associati_repas",
+                        column: x => x.idrepas,
+                        principalSchema: "public",
+                        principalTable: "repas",
+                        principalColumn: "idrepas",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "appartient",
                 schema: "public",
                 columns: table => new
@@ -959,6 +1010,33 @@ namespace APIVinotrip.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "inclus",
+                schema: "public",
+                columns: table => new
+                {
+                    idrepas = table.Column<int>(type: "integer", nullable: false),
+                    idetape = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_inclus", x => new { x.idrepas, x.idetape });
+                    table.ForeignKey(
+                        name: "fk_inclus_repas",
+                        column: x => x.idrepas,
+                        principalSchema: "public",
+                        principalTable: "repas",
+                        principalColumn: "idrepas",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "fk_inclusion_etape",
+                        column: x => x.idetape,
+                        principalSchema: "public",
+                        principalTable: "etape",
+                        principalColumn: "idetape",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "descriptioncommande",
                 schema: "public",
                 columns: table => new
@@ -979,7 +1057,7 @@ namespace APIVinotrip.Migrations
                     nbchambrestriple = table.Column<int>(type: "integer", nullable: true),
                     ecoffret = table.Column<bool>(type: "boolean", nullable: true),
                     offrir = table.Column<bool>(type: "boolean", nullable: true),
-                    disponibiliteHebergement = table.Column<bool>(type: "boolean", nullable: true),
+                    disponibilitehebergement = table.Column<bool>(type: "boolean", nullable: true),
                     validationclient = table.Column<bool>(type: "boolean", nullable: true, defaultValue: false)
                 },
                 constraints: table =>
@@ -1016,113 +1094,6 @@ namespace APIVinotrip.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "possede",
-                schema: "public",
-                columns: table => new
-                {
-                    idactivite = table.Column<int>(type: "integer", nullable: false),
-                    iddescriptioncommande = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_possede", x => new { x.idactivite, x.iddescriptioncommande });
-                    table.ForeignKey(
-                        name: "fk_associat_associati_activite",
-                        column: x => x.idactivite,
-                        principalSchema: "public",
-                        principalTable: "activite",
-                        principalColumn: "idactivite",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "fk_associat_associati_descript",
-                        column: x => x.iddescriptioncommande,
-                        principalSchema: "public",
-                        principalTable: "descriptioncommande",
-                        principalColumn: "iddescriptioncommande",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "detient",
-                schema: "public",
-                columns: table => new
-                {
-                    idRepas = table.Column<int>(type: "integer", nullable: false),
-                    idDescriptionPanier = table.Column<int>(type: "integer", nullable: false),
-                    DescriptionPanierIdDescriptionPanier = table.Column<int>(type: "integer", nullable: true),
-                    RepasIdRepas = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_detient", x => new { x.idRepas, x.idDescriptionPanier });
-                    table.ForeignKey(
-                        name: "FK_detient_descriptionpanier_DescriptionPanierIdDescriptionPan~",
-                        column: x => x.DescriptionPanierIdDescriptionPanier,
-                        principalSchema: "public",
-                        principalTable: "descriptionpanier",
-                        principalColumn: "iddescriptionpanier");
-                    table.ForeignKey(
-                        name: "fk_associat_associati_descript",
-                        column: x => x.idDescriptionPanier,
-                        principalSchema: "public",
-                        principalTable: "descriptionpanier",
-                        principalColumn: "iddescriptionpanier",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "inclus",
-                schema: "public",
-                columns: table => new
-                {
-                    idrepas = table.Column<int>(type: "integer", nullable: false),
-                    idetape = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_inclus", x => new { x.idrepas, x.idetape });
-                    table.ForeignKey(
-                        name: "fk_inclusion_etape",
-                        column: x => x.idetape,
-                        principalSchema: "public",
-                        principalTable: "etape",
-                        principalColumn: "idetape",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "repas",
-                schema: "public",
-                columns: table => new
-                {
-                    idrepas = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    idpartenaire = table.Column<int>(type: "integer", nullable: true),
-                    descriptionrepas = table.Column<string>(type: "character varying(4096)", maxLength: 4096, nullable: true),
-                    photorepas = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true),
-                    prixrepas = table.Column<decimal>(type: "numeric(8,2)", nullable: true),
-                    InclusionsIdRepas = table.Column<int>(type: "integer", nullable: true),
-                    InclusionsIdEtape = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_repas", x => x.idrepas);
-                    table.ForeignKey(
-                        name: "FK_repas_inclus_InclusionsIdRepas_InclusionsIdEtape",
-                        columns: x => new { x.InclusionsIdRepas, x.InclusionsIdEtape },
-                        principalSchema: "public",
-                        principalTable: "inclus",
-                        principalColumns: new[] { "idrepas", "idetape" });
-                    table.ForeignKey(
-                        name: "fk_repas_propose_2_restaura",
-                        column: x => x.idpartenaire,
-                        principalSchema: "public",
-                        principalTable: "restaurant",
-                        principalColumn: "idpartenaire",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "mange1",
                 schema: "public",
                 columns: table => new
@@ -1146,6 +1117,33 @@ namespace APIVinotrip.Migrations
                         principalSchema: "public",
                         principalTable: "repas",
                         principalColumn: "idrepas",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "possede",
+                schema: "public",
+                columns: table => new
+                {
+                    idactivite = table.Column<int>(type: "integer", nullable: false),
+                    iddescriptioncommande = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_possede", x => new { x.idactivite, x.iddescriptioncommande });
+                    table.ForeignKey(
+                        name: "fk_associat_associati_activite",
+                        column: x => x.idactivite,
+                        principalSchema: "public",
+                        principalTable: "activite",
+                        principalColumn: "idactivite",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "fk_associat_associati_descript",
+                        column: x => x.iddescriptioncommande,
+                        principalSchema: "public",
+                        principalTable: "descriptioncommande",
+                        principalColumn: "iddescriptioncommande",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -1294,22 +1292,10 @@ namespace APIVinotrip.Migrations
                 column: "idsejour");
 
             migrationBuilder.CreateIndex(
-                name: "IX_detient_DescriptionPanierIdDescriptionPanier",
+                name: "IX_detient_iddescriptionpanier",
                 schema: "public",
                 table: "detient",
-                column: "DescriptionPanierIdDescriptionPanier");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_detient_idDescriptionPanier",
-                schema: "public",
-                table: "detient",
-                column: "idDescriptionPanier");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_detient_RepasIdRepas",
-                schema: "public",
-                table: "detient",
-                column: "RepasIdRepas");
+                column: "iddescriptionpanier");
 
             migrationBuilder.CreateIndex(
                 name: "IX_estproposepar_idactivite",
@@ -1336,10 +1322,10 @@ namespace APIVinotrip.Migrations
                 column: "idsejour");
 
             migrationBuilder.CreateIndex(
-                name: "IX_favoris_idSejour",
+                name: "IX_favoris_idsejour",
                 schema: "public",
                 table: "favoris",
-                column: "idSejour");
+                column: "idsejour");
 
             migrationBuilder.CreateIndex(
                 name: "IX_hebergement_idpartenaire",
@@ -1388,12 +1374,6 @@ namespace APIVinotrip.Migrations
                 schema: "public",
                 table: "repas",
                 column: "idpartenaire");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_repas_InclusionsIdRepas_InclusionsIdEtape",
-                schema: "public",
-                table: "repas",
-                columns: new[] { "InclusionsIdRepas", "InclusionsIdEtape" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_reponse_idavis",
@@ -1454,60 +1434,11 @@ namespace APIVinotrip.Migrations
                 schema: "public",
                 table: "visite",
                 column: "idpartenaire");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_detient_repas_RepasIdRepas",
-                schema: "public",
-                table: "detient",
-                column: "RepasIdRepas",
-                principalSchema: "public",
-                principalTable: "repas",
-                principalColumn: "idrepas");
-
-            migrationBuilder.AddForeignKey(
-                name: "fk_associat_associati_repas",
-                schema: "public",
-                table: "detient",
-                column: "idRepas",
-                principalSchema: "public",
-                principalTable: "repas",
-                principalColumn: "idrepas",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "fk_inclus_repas",
-                schema: "public",
-                table: "inclus",
-                column: "idrepas",
-                principalSchema: "public",
-                principalTable: "repas",
-                principalColumn: "idrepas",
-                onDelete: ReferentialAction.Restrict);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "fk_hotel_heritage__partenai",
-                schema: "public",
-                table: "hotel");
-
-            migrationBuilder.DropForeignKey(
-                name: "fk_restaura_heritage__partenai",
-                schema: "public",
-                table: "restaurant");
-
-            migrationBuilder.DropForeignKey(
-                name: "fk_inclusion_etape",
-                schema: "public",
-                table: "inclus");
-
-            migrationBuilder.DropForeignKey(
-                name: "fk_inclus_repas",
-                schema: "public",
-                table: "inclus");
-
             migrationBuilder.DropTable(
                 name: "appartient",
                 schema: "public");
@@ -1530,6 +1461,10 @@ namespace APIVinotrip.Migrations
 
             migrationBuilder.DropTable(
                 name: "favoris",
+                schema: "public");
+
+            migrationBuilder.DropTable(
+                name: "inclus",
                 schema: "public");
 
             migrationBuilder.DropTable(
@@ -1565,6 +1500,14 @@ namespace APIVinotrip.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
+                name: "etape",
+                schema: "public");
+
+            migrationBuilder.DropTable(
+                name: "repas",
+                schema: "public");
+
+            migrationBuilder.DropTable(
                 name: "activite",
                 schema: "public");
 
@@ -1585,11 +1528,27 @@ namespace APIVinotrip.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
+                name: "restaurant",
+                schema: "public");
+
+            migrationBuilder.DropTable(
                 name: "commande",
                 schema: "public");
 
             migrationBuilder.DropTable(
+                name: "hebergement",
+                schema: "public");
+
+            migrationBuilder.DropTable(
+                name: "sejour",
+                schema: "public");
+
+            migrationBuilder.DropTable(
                 name: "typedegustation",
+                schema: "public");
+
+            migrationBuilder.DropTable(
+                name: "typecuisine",
                 schema: "public");
 
             migrationBuilder.DropTable(
@@ -1602,34 +1561,6 @@ namespace APIVinotrip.Migrations
 
             migrationBuilder.DropTable(
                 name: "panier",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "client",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "codepromo",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "roles",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "partenaire",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "etape",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "hebergement",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "sejour",
                 schema: "public");
 
             migrationBuilder.DropTable(
@@ -1657,23 +1588,23 @@ namespace APIVinotrip.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
+                name: "client",
+                schema: "public");
+
+            migrationBuilder.DropTable(
+                name: "codepromo",
+                schema: "public");
+
+            migrationBuilder.DropTable(
+                name: "partenaire",
+                schema: "public");
+
+            migrationBuilder.DropTable(
                 name: "categorievignoble",
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "repas",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "inclus",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "restaurant",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "typecuisine",
+                name: "roles",
                 schema: "public");
         }
     }

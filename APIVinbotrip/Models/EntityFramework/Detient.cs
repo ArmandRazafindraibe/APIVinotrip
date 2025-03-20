@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("DETIENT")]
+    [Table("detient")]
     public partial class Detient
     {
         [Key]
-        [Column("idRepas")]
+        [Column("idrepas")]
         public int IdRepas { get; set; }
 
         [Key]
-        [Column("idDescriptionPanier")]
+        [Column("iddescriptionpanier")]
         public int IdDescriptionPanier { get; set; }
 
         [ForeignKey(nameof(IdRepas))]

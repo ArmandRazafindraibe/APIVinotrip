@@ -31,7 +31,7 @@ namespace APIVinotrip.Models.EntityFramework
         public virtual Restaurant? RestaurantRepas { get; set; }
 
         [InverseProperty(nameof(Inclus.Repas))]
-        public virtual Inclus? Inclusions { get; set; }
+        public virtual List<Inclus> Inclusions { get; set; }=new List<Inclus>();
 
         [InverseProperty(nameof(Detient.RepasDetient))]
         public virtual List<Detient> DetientCollection { get; set; } = new List<Detient>();

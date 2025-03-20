@@ -546,7 +546,7 @@ namespace APIVinotrip.Migrations
 
                     b.Property<bool>("ValidationClient")
                         .HasColumnType("boolean")
-                        .HasColumnName("validationClient");
+                        .HasColumnName("validationclient");
 
                     b.Property<string>("codereduction")
                         .HasMaxLength(20)
@@ -628,7 +628,7 @@ namespace APIVinotrip.Migrations
 
                     b.Property<bool?>("DisponibiliteHebergement")
                         .HasColumnType("boolean")
-                        .HasColumnName("disponibiliteHebergement");
+                        .HasColumnName("disponibilitehebergement");
 
                     b.Property<bool?>("ECoffret")
                         .HasColumnType("boolean")
@@ -779,26 +779,16 @@ namespace APIVinotrip.Migrations
                 {
                     b.Property<int>("IdRepas")
                         .HasColumnType("integer")
-                        .HasColumnName("idRepas");
+                        .HasColumnName("idrepas");
 
                     b.Property<int>("IdDescriptionPanier")
                         .HasColumnType("integer")
-                        .HasColumnName("idDescriptionPanier");
-
-                    b.Property<int?>("DescriptionPanierIdDescriptionPanier")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("RepasIdRepas")
-                        .HasColumnType("integer");
+                        .HasColumnName("iddescriptionpanier");
 
                     b.HasKey("IdRepas", "IdDescriptionPanier")
                         .HasName("pk_detient");
 
-                    b.HasIndex("DescriptionPanierIdDescriptionPanier");
-
                     b.HasIndex("IdDescriptionPanier");
-
-                    b.HasIndex("RepasIdRepas");
 
                     b.ToTable("detient", "public");
                 });
@@ -903,11 +893,11 @@ namespace APIVinotrip.Migrations
                 {
                     b.Property<int>("IdClient")
                         .HasColumnType("integer")
-                        .HasColumnName("idClient");
+                        .HasColumnName("idclient");
 
                     b.Property<int>("IdSejour")
                         .HasColumnType("integer")
-                        .HasColumnName("idSejour");
+                        .HasColumnName("idsejour");
 
                     b.HasKey("IdClient", "IdSejour")
                         .HasName("pk_favoris");
@@ -1150,12 +1140,6 @@ namespace APIVinotrip.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("idpartenaire");
 
-                    b.Property<int?>("InclusionsIdEtape")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("InclusionsIdRepas")
-                        .HasColumnType("integer");
-
                     b.Property<string>("PhotoRepas")
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)")
@@ -1169,8 +1153,6 @@ namespace APIVinotrip.Migrations
                         .HasName("pk_repas");
 
                     b.HasIndex("IdPartenaire");
-
-                    b.HasIndex("InclusionsIdRepas", "InclusionsIdEtape");
 
                     b.ToTable("repas", "public");
                 });
@@ -1788,27 +1770,19 @@ namespace APIVinotrip.Migrations
 
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Detient", b =>
                 {
-                    b.HasOne("APIVinotrip.Models.EntityFramework.DescriptionPanier", null)
-                        .WithMany("DetientCollection")
-                        .HasForeignKey("DescriptionPanierIdDescriptionPanier");
-
                     b.HasOne("APIVinotrip.Models.EntityFramework.DescriptionPanier", "DescriptionPanierDetient")
-                        .WithMany()
+                        .WithMany("DetientCollection")
                         .HasForeignKey("IdDescriptionPanier")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_associat_associati_descript");
 
                     b.HasOne("APIVinotrip.Models.EntityFramework.Repas", "RepasDetient")
-                        .WithMany()
+                        .WithMany("DetientCollection")
                         .HasForeignKey("IdRepas")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_associat_associati_repas");
-
-                    b.HasOne("APIVinotrip.Models.EntityFramework.Repas", null)
-                        .WithMany("DetientCollection")
-                        .HasForeignKey("RepasIdRepas");
 
                     b.Navigation("DescriptionPanierDetient");
 
@@ -1919,7 +1893,7 @@ namespace APIVinotrip.Migrations
                         .HasConstraintName("fk_inclusion_etape");
 
                     b.HasOne("APIVinotrip.Models.EntityFramework.Repas", "Repas")
-                        .WithMany()
+                        .WithMany("Inclusions")
                         .HasForeignKey("IdRepas")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
@@ -1992,12 +1966,6 @@ namespace APIVinotrip.Migrations
                         .HasForeignKey("IdPartenaire")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_repas_propose_2_restaura");
-
-                    b.HasOne("APIVinotrip.Models.EntityFramework.Inclus", "Inclusions")
-                        .WithMany()
-                        .HasForeignKey("InclusionsIdRepas", "InclusionsIdEtape");
-
-                    b.Navigation("Inclusions");
 
                     b.Navigation("RestaurantRepas");
                 });
@@ -2279,6 +2247,8 @@ namespace APIVinotrip.Migrations
             modelBuilder.Entity("APIVinotrip.Models.EntityFramework.Repas", b =>
                 {
                     b.Navigation("DetientCollection");
+
+                    b.Navigation("Inclusions");
 
                     b.Navigation("RepasManges");
                 });

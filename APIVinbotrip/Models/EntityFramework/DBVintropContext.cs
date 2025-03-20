@@ -666,13 +666,13 @@ public partial class DBVinotripContext : DbContext
             entity.ToTable("detient");
 
             entity.HasOne(d => d.RepasDetient)
-                .WithMany()  
+                .WithMany(p=> p.DetientCollection)  
                 .HasForeignKey(d => d.IdRepas)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_associat_associati_repas");
 
             entity.HasOne(d => d.DescriptionPanierDetient)
-                .WithMany()  
+                .WithMany(p=> p.DetientCollection)  
                 .HasForeignKey(d => d.IdDescriptionPanier)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_associat_associati_descript");
@@ -689,7 +689,7 @@ public partial class DBVinotripContext : DbContext
 
         modelBuilder.Entity<Inclus>()
             .HasOne(i => i.Repas)
-            .WithMany()
+            .WithMany(s=> s.Inclusions)
             .HasForeignKey(i => i.IdRepas)
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("fk_inclus_repas");

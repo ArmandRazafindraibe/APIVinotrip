@@ -33,7 +33,7 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("idpanier")]
         public int? IdPanier { get; set; }
 
-        [Column("validationClient")]
+        [Column("validationclient")]
         public bool ValidationClient { get; set; }
 
         [Column("codereduction")]
