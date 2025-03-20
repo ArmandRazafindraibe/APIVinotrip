@@ -17,11 +17,11 @@ namespace APIVinotrip.Models.EntityFramework
         [StringLength(100)]
         public string? titulaireCb { get; set; }
 
-        [Column("numerocb")]
+        [Column("numerocbclient")]
         [StringLength(50)]
         public string? NumeroCB { get; set; }
 
-        [Column("numerocvccarte")]
+        [Column("fincodecarte")]
         [StringLength(5)]
         public string? NumeroCVCCarte { get; set; }
 

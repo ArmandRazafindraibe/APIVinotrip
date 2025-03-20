@@ -44,7 +44,7 @@ namespace APIVinotrip.Models.EntityFramework
         [StringLength(50)]
         public string? EtatCommande { get; set; }
 
-        [Column("typepayementcommande")]
+        [Column("typePaiementCommande")]
         [StringLength(50)]
         public string? TypePayementCommande { get; set; }
 
