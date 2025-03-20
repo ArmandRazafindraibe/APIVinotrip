@@ -17,6 +17,6 @@ namespace APIVinotrip.Models.EntityFramework
 
         // Collection navigation properties
         [InverseProperty(nameof(Sejour.IdthemeNavigation))]
-        public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
+        public virtual List<Sejour> Sejours { get; set; } = new List<Sejour>();
     }
 }

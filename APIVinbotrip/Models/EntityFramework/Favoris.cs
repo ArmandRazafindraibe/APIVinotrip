@@ -21,6 +21,6 @@ namespace APIVinotrip.Models.EntityFramework
 
         [ForeignKey(nameof(IdSejour))]
         [InverseProperty(nameof(Sejour.ListeFavoris))]
-        public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
+        public virtual Sejour? Sejours { get; set; } 
     }
 }

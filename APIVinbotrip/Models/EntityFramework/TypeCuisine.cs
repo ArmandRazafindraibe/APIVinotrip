@@ -16,6 +16,6 @@ namespace APIVinotrip.Models.EntityFramework
         public string? LibelleTypeCuisine { get; set; }
 
         [InverseProperty(nameof(Restaurant.TypeCuisine))]
-        public virtual ICollection<Restaurant> Restaurants { get; set; } = new List<Restaurant>();
+        public virtual List<Restaurant> Restaurants { get; set; } = new List<Restaurant>();
     }
 }

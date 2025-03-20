@@ -27,14 +27,10 @@ namespace APIVinotrip.Models.EntityFramework
         public string? LienVisite { get; set; }
         [ForeignKey(nameof(IdPartenaire))]
         [InverseProperty(nameof(Cave.Visites))]
-        public virtual Cave? Cave { get; set; }
+        public virtual Cave? LaCave { get; set; }
 
-        [ForeignKey(nameof(IdVisite))]
-        [InverseProperty(nameof(Etape.Visites))]
-        public virtual ICollection<Etape> Idetapes { get; set; } = new List<Etape>();
-
-        [InverseProperty(nameof(Appartient.LesVisite))]
-        public virtual ICollection<Appartient>? AppartientCollection { get; set; } = new List<Appartient>();
+        [InverseProperty(nameof(Appartient.LaVisite))]
+        public virtual List<Appartient>? AppartientCollection { get; set; } = new List<Appartient>();
 
     }
 }

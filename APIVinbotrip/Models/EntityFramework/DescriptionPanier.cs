@@ -69,19 +69,11 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(Hebergement.DescriptionsPanier))]
         public virtual Hebergement? Hebergement { get; set; }
 
-        [ForeignKey(nameof(IdDescriptionPanier))]
-        [InverseProperty(nameof(Activite.Iddescriptionpaniers))]
-        public virtual ICollection<Activite> Idactivites { get; set; } = new List<Activite>();
-
-        [ForeignKey(nameof(IdDescriptionPanier))]
-        [InverseProperty(nameof(Repas.Iddescriptionpaniers))]
-        public virtual ICollection<Repas> Idrepas { get; set; } = new List<Repas>();
-
         [InverseProperty(nameof(Detient.DescriptionPanierDetient))]
-        public virtual ICollection<Detient> DetientCollection { get; set; } = new List<Detient>();
+        public virtual List<Detient> DetientCollection { get; set; } = new List<Detient>();
 
         [InverseProperty(nameof(Comporte.DescriptionPanierComporte))]
-        public virtual ICollection<Comporte> ListeDescriptions { get; set; } = new List<Comporte>();
+        public virtual List<Comporte> ListeDescriptions { get; set; } = new List<Comporte>();
 
     }
 }

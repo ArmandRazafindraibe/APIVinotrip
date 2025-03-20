@@ -46,26 +46,14 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(Hebergement.Etapes))]
         public virtual Hebergement? Hebergement { get; set; }
 
-        [ForeignKey(nameof(IdEtape))]
-        [InverseProperty(nameof(Visite.Idetapes))]
-        public virtual ICollection<Visite> Visites { get; set; } = new List<Visite>();
-
-        [ForeignKey(nameof(IdEtape))]
-        [InverseProperty(nameof(Activite.Idetapes))]
-        public virtual ICollection<Activite> Idactivites { get; set; } = new List<Activite>();
-
-        [ForeignKey(nameof(IdEtape))]
-        [InverseProperty(nameof(Repas.Idetapes))]
-        public virtual ICollection<Repas> Idrepas { get; set; } = new List<Repas>();
-
         [InverseProperty(nameof(Inclus.Etape))]
-        public virtual ICollection<Inclus>? InclusCollection { get; set; } = new List<Inclus>();
+        public virtual List<Inclus>? InclusCollection { get; set; } = new List<Inclus>();
 
         [InverseProperty(nameof(Constitue.SonEtape))]
-        public virtual ICollection<Constitue> Constitues { get; set; } = new List<Constitue>();
+        public virtual List<Constitue> Constitues { get; set; } = new List<Constitue>();
 
         [InverseProperty(nameof(Appartient.SonEtape))]
-        public virtual ICollection<Appartient> AppartientCollection { get; set; } = new List<Appartient>();
+        public virtual List<Appartient> AppartientCollection { get; set; } = new List<Appartient>();
     }
 
 

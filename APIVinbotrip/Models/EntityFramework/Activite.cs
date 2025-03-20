@@ -20,26 +20,15 @@ namespace APIVinotrip.Models.EntityFramework
         public decimal? PrixActivite { get; set; }
 
         [InverseProperty(nameof(Comporte.UneActivite))]
-        public virtual ICollection<Comporte> ListeActivites { get; set; } = new List<Comporte>();
-
-        [InverseProperty(nameof(DescriptionCommande.Idactivites))]
-        public virtual ICollection<DescriptionCommande> DescriptionCommandes { get; set; } = new List<DescriptionCommande>();
-
-        [ForeignKey(nameof(IdActivite))]
-        [InverseProperty(nameof(DescriptionPanier.Idactivites))]
-        public virtual ICollection<DescriptionPanier> Iddescriptionpaniers { get; set; } = new List<DescriptionPanier>();
-
-        [ForeignKey(nameof(IdActivite))]
-        [InverseProperty(nameof(Etape.Idactivites))]
-        public virtual ICollection<Etape> Idetapes { get; set; } = new List<Etape>();
+        public virtual List<Comporte> ListeActivites { get; set; } = new List<Comporte>();
 
         [InverseProperty(nameof(EstProposePar.IdactiviteNavigation))]
-        public virtual ICollection<EstProposePar> EstProposePars { get; set; } = new List<EstProposePar>();
+        public virtual List<EstProposePar> EstProposePars { get; set; } = new List<EstProposePar>();
 
-        [InverseProperty(nameof(Constitue.Activites))]
-        public virtual ICollection<Constitue> Constitues { get; set; } = new List<Constitue>();
+        [InverseProperty(nameof(Constitue.LActivite))]
+        public virtual List<Constitue> Constitues { get; set; } = new List<Constitue>();
 
         [InverseProperty(nameof(Possede.LActivite))]
-        public virtual ICollection<Possede> LesPossedes { get; set; } = new List<Possede>();
+        public virtual List<Possede> LesPossedes { get; set; } = new List<Possede>();
     }
 }

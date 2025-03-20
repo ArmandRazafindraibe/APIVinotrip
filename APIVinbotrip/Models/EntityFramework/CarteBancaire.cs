@@ -38,9 +38,9 @@ namespace APIVinotrip.Models.EntityFramework
 
         // Collection navigation properties
         [InverseProperty(nameof(Commande.CarteBancaire))]
-        public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+        public virtual List<Commande> Commandes { get; set; } = new List<Commande>();
 
         [InverseProperty(nameof(DescriptionCommande.DescriptionsCommandeCB))]
-        public virtual ICollection<DescriptionCommande> DescriptionsCommande { get; set; }=new List<DescriptionCommande>();
+        public virtual List<DescriptionCommande> DescriptionsCommande { get; set; }=new List<DescriptionCommande>();
     }
 }

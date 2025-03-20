@@ -69,27 +69,22 @@ namespace APIVinotrip.Models.EntityFramework
 
         // Collection navigation properties
         [InverseProperty(nameof(Adresse.Client))]
-        public virtual ICollection<Adresse> Adresses { get; set; } = new List<Adresse>();
+        public virtual List<Adresse> Adresses { get; set; } = new List<Adresse>();
 
         [InverseProperty(nameof(Commande.ClientAcheteur))]
-        public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+        public virtual List<Commande> Commandes { get; set; } = new List<Commande>();
 
         [InverseProperty(nameof(Commande.ClientBeneficiaire))]
-        public virtual ICollection<Commande> CommandesOfferts { get; set; } = new List<Commande>();
+        public virtual List<Commande> CommandesOfferts { get; set; } = new List<Commande>();
 
         [InverseProperty(nameof(Avis.Client))]
-        public virtual ICollection<Avis> LesAvis { get; set; } = new List<Avis>();
+        public virtual List<Avis> LesAvis { get; set; } = new List<Avis>();
 
         [InverseProperty(nameof(CarteBancaire.Client))]
-        public virtual ICollection<CarteBancaire> CartesBancaires { get; set; } = new List<CarteBancaire>();
-
-        [ForeignKey(nameof(IdClient))]
-
-        [InverseProperty(nameof(Sejour.Idclients))]
-        public virtual ICollection<Sejour> Idsejours { get; set; } = new List<Sejour>();
+        public virtual List<CarteBancaire> CartesBancaires { get; set; } = new List<CarteBancaire>();
 
         [InverseProperty(nameof(Favoris.LeClient))]
-        public virtual ICollection<Favoris> ListeFavoris { get; set; } = new List<Favoris>();
+        public virtual List<Favoris> ListeFavoris { get; set; } = new List<Favoris>();
 
 
     }

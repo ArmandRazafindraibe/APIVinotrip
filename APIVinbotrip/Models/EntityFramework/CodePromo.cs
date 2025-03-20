@@ -19,10 +19,10 @@ namespace APIVinotrip.Models.EntityFramework
         public int? Reduction { get; set; }
 
         [InverseProperty(nameof(Panier.CodesPromos))]
-        public virtual ICollection<Panier> Paniers { get; set; } = new List<Panier>();
+        public virtual List<Panier> Paniers { get; set; } = new List<Panier>();
 
         [InverseProperty(nameof(Commande.CodeReductionNavigation))]
-        public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+        public virtual List<Commande> Commandes { get; set; } = new List<Commande>();
     }
 }
 

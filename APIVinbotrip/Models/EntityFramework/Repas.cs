@@ -30,26 +30,13 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(Restaurant.RepasCollection))]
         public virtual Restaurant? RestaurantRepas { get; set; }
 
-
-        [ForeignKey(nameof(IdRepas))]
-        [InverseProperty(nameof(DescriptionCommande.Idrepas))]
-        public virtual ICollection<DescriptionCommande> Iddescriptioncommandes { get; set; } = new List<DescriptionCommande>();
-
-        [ForeignKey(nameof(IdRepas))]
-        [InverseProperty(nameof(Etape.Idrepas))]
-        public virtual ICollection<Etape> Idetapes { get; set; } = new List<Etape>();
-
-        [ForeignKey(nameof(IdRepas))]
-        [InverseProperty(nameof(DescriptionPanier.Idrepas))]
-        public virtual ICollection<DescriptionPanier> Iddescriptionpaniers { get; set; } = new List<DescriptionPanier>();
-
         [InverseProperty(nameof(Inclus.Repas))]
         public virtual Inclus? Inclusions { get; set; }
 
         [InverseProperty(nameof(Detient.RepasDetient))]
-        public virtual ICollection<Detient>? DetientCollection { get; set; } = new List<Detient>();
+        public virtual List<Detient> DetientCollection { get; set; } = new List<Detient>();
 
         [InverseProperty(nameof(Mange1.UnRepas))]
-        public virtual ICollection<Mange1> RepasManges { get; set; } = new List<Mange1>();    
+        public virtual List<Mange1> RepasManges { get; set; } = new List<Mange1>();    
     }
 }

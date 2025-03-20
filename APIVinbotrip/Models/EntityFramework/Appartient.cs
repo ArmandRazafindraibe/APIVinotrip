@@ -3,19 +3,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIVinotrip.Models.EntityFramework
 {
-    [Table("Appartient")]
+    [Table("appartient")]
     public partial class Appartient
     {
-        [Key, Column("idVisite")]
+        [Key, Column("idvisite")]
         public int IdVisite { get; set; }
 
-        [Key, Column("idEtape")]
+        [Key, Column("idetape")]
         public int IdEtape { get; set; }
 
         // Navigation properties
         [ForeignKey(nameof(IdVisite))]
         [InverseProperty(nameof(Visite.AppartientCollection))]
-        public virtual ICollection<Visite> LesVisite { get; set; } = new List<Visite>();
+        public virtual Visite? LaVisite { get; set; }
 
         [ForeignKey(nameof(IdEtape))]
         [InverseProperty(nameof(Etape.AppartientCollection))]

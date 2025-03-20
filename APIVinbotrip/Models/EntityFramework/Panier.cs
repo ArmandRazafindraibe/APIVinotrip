@@ -18,13 +18,13 @@ namespace APIVinotrip.Models.EntityFramework
         public DateTime? DateAjoutPanier { get; set; }
 
         [InverseProperty(nameof(DescriptionPanier.Panier))]
-        public virtual ICollection<DescriptionPanier> DescriptionsPanier { get; set; } = new List<DescriptionPanier>();
+        public virtual List<DescriptionPanier> DescriptionsPanier { get; set; } = new List<DescriptionPanier>();
 
         [ForeignKey(nameof(IdCodePromo))]
         [InverseProperty(nameof(CodePromo.Paniers))]
         public virtual CodePromo? CodesPromos { get; set; }
 
         [InverseProperty(nameof(Commande.PanierCommande))]
-        public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+        public virtual List<Commande> Commandes { get; set; } = new List<Commande>();
     }
 }

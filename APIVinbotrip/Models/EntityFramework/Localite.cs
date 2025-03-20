@@ -21,7 +21,7 @@ namespace APIVinotrip.Models.EntityFramework
             public int? IdCategorieVignoble { get; set; }
 
             [InverseProperty(nameof(Sejour.IdlocaliteNavigation))]
-            public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
+            public virtual List<Sejour> Sejours { get; set; } = new List<Sejour>();
 
             [ForeignKey(nameof(IdCategorieVignoble))]    
             [InverseProperty(nameof(CategorieVignoble.Localites))]

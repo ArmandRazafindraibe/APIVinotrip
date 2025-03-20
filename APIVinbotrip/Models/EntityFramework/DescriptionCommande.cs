@@ -18,17 +18,15 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("idhebergement")]
         public int? IdHebergement { get; set; }
 
-        [Column("idpassegeiment")]
-        public int? IdPassegeiment { get; set; }
-
         [Column("idsejour")]
         public int? IdSejour { get; set; }
 
-        [Column("quantite")]
-        public int? Quantite { get; set; }
-
+    
         [Column("idcb")]
         public int? IdCB { get; set; }
+
+        [Column("quantite")]
+        public int? Quantite { get; set; }
 
 
         [Column("datedebut")]
@@ -52,11 +50,11 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("nbchambrestriple")]
         public int? NbChambresTriple { get; set; }
 
-        [Column("offrir")]
-        public bool? EncaissementMangement { get; set; }
-
         [Column("ecoffret")]
         public bool? ECoffret { get; set; }
+
+        [Column("offrir")]
+        public bool? Offrir { get; set; }
 
         [Column("disponibiliteHebergement")]
         public bool? DisponibiliteHebergement { get; set; }
@@ -68,12 +66,6 @@ namespace APIVinotrip.Models.EntityFramework
         [ForeignKey(nameof(IdCommande))]
         [InverseProperty(nameof(Commande.DescriptionsCommande))]
         public virtual Commande? Commande { get; set; }
-
-        [ForeignKey(nameof(IdDescriptionCommande))]
-        [InverseProperty(nameof(Activite.DescriptionCommandes))]
-        public virtual ICollection<Activite> Idactivites { get; set; } = new List<Activite>();
-
-
 
         [ForeignKey(nameof(IdCB))]
         [InverseProperty(nameof(CarteBancaire.DescriptionsCommande))]
@@ -91,17 +83,11 @@ namespace APIVinotrip.Models.EntityFramework
 
 
         [InverseProperty(nameof(Mange1.DescriptionCommande))]
-        public virtual ICollection<Mange1> RepasCommandes { get; set; } = new List<Mange1>();
+        public virtual List<Mange1> RepasCommandes { get; set; } = new List<Mange1>();
 
-        //[InverseProperty(nameof(Commande.DescriptionsCommande))]
-        //public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
-
-        [ForeignKey(nameof(IdDescriptionCommande))]
-        [InverseProperty(nameof(Repas.Iddescriptioncommandes))]
-        public virtual ICollection<Repas> Idrepas { get; set; } = new List<Repas>();
 
         [InverseProperty(nameof(Possede.LaDescriptionCommande))]
-        public virtual ICollection<Possede> LesPossedes { get; set; }  = new List<Possede>();
+        public virtual List<Possede> LesPossedes { get; set; }  = new List<Possede>();
 
     }
 

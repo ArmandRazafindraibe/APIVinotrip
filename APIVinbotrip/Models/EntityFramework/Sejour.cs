@@ -52,17 +52,6 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("nouveauprixsejour", TypeName = "NUMERIC(8,2)")]
         public decimal? Nouveauprixsejour { get; set; }
 
-        [InverseProperty(nameof(Avis.Sejour))]
-        public virtual ICollection<Avis> AvisNavigation { get; set; } = new List<Avis>();
-
-        [InverseProperty(nameof(DescriptionCommande.Sejours))]
-        public virtual ICollection<DescriptionCommande> DescriptioncommandesNavigation { get; set; } = new List<DescriptionCommande>();
-
-        [InverseProperty(nameof(DescriptionPanier.Sejour))]
-        public virtual ICollection<DescriptionPanier> Descriptionpaniers { get; set; } = new List<DescriptionPanier>();
-
-        [InverseProperty(nameof(Etape.Sejour))]
-        public virtual ICollection<Etape> Etapes { get; set; } = new List<Etape>();
 
         [ForeignKey(nameof(Idcategorieparticipant))]
         [InverseProperty(nameof(CategorieParticipant.Sejours))]
@@ -89,15 +78,23 @@ namespace APIVinotrip.Models.EntityFramework
         public virtual Theme IdthemeNavigation { get; set; } = null!;
 
         [InverseProperty(nameof(Photo.Sejour))]
-        public virtual ICollection<Photo> Photos { get; set; } = new List<Photo>();
-
-        [ForeignKey(nameof(Idsejour))]
-        [InverseProperty(nameof(Client.Idsejours))]
-        public virtual ICollection<Client> Idclients { get; set; } = new List<Client>();
-
-        
+        public virtual List<Photo> Photos { get; set; } = new List<Photo>();
+  
         [InverseProperty(nameof(Favoris.Sejours))]
-        public virtual ICollection<Favoris> ListeFavoris { get; set; } = new List<Favoris>();
+        public virtual List<Favoris> ListeFavoris { get; set; } = new List<Favoris>();
+
+
+        [InverseProperty(nameof(Avis.Sejour))]
+        public virtual List<Avis> AvisNavigation { get; set; } = new List<Avis>();
+
+        [InverseProperty(nameof(DescriptionCommande.Sejours))]
+        public virtual List<DescriptionCommande> DescriptioncommandesNavigation { get; set; } = new List<DescriptionCommande>();
+
+        [InverseProperty(nameof(DescriptionPanier.Sejour))]
+        public virtual List<DescriptionPanier> Descriptionpaniers { get; set; } = new List<DescriptionPanier>();
+
+        [InverseProperty(nameof(Etape.Sejour))]
+        public virtual List<Etape> Etapes { get; set; } = new List<Etape>();
 
     }
 

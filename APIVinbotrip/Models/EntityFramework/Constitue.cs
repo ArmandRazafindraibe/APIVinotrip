@@ -16,7 +16,7 @@ namespace APIVinotrip.Models.EntityFramework
 
         [ForeignKey(nameof(IdActivite))]
         [InverseProperty(nameof(Activite.Constitues))]
-        public virtual ICollection<Activite> Activites { get; set; } = new List<Activite>();
+        public virtual Activite? LActivite { get; set; }
 
         [ForeignKey(nameof(IdEtape))]
         [InverseProperty(nameof(Etape.Constitues))]

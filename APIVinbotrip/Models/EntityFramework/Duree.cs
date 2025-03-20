@@ -16,7 +16,7 @@ namespace APIVinotrip.Models.EntityFramework
         public string? LibelleDuree { get; set; }
 
         [InverseProperty(nameof(Sejour.IddureeNavigation))]
-        public virtual ICollection<Sejour> Sejours { get; set; } = new List<Sejour>();
+        public virtual List<Sejour> Sejours { get; set; } = new List<Sejour>();
     }
 
 }
