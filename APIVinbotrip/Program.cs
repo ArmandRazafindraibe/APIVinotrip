@@ -14,6 +14,8 @@ builder.Services.AddScoped<IDataRepository<Sejour>, SejourManager>();
 builder.Services.AddScoped<IDataRepository<Adresse>, AdresseManager>();
 builder.Services.AddScoped<IDataRepository<Activite>, ActiviteManager>();
 builder.Services.AddScoped<IDataRepository<RouteDesVins>, RouteDesVinsManager>();
+builder.Services.AddScoped<IDataRepository<CategorieVignoble>, CategorieVignobleManager>();
+
 
 
 
