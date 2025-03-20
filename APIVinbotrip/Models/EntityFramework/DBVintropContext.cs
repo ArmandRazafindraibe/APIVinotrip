@@ -97,7 +97,6 @@ public partial class DBVinotripContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema("public");
 
         // Activite configuration
         modelBuilder.Entity<Activite>(entity =>
