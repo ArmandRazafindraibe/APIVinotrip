@@ -22,7 +22,7 @@ namespace APIVinotrip.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Sejour>>> GetSejours()
         {
-            return  dataRepository.GetAll();
+            return await   dataRepository.GetAll();
         }
 
         // GET: api/Sejours/5
@@ -40,7 +40,7 @@ namespace APIVinotrip.Controllers
                 return NotFound();
             }
 
-            return sejour;
+            return await sejour;
         }
 
         // GET: api/Sejours/5
@@ -55,10 +55,10 @@ namespace APIVinotrip.Controllers
 
             if (sejour == null)
             {
-                return NotFound();
+                return  NotFound();
             }
 
-            return sejour;
+            return await sejour;
         }
 
         // PUT: api/Sejours/5
@@ -67,22 +67,22 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PutSejour(int id, Sejour sejour)
+        public async Task<ActionResult> PutSejour(int id, Sejour sejour)
         {
             if (id != sejour.Idsejour)
             {
-                return BadRequest();
+                return  BadRequest();
             }
 
             var userToUpdate = dataRepository.GetById(id);
             if (userToUpdate == null)
             {
-                return NotFound();
+                return  NotFound();
             }
             else
             {
-                dataRepository.Update(userToUpdate.Value, sejour);
-                return NoContent();
+                await  dataRepository.Update(userToUpdate., sejour);
+                return  NoContent();
             }
         }
 
@@ -95,12 +95,12 @@ namespace APIVinotrip.Controllers
             {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return  BadRequest(ModelState);
             }
 
             dataRepository.Add(sejour);
 
-            return CreatedAtAction("GetById", new { id = sejour.Idsejour }, sejour); // GetById : nom de l’action
+            return  CreatedAtAction("GetById", new { id = sejour.Idsejour }, sejour); // GetById : nom de l’action
         }
 
         // DELETE: api/Sejours/5
@@ -112,15 +112,15 @@ namespace APIVinotrip.Controllers
             var sejour = dataRepository.GetById(id);
             if (sejour == null)
             {
-                return NotFound();
+                return  NotFound();
             }
-            dataRepository.Delete(sejour.Value);
-            return NoContent();
+            dataRepository.Delete(sejour.Result.Value);
+            return  NoContent();
         }
 
         //private bool SejourExists(int id)
         //{
-        //    return _context.Sejours.Any(e => e.Idsejour == id);
+        //    return await _context.Sejours.Any(e => e.Idsejour == id);
         //}
     }
 }
