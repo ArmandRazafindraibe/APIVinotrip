@@ -11,6 +11,10 @@ builder.Services.AddScoped<IDataRepository<Client>, ClientManager>();
 builder.Services.AddScoped<IDataRepository<Avis>, AvisManager>();
 builder.Services.AddScoped<IDataRepository<Commande>, CommandeManager>();
 builder.Services.AddScoped<IDataRepository<Sejour>, SejourManager>();
+builder.Services.AddScoped<IDataRepository<Adresse>, AdresseManager>();
+builder.Services.AddScoped<IDataRepository<Activite>, ActiviteManager>();
+builder.Services.AddScoped<IDataRepository<RouteDesVins>, RouteDesVinsManager>();
+
 
 
 // Add services to the container.
