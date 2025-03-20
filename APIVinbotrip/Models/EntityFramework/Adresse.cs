@@ -17,7 +17,7 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("idpartenaire")]
         public int? IdPartenaire { get; set; }
 
-        [Column("nomadressedestination")]
+        [Column("nomadressedestinataire")]
         [StringLength(50)]
         public string? PrenomAdresseDestination { get; set; }
 

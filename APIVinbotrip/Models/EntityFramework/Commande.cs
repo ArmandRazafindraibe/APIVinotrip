@@ -13,7 +13,7 @@ namespace APIVinotrip.Models.EntityFramework
 
         [Column("idcodepromo")]
         [StringLength(20)]
-        public int IdCodePromo { get; set; }
+        public int? IdCodePromo { get; set; }
 
         [Column("idcb")]
         public int? IdCB { get; set; }
@@ -44,7 +44,7 @@ namespace APIVinotrip.Models.EntityFramework
         [StringLength(50)]
         public string? EtatCommande { get; set; }
 
-        [Column("typePaiementCommande")]
+        [Column("typepaiementcommande")]
         [StringLength(50)]
         public string? TypePayementCommande { get; set; }
 
