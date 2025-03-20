@@ -17,20 +17,20 @@ namespace APIVinotrip.Models.DataManager
         {
             return vinotripDBContext.Clients.ToList();
         }
-        public async Task<ActionResult<Client>> GetByIdAsync(int id)
+        public  ActionResult<Client> GetById(int id)
         {
-            return await vinotripDBContext.Clients.FirstOrDefaultAsync(u => u.IdClient == id);
+            return  vinotripDBContext.Clients.FirstOrDefault(u => u.IdClient == id);
         }
-        public async Task<ActionResult<Client>> GetByStringAsync(string mail)
+        public  ActionResult<Client> GetByString(string mail)
         {
-            return await vinotripDBContext.Clients.FirstOrDefaultAsync(u => u.EmailClient.ToUpper() == mail.ToUpper());
+            return  vinotripDBContext.Clients.FirstOrDefault(u => u.EmailClient.ToUpper() == mail.ToUpper());
         }
-        public async Task AddAsync(Client entity)
+        public  void Add(Client entity)
         {
-            await vinotripDBContext.Clients.AddAsync(entity);
-            await vinotripDBContext.SaveChangesAsync();
+             vinotripDBContext.Clients.Add(entity);
+             vinotripDBContext.SaveChanges();
         }
-        public async Task UpdateAsync(Client client, Client entity)
+        public  void Update(Client client, Client entity)
         {
             vinotripDBContext.Entry(client).State = EntityState.Modified;
             client.IdClient = entity.IdClient;
@@ -45,12 +45,12 @@ namespace APIVinotrip.Models.DataManager
             client.IdRole = entity.IdRole;
             client.TokenResetMDP = entity.TokenResetMDP;
             client.DateCreationToken = entity.DateCreationToken;
-            await vinotripDBContext.SaveChangesAsync();
+             vinotripDBContext.SaveChanges();
         }
-        public async Task DeleteAsync(Client client)
+        public  void Delete(Client client)
         {
             vinotripDBContext.Clients.Remove(client);
-            await vinotripDBContext.SaveChangesAsync();
+             vinotripDBContext.SaveChanges();
         }
     }
 }

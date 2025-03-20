@@ -14,7 +14,6 @@ namespace APIVinotrip.Controllers
     [ApiController]
     public class ClientsController : ControllerBase
     {
-        private readonly DBVinotripContext _context;
         private readonly IDataRepository<Client> dataRepository;
 
         public ClientsController(IDataRepository<Client> dataRepo)
@@ -39,8 +38,8 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Client>> GetClientById(int id)
         {
-            var utilisateur = await dataRepository.GetByIdAsync(id);
-            //var utilisateur = await _context.Client.FindAsync(id);
+            var utilisateur =  dataRepository.GetById(id);
+            //var utilisateur =  _context.Client.Find(id);
             if (utilisateur == null)
             {
                 return NotFound();
@@ -55,8 +54,8 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Client>> GetClientByEmail(string email)
         {
-            var utilisateur = await dataRepository.GetByStringAsync(email);
-            //var utilisateur = await _context.Client.FirstOrDefaultAsync(e => e.Mail.ToUpper() == email.ToUpper());
+            var utilisateur =  dataRepository.GetByString(email);
+            //var utilisateur =  _context.Client.FirstOrDefault(e => e.Mail.ToUpper() == email.ToUpper());
             if (utilisateur == null)
             {
                 return NotFound();
@@ -78,14 +77,14 @@ namespace APIVinotrip.Controllers
             {
                 return BadRequest();
             }
-            var userToUpdate = await dataRepository.GetByIdAsync(id);
+            var userToUpdate =  dataRepository.GetById(id);
             if (userToUpdate == null)
             {
                 return NotFound();
             }
             else
             {
-                await dataRepository.UpdateAsync(userToUpdate.Value, client);
+                 dataRepository.Update(userToUpdate.Value, client);
                 return NoContent();
             }
         }
@@ -101,7 +100,7 @@ namespace APIVinotrip.Controllers
             {
                 return BadRequest(ModelState);
             }
-            await dataRepository.AddAsync(client);
+             dataRepository.Add(client);
             return CreatedAtAction("GetById", new { id = client.IdClient }, client); // GetById : nom de l’action
         }
 
@@ -111,12 +110,12 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteClient(int id)
         {
-            var utilisateur = await dataRepository.GetByIdAsync(id);
+            var utilisateur =  dataRepository.GetById(id);
             if (utilisateur == null)
             {
                 return NotFound();
             }
-            await dataRepository.DeleteAsync(utilisateur.Value);
+             dataRepository.Delete(utilisateur.Value);
             return NoContent();
         }
 

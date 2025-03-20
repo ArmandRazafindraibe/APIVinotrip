@@ -17,20 +17,20 @@ namespace APIVinotrip.Models.DataManager
         {
             return vinotripDBContext.Commandes.ToList();
         }
-        public async Task<ActionResult<Commande>> GetByIdAsync(int id)
+        public  ActionResult<Commande> GetById(int id)
         {
-            return await vinotripDBContext.Commandes.FirstOrDefaultAsync(u => u.IdCommande == id);
+            return  vinotripDBContext.Commandes.FirstOrDefault(u => u.IdCommande == id);
         }
-        public async Task<ActionResult<Commande>> GetByStringAsync(string mail)
+        public  ActionResult<Commande> GetByString(string etat)
         {
-            return await vinotripDBContext.Commandes.FirstOrDefaultAsync(u=>u.EtatCommande == mail);
+            return  vinotripDBContext.Commandes.FirstOrDefault(u=>u.EtatCommande.ToLower() == etat.ToLower());
         }
-        public async Task AddAsync(Commande entity)
+        public async void Add(Commande entity)
         {
-            await vinotripDBContext.Commandes.AddAsync(entity);
-            await vinotripDBContext.SaveChangesAsync();
+             vinotripDBContext.Commandes.Add(entity);
+             vinotripDBContext.SaveChanges();
         }
-        public async Task UpdateAsync(Commande commande, Commande entity)
+        public async void Update(Commande commande, Commande entity)
         {
             vinotripDBContext.Entry(commande).State = EntityState.Modified;
             commande.IdCommande = entity.IdCommande;
@@ -45,9 +45,7 @@ namespace APIVinotrip.Models.DataManager
             commande.codereduction = entity.codereduction;
             commande.EtatCommande = entity.EtatCommande;
             commande.TypePayementCommande = entity.TypePayementCommande;
-            commande.DateCommande = entity.DateCommande;
-
-            
+            commande.DateCommande = entity.DateCommande;     
             commande.ClientAcheteur = entity.ClientAcheteur;
             commande.ClientBeneficiaire = entity.ClientBeneficiaire;
             commande.CarteBancaire = entity.CarteBancaire;
@@ -57,12 +55,12 @@ namespace APIVinotrip.Models.DataManager
             commande.CodeReductionNavigation = entity.CodeReductionNavigation;
             commande.DescriptionsCommande = entity.DescriptionsCommande;
 
-            await vinotripDBContext.SaveChangesAsync();
+             vinotripDBContext.SaveChanges();
         }
-        public async Task DeleteAsync(Commande commande)
+        public async void Delete(Commande commande)
         {
             vinotripDBContext.Commandes.Remove(commande);
-            await vinotripDBContext.SaveChangesAsync();
+             vinotripDBContext.SaveChanges();
         }
     }
 }

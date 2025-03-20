@@ -745,7 +745,7 @@ namespace APIVinotrip.Migrations
                     idclientbeneficiaire = table.Column<int>(type: "integer", nullable: true),
                     idadresselivraison = table.Column<int>(type: "integer", nullable: true),
                     idpanier = table.Column<int>(type: "integer", nullable: true),
-                    validationclient = table.Column<bool>(type: "boolean", nullable: false, defaultValueSql:false),
+                    validationclient = table.Column<bool>(type: "boolean", nullable: false, defaultValue:false),
                     codereduction = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     etatcommande = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true, defaultValueSql: "'En attente de validation'::character varying"),
                     typepaiementcommande = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),

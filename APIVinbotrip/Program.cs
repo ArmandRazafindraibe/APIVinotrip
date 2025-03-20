@@ -1,8 +1,17 @@
 using APIVinotrip.Models.EntityFramework;
+using APIVinotrip.Models.Repository;
+using APIVinotrip.Models.DataManager;
 using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Ajout dependances controllers
+builder.Services.AddScoped<IDataRepository<Client>, ClientManager>();
+builder.Services.AddScoped<IDataRepository<Avis>, AvisManager>();
+builder.Services.AddScoped<IDataRepository<Commande>, CommandeManager>();
+builder.Services.AddScoped<IDataRepository<Sejour>, SejourManager>();
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();

@@ -8,68 +8,68 @@ namespace APIVinotrip.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommandesController : ControllerBase
+    public class SejoursController : ControllerBase
     {
-        private readonly IDataRepository<Commande> dataRepository;
-         
+        private readonly IDataRepository<Sejour> dataRepository;
+        //private readonly FilmRatingsDBContext _context; 
 
-        public CommandesController(IDataRepository<Commande> dataRepos)
+        public SejoursController(IDataRepository<Sejour> dataRepos)
         {
             dataRepository = dataRepos;
         }
 
-        // GET: api/Commandes
+        // GET: api/Sejours
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Commande>>> GetCommandes()
+        public async Task<ActionResult<IEnumerable<Sejour>>> GetSejours()
         {
-            return dataRepository.GetAll();
+            return  dataRepository.GetAll();
         }
 
-        // GET: api/Commandes/5
+        // GET: api/Sejours/5
         [HttpGet]
         [Route("[action]/{id}")]
         [ActionName("GetById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Commande>> GetCommandeById(int id)
+        public async Task<ActionResult<Sejour>> GetSejourById(int id)
         {
-            var commande = dataRepository.GetById(id);
+            var sejour = dataRepository.GetById(id);
 
-            if (commande == null)
+            if (sejour == null)
             {
                 return NotFound();
             }
 
-            return commande;
+            return sejour;
         }
 
-        // GET: api/Commandes/5
+        // GET: api/Sejours/5
         [HttpGet]
         [Route("[action]/{title}")]
-        [ActionName("GetCommandeByTitle")]
+        [ActionName("GetSejourByTitle")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Commande>> GetCommandeByState(string etat)
+        public async Task<ActionResult<Sejour>> GetSejourByTitle(string title)
         {
-            var commande = dataRepository.GetByString(etat);
+            var sejour = dataRepository.GetByString(title);
 
-            if (commande == null)
+            if (sejour == null)
             {
                 return NotFound();
             }
 
-            return commande;
+            return sejour;
         }
 
-        // PUT: api/Commandes/5
+        // PUT: api/Sejours/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PutCommande(int id, Commande commande)
+        public async Task<IActionResult> PutSejour(int id, Sejour sejour)
         {
-            if (id != commande.IdCommande)
+            if (id != sejour.Idsejour)
             {
                 return BadRequest();
             }
@@ -81,46 +81,46 @@ namespace APIVinotrip.Controllers
             }
             else
             {
-                dataRepository.Update(userToUpdate.Value, commande);
+                dataRepository.Update(userToUpdate.Value, sejour);
                 return NoContent();
             }
         }
 
-        // POST: api/Commandes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Commande>> PostCommande(Commande commande)
-        {
+            // POST: api/Sejours
+            // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+            [HttpPost]
+            [ProducesResponseType(StatusCodes.Status201Created)]
+            [ProducesResponseType(StatusCodes.Status400BadRequest)]
+            public async Task<ActionResult<Sejour>> PostSejour(Sejour sejour)
+            {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            dataRepository.Add(commande);
+            dataRepository.Add(sejour);
 
-            return CreatedAtAction("GetById", new { id = commande.IdCommande }, commande); // GetById : nom de l’action
+            return CreatedAtAction("GetById", new { id = sejour.Idsejour }, sejour); // GetById : nom de l’action
         }
 
-        // DELETE: api/Commandes/5
+        // DELETE: api/Sejours/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteCommande(int id)
+        public async Task<IActionResult> DeleteSejour(int id)
         {
-            var commande = dataRepository.GetById(id);
-            if (commande == null)
+            var sejour = dataRepository.GetById(id);
+            if (sejour == null)
             {
                 return NotFound();
             }
-            dataRepository.Delete(commande.Value);
+            dataRepository.Delete(sejour.Value);
             return NoContent();
         }
 
-        //private bool CommandeExists(int id)
+        //private bool SejourExists(int id)
         //{
-        //    return _context.Commandes.Any(e => e.Idcommande == id);
+        //    return _context.Sejours.Any(e => e.Idsejour == id);
         //}
     }
 }

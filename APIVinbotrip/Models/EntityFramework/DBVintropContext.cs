@@ -230,7 +230,7 @@ public partial class DBVinotripContext : DbContext
         {
             entity.HasKey(e => e.IdCommande).HasName("pk_commande");
             entity.Property(e => e.DateCommande).HasDefaultValueSql("'2025-01-01'::date");
-            entity.Property(e => e.ValidationClient).HasDefaultValueSql(false);
+            entity.Property(e => e.ValidationClient).HasDefaultValue(false);
             entity.Property(e => e.EtatCommande).HasDefaultValueSql("'En attente de validation'::character varying");
 
             entity.HasOne(d => d.AdresseFacturation)
