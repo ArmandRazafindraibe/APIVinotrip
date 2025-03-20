@@ -39,12 +39,10 @@ namespace APIVinotrip.Models.DataManager
             client.EmailClient = entity.EmailClient;
             client.MdpClient = entity.MdpClient;
             client.DateNaissanceClient = entity.DateNaissanceClient;
-            client.DateCreationCompteClient = entity.DateCreationCompteClient;
             client.TelClient = entity.TelClient;
             client.DateDerniereActiviteClient = entity.DateDerniereActiviteClient;
             client.A2f = entity.A2f;
             client.IdRole = entity.IdRole;
-            client.BloquingClient = entity.BloquingClient;
             client.TokenResetMDP = entity.TokenResetMDP;
             client.DateCreationToken = entity.DateCreationToken;
             await vinotripDBContext.SaveChangesAsync();
