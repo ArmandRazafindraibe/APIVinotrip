@@ -22,7 +22,7 @@ namespace APIVinotrip.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Commande>>> GetCommandes()
         {
-            return dataRepository.GetAll();
+            return await dataRepository.GetAll();
         }
 
         // GET: api/Commandes/5
@@ -40,7 +40,7 @@ namespace APIVinotrip.Controllers
                 return NotFound();
             }
 
-            return commande;
+            return await commande;
         }
 
         // GET: api/Commandes/5
@@ -58,7 +58,7 @@ namespace APIVinotrip.Controllers
                 return NotFound();
             }
 
-            return commande;
+            return await commande;
         }
 
         // PUT: api/Commandes/5
@@ -74,14 +74,14 @@ namespace APIVinotrip.Controllers
                 return BadRequest();
             }
 
-            var userToUpdate = dataRepository.GetById(id);
+            var userToUpdate = await dataRepository.GetById(id);
             if (userToUpdate == null)
             {
                 return NotFound();
             }
             else
             {
-                dataRepository.Update(userToUpdate.Value, commande);
+                await dataRepository.Update(userToUpdate.Value, commande);
                 return NoContent();
             }
         }
@@ -109,12 +109,12 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteCommande(int id)
         {
-            var commande = dataRepository.GetById(id);
+            var commande = await dataRepository.GetById(id);
             if (commande == null)
             {
                 return NotFound();
             }
-            dataRepository.Delete(commande.Value);
+            await dataRepository.Delete(commande.Value);
             return NoContent();
         }
 

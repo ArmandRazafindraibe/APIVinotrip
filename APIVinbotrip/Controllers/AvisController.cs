@@ -14,14 +14,14 @@ namespace APIVinotrip.Controllers
 
         public AvisController(IDataRepository<Avis> dataRepos)
         {
-            dataRepository = dataRepos;
+             dataRepository = dataRepos;
         }
 
         // GET: api/Aviss
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Avis>>> GetAviss()
         {
-            return  dataRepository.GetAll();
+            return await dataRepository.GetAll();
         }
 
         // GET: api/Aviss/5
@@ -39,7 +39,7 @@ namespace APIVinotrip.Controllers
                 return NotFound();
             }
 
-            return avis;
+            return await avis;
         }
 
         // GET: api/Aviss/5
@@ -57,7 +57,7 @@ namespace APIVinotrip.Controllers
                 return NotFound();
             }
 
-            return avis;
+            return await avis;
         }
 
         // PUT: api/Aviss/5
@@ -73,14 +73,14 @@ namespace APIVinotrip.Controllers
                 return BadRequest();
             }
 
-            var userToUpdate = dataRepository.GetById(id);
+            var userToUpdate = await dataRepository.GetById(id);
             if (userToUpdate == null)
             {
                 return NotFound();
             }
             else
             {
-                dataRepository.Update(userToUpdate.Value, avis);
+               await  dataRepository.Update(userToUpdate.Value, avis);
                 return NoContent();
             }
         }
@@ -108,12 +108,12 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteAvis(int id)
         {
-            var avis = dataRepository.GetById(id);
+            var avis = await dataRepository.GetById(id);
             if (avis == null)
             {
                 return NotFound();
             }
-            dataRepository.Delete(avis.Value);
+            await dataRepository.Delete(avis.Value);
             return NoContent();
         }
 

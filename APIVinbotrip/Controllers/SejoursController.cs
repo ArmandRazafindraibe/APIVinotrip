@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using APIVinotrip.Models.EntityFramework;
-using APIVinotrip.Models.DataManager;
 using APIVinotrip.Models.Repository;
 
 namespace APIVinotrip.Controllers
@@ -74,14 +72,14 @@ namespace APIVinotrip.Controllers
                 return  BadRequest();
             }
 
-            var userToUpdate = dataRepository.GetById(id);
+            var userToUpdate = await dataRepository.GetById(id);
             if (userToUpdate == null)
             {
                 return  NotFound();
             }
             else
             {
-                await  dataRepository.Update(userToUpdate., sejour);
+                await  dataRepository.Update(userToUpdate.Value, sejour);
                 return  NoContent();
             }
         }

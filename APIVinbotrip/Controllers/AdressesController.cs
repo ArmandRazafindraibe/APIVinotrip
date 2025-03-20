@@ -22,7 +22,7 @@ namespace APIVinotrip.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Adresse>>> GetAdresses()
         {
-            return dataRepository.GetAll();
+            return await dataRepository.GetAll();
         }
 
         // GET: api/Adresses/5
@@ -40,7 +40,7 @@ namespace APIVinotrip.Controllers
                 return NotFound();
             }
 
-            return adresse;
+            return await  adresse;
         }
 
         // GET: api/Adresses/5
@@ -58,7 +58,7 @@ namespace APIVinotrip.Controllers
                 return NotFound();
             }
 
-            return adresse;
+            return await adresse;
         }
 
         // PUT: api/Adresses/5
@@ -74,14 +74,14 @@ namespace APIVinotrip.Controllers
                 return BadRequest();
             }
 
-            var userToUpdate = dataRepository.GetById(id);
+            var userToUpdate = await dataRepository.GetById(id);
             if (userToUpdate == null)
             {
                 return NotFound();
             }
             else
             {
-                dataRepository.Update(userToUpdate.Value, adresse);
+               await  dataRepository.Update(userToUpdate.Value, adresse);
                 return NoContent();
             }
         }
@@ -109,12 +109,12 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteAdresse(int id)
         {
-            var adresse = dataRepository.GetById(id);
+            var adresse = await dataRepository.GetById(id);
             if (adresse == null)
             {
                 return NotFound();
             }
-            dataRepository.Delete(adresse.Value);
+            await dataRepository.Delete(adresse.Value);
             return NoContent();
         }
 

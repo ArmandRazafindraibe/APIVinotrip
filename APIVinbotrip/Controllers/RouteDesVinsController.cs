@@ -22,7 +22,7 @@ namespace APIVinotrip.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RouteDesVins>>> GetRouteDesVinss()
         {
-            return dataRepository.GetAll();
+            return await dataRepository.GetAll();
         }
 
         // GET: api/RouteDesVinss/5
@@ -40,7 +40,7 @@ namespace APIVinotrip.Controllers
                 return NotFound();
             }
 
-            return routeDesVins;
+            return await routeDesVins;
         }
 
         // GET: api/RouteDesVinss/5
@@ -58,7 +58,7 @@ namespace APIVinotrip.Controllers
                 return NotFound();
             }
 
-            return routeDesVins;
+            return await routeDesVins;
         }
 
         // PUT: api/RouteDesVinss/5
@@ -74,14 +74,14 @@ namespace APIVinotrip.Controllers
                 return BadRequest();
             }
 
-            var userToUpdate = dataRepository.GetById(id);
+            var userToUpdate = await dataRepository.GetById(id);
             if (userToUpdate == null)
             {
                 return NotFound();
             }
             else
             {
-                dataRepository.Update(userToUpdate.Value, routeDesVins);
+                await dataRepository.Update(userToUpdate.Value, routeDesVins);
                 return NoContent();
             }
         }
@@ -109,12 +109,12 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteRouteDesVins(int id)
         {
-            var routeDesVins = dataRepository.GetById(id);
+            var routeDesVins = await dataRepository.GetById(id);
             if (routeDesVins == null)
             {
                 return NotFound();
             }
-            dataRepository.Delete(routeDesVins.Value);
+            await dataRepository.Delete(routeDesVins.Value);
             return NoContent();
         }
 

@@ -27,7 +27,7 @@ namespace APIVinotrip.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Client>>> GetClients()
         {
-            return dataRepository.GetAll();
+            return await dataRepository.GetAll();
         }
 
         // GET: api/Client/5
@@ -44,7 +44,7 @@ namespace APIVinotrip.Controllers
             {
                 return NotFound();
             }
-            return utilisateur;
+            return await utilisateur;
         }
 
         [HttpGet]
@@ -60,7 +60,7 @@ namespace APIVinotrip.Controllers
             {
                 return NotFound();
             }
-            return utilisateur;
+            return await utilisateur;
         }
 
         // PUT: api/Client/5
@@ -77,14 +77,14 @@ namespace APIVinotrip.Controllers
             {
                 return BadRequest();
             }
-            var userToUpdate =  dataRepository.GetById(id);
+            var userToUpdate = await  dataRepository.GetById(id);
             if (userToUpdate == null)
             {
                 return NotFound();
             }
             else
             {
-                 dataRepository.Update(userToUpdate.Value, client);
+                await dataRepository.Update(userToUpdate.Value, client);
                 return NoContent();
             }
         }
@@ -110,12 +110,12 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteClient(int id)
         {
-            var utilisateur =  dataRepository.GetById(id);
+            var utilisateur =  await dataRepository.GetById(id);
             if (utilisateur == null)
             {
                 return NotFound();
             }
-             dataRepository.Delete(utilisateur.Value);
+             await dataRepository.Delete(utilisateur.Value);
             return NoContent();
         }
 
