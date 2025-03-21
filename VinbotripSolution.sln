@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIVinotrip", "APIVinbotrip\APIVinotrip.csproj", "{050A6638-8A6A-4B8C-B0FA-D8BB6AEDB204}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIVinotripTests", "APIVinotripTests\APIVinotripTests.csproj", "{F6D19531-743C-4DA5-BE8C-6AC00EB3AC0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{050A6638-8A6A-4B8C-B0FA-D8BB6AEDB204}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{050A6638-8A6A-4B8C-B0FA-D8BB6AEDB204}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{050A6638-8A6A-4B8C-B0FA-D8BB6AEDB204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6D19531-743C-4DA5-BE8C-6AC00EB3AC0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6D19531-743C-4DA5-BE8C-6AC00EB3AC0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6D19531-743C-4DA5-BE8C-6AC00EB3AC0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6D19531-743C-4DA5-BE8C-6AC00EB3AC0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -44,7 +44,6 @@ namespace APIVinotrip.Models.DataManager
         {
             vinotripDBContext.Entry(favoris).State = EntityState.Modified;
             favoris.IdSejour = entity.IdSejour;
-            favoris.IdClient = entity.IdClient;
              vinotripDBContext.SaveChanges();
         }
         public  async Task Delete(Favoris favoris)

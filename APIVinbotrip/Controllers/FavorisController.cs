@@ -18,14 +18,14 @@ namespace APIVinotrip.Controllers
             dataRepository = dataRepos;
         }
 
-        // GET: api/Favoriss
+        // GET: api/Favoris
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Favoris>>> GetFavoriss()
+        public async Task<ActionResult<IEnumerable<Favoris>>> GetFavoris()
         {
             return await dataRepository.GetAll();
         }
 
-        // GET: api/Favoriss/5
+        // GET: api/Favoris/5
         [HttpGet]
         [Route("[action]/{id}")]
         [ActionName("GetById")]
@@ -43,7 +43,7 @@ namespace APIVinotrip.Controllers
             return   favoris;
         }
 
-        // GET: api/Favoriss/5
+        // GET: api/Favoris/5
         [HttpGet]
         [Route("[action]/{title}")]
         [ActionName("GetFavorisByTitle")]
@@ -120,7 +120,7 @@ namespace APIVinotrip.Controllers
 
         //private bool FavorisExists(int id)
         //{
-        //    return _context.Favoriss.Any(e => e.Idfavoris == id);
+        //    return _context.Favoris.Any(e => e.Idfavoris == id);
         //}
     }
 }

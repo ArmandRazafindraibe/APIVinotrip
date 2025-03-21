@@ -8,24 +8,24 @@ namespace APIVinotrip.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RouteDesVinssController : ControllerBase
+    public class RouteDesVinsController : ControllerBase
     {
         private readonly IDataRepository<RouteDesVins> dataRepository;
 
 
-        public RouteDesVinssController(IDataRepository<RouteDesVins> dataRepos)
+        public RouteDesVinsController(IDataRepository<RouteDesVins> dataRepos)
         {
             dataRepository = dataRepos;
         }
 
-        // GET: api/RouteDesVinss
+        // GET: api/RouteDesVins
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RouteDesVins>>> GetRouteDesVinss()
+        public async Task<ActionResult<IEnumerable<RouteDesVins>>> GetRouteDesVins()
         {
             return await dataRepository.GetAll();
         }
 
-        // GET: api/RouteDesVinss/5
+        // GET: api/RouteDesVins/5
         [HttpGet]
         [Route("[action]/{id}")]
         [ActionName("GetById")]
@@ -43,7 +43,7 @@ namespace APIVinotrip.Controllers
             return  routeDesVins;
         }
 
-        // GET: api/RouteDesVinss/5
+        // GET: api/RouteDesVins/5
         [HttpGet]
         [Route("[action]/{title}")]
         [ActionName("GetRouteDesVinsByTitle")]
@@ -61,7 +61,7 @@ namespace APIVinotrip.Controllers
             return  routeDesVins;
         }
 
-        // PUT: api/RouteDesVinss/5
+        // PUT: api/RouteDesVins/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -86,7 +86,7 @@ namespace APIVinotrip.Controllers
             }
         }
 
-        // POST: api/RouteDesVinss
+        // POST: api/RouteDesVins
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -103,7 +103,7 @@ namespace APIVinotrip.Controllers
             return CreatedAtAction("GetById", new { id = routeDesVins.IdRoute }, routeDesVins); // GetById : nom de l’action
         }
 
-        // DELETE: api/RouteDesVinss/5
+        // DELETE: api/RouteDesVins/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -120,7 +120,7 @@ namespace APIVinotrip.Controllers
 
         //private bool RouteDesVinsExists(int id)
         //{
-        //    return _context.RouteDesVinss.Any(e => e.IdrouteDesVins == id);
+        //    return _context.RouteDesVins.Any(e => e.IdrouteDesVins == id);
         //}
     }
 }
