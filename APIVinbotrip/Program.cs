@@ -2,6 +2,7 @@ using APIVinotrip.Models.EntityFramework;
 using APIVinotrip.Models.Repository;
 using APIVinotrip.Models.DataManager;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,7 +32,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
+
 var app = builder.Build();
+
+app.UseCors(policy =>
+    policy.WithOrigins("https://localhost : 7173;http://localhost : 5208")
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowCredentials()
+    );
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
