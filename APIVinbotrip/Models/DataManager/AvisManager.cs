@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIVinotrip.Models.DataManager
 {
-    public class AvisManager : IDataRepository<Avis>
+    public class AvisManager : IAvisRepository<Avis>
     {
         readonly DBVinotripContext? vinotripDBContext;
         public AvisManager() { }
@@ -19,16 +19,16 @@ namespace APIVinotrip.Models.DataManager
         }
         public async Task<ActionResult<Avis>> GetById(int id)
         {
-            return  vinotripDBContext.Avis.FirstOrDefault(u => u.IdAvis == id);
+            return vinotripDBContext.Avis.FirstOrDefault(u => u.IdAvis == id);
         }
-        public  async Task<ActionResult<Avis>> GetByString(string nomavis)
+        public async Task<ActionResult<Avis>> GetByString(string nomavis)
         {
-            return  vinotripDBContext.Avis.FirstOrDefault(u => u.TitreAvis.ToUpper() == nomavis.ToUpper());
+            return vinotripDBContext.Avis.FirstOrDefault(u => u.TitreAvis.ToUpper() == nomavis.ToUpper());
         }
         public async Task Add(Avis entity)
         {
-             vinotripDBContext.Avis.Add(entity);
-             vinotripDBContext.SaveChanges();
+            vinotripDBContext.Avis.Add(entity);
+            vinotripDBContext.SaveChanges();
         }
         public async Task Update(Avis avis, Avis entity)
         {
@@ -39,15 +39,28 @@ namespace APIVinotrip.Models.DataManager
             avis.PhotoAvis = entity.PhotoAvis;
             avis.DescriptionAvis = entity.DescriptionAvis;
             avis.TitreAvis = entity.TitreAvis;
-            avis.IdClient= entity.IdClient;
+            avis.IdClient = entity.IdClient;
             avis.IdSejour = entity.IdSejour;
 
-             vinotripDBContext.SaveChanges();
+            vinotripDBContext.SaveChanges();
         }
-        public  async Task Delete(Avis avis)
+        public async Task Delete(Avis avis)
         {
             vinotripDBContext.Avis.Remove(avis);
-             vinotripDBContext.SaveChanges();
+            vinotripDBContext.SaveChanges();
         }
+
+        public async Task<ActionResult<IEnumerable<Sejour>>> GetAllAvisWithSejours()
+        {
+            var sejours = await vinotripDBContext.Sejours
+                .Include(s => s.AvisNavigation)
+                .ToListAsync();
+
+            return sejours;
+        }
+
+
     }
 }
+    
+

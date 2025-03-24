@@ -9,7 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Ajout dependances controllers
 builder.Services.AddScoped<IDataRepository<Client>, ClientManager>();
-builder.Services.AddScoped<IDataRepository<Avis>, AvisManager>();
 builder.Services.AddScoped<IDataRepository<Commande>, CommandeManager>();
 builder.Services.AddScoped<IDataRepository<Sejour>, SejourManager>();
 builder.Services.AddScoped<IDataRepository<Adresse>, AdresseManager>();
@@ -18,6 +17,7 @@ builder.Services.AddScoped<IDataRepository<RouteDesVins>, RouteDesVinsManager>()
 builder.Services.AddScoped<IDataRepository<CategorieVignoble>, CategorieVignobleManager>();
 builder.Services.AddScoped<IDataRepository<Panier>, PanierManager>();
 builder.Services.AddScoped<IDataRepository<Favoris>, FavorisManager>();
+builder.Services.AddScoped<IAvisRepository<Avis>, AvisManager>();
 
 
 
