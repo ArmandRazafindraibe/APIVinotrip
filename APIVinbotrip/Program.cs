@@ -38,7 +38,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseCors(policy =>
-    policy.WithOrigins("https://localhost : 7173;http://localhost : 5208")
+    policy.WithOrigins("apivinotripv1-dad8bqb3arhjecaj.francecentral-01.azurewebsites.net")
     .AllowAnyMethod()
     .AllowAnyHeader()
     .AllowCredentials()
