@@ -10,9 +10,9 @@ namespace APIVinotrip.Controllers
     [ApiController]
     public class AvisController : ControllerBase
     {
-        private readonly IAvisRepository<Avis> dataRepository;
+        private readonly IDataRepository<Avis> dataRepository;
 
-        public AvisController(IAvisRepository<Avis> dataRepos)
+        public AvisController(IDataRepository<Avis> dataRepos)
         {
              dataRepository = dataRepos;
         }
@@ -24,15 +24,6 @@ namespace APIVinotrip.Controllers
             return await dataRepository.GetAll();
         }
 
-        [HttpGet]
-        [Route("[action]")]
-        [ActionName("GetAllWithSejours")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IEnumerable<Sejour>>> GetAllWithSejours()
-        {
-            return await dataRepository.GetAllAvisWithSejours();
-        }
 
         // GET: api/Aviss/5
         [HttpGet]

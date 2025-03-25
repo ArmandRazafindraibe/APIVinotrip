@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIVinotrip.Models.DataManager
 {
-    public class AvisManager : IAvisRepository<Avis>
+    public class AvisManager : IDataRepository<Avis>
     {
         readonly DBVinotripContext? vinotripDBContext;
         public AvisManager() { }
@@ -48,15 +48,6 @@ namespace APIVinotrip.Models.DataManager
         {
             vinotripDBContext.Avis.Remove(avis);
             vinotripDBContext.SaveChanges();
-        }
-
-        public async Task<ActionResult<IEnumerable<Sejour>>> GetAllAvisWithSejours()
-        {
-            var sejours = await vinotripDBContext.Sejours
-                .Include(s => s.AvisNavigation)
-                .ToListAsync();
-
-            return sejours;
         }
 
 

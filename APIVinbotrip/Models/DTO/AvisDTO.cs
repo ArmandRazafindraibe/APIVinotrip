@@ -11,11 +11,7 @@
         public int NoteAvis { get; set; }
         public string PhotoAvis { get; set; }
 
-        // Informations minimales sur le séjour associé
-        public string TitreSejour { get; set; }
-
-        // Collection de réponses (sans référence inverse vers l'avis)
-        public List<ReponseDTO> Reponses { get; set; } = new List<ReponseDTO>();
+        
     }
 
 }

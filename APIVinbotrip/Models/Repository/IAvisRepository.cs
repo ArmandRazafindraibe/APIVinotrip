@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace APIVinotrip.Models.Repository
 {
-    public interface IAvisRepository<TEntity>: IDataRepository<TEntity>
+    public interface ISejourRepository<TEntity>: IDataRepository<TEntity>
     {
-        Task<ActionResult<IEnumerable<Sejour>>> GetAllAvisWithSejours();
+        Task<ActionResult<IEnumerable<Sejour>>> GetAllSejoursWithAvis();
     }
 }

@@ -8,10 +8,10 @@ namespace APIVinotrip.Controllers
     [ApiController]
     public class SejoursController : ControllerBase
     {
-        private readonly IDataRepository<Sejour> dataRepository;
+        private readonly ISejourRepository<Sejour> dataRepository;
         //private readonly FilmRatingsDBContext _context; 
 
-        public SejoursController(IDataRepository<Sejour> dataRepos)
+        public SejoursController(ISejourRepository<Sejour> dataRepos)
         {
             dataRepository = dataRepos;
         }
@@ -57,6 +57,15 @@ namespace APIVinotrip.Controllers
             }
 
             return  sejour;
+        }
+        [HttpGet]
+        [Route("[action]")]
+        [ActionName("GetAllAvis")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<Sejour>>> GetAllAvis()
+        {
+            return await dataRepository.GetAllSejoursWithAvis();
         }
 
         // PUT: api/Sejours/5
