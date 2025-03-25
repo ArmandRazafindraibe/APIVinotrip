@@ -7,9 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIVinotrip.Models.EntityFramework;
 using APIVinotrip.Models.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace APIVinotrip.Controllers
 {
+
+    
     [Route("api/[controller]")]
     [ApiController]
     public class ClientsController : ControllerBase
@@ -22,6 +26,21 @@ namespace APIVinotrip.Controllers
             dataRepository = dataRepo;
         }
 
+        //////////////////////////////////
+        [HttpGet]
+        [Route("GetUserData")]
+        [Authorize(Policy = Policies.Client)]
+        public IActionResult GetUserData()
+        {
+            return Ok("This is a response from user method");
+        }
+        [HttpGet]
+        [Route("GetAdminData")]
+        [Authorize(Policy = Policies.Dirigeant)]
+        public IActionResult GetAdminData()
+        {
+            return Ok("This is a response from Admin method");
+        }
 
         // GET: api/Client
         [HttpGet]

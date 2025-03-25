@@ -8,7 +8,7 @@ namespace APIVinotrip.Models.EntityFramework
     {
         [Key]
         [Column("idrole")]
-        public int IdRole { get; set; }
+        public int? IdRole { get; set; }
 
         [Column("libellerole")]
         [StringLength(50)]

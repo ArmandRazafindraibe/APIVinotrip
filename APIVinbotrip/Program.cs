@@ -2,7 +2,11 @@ using APIVinotrip.Models.EntityFramework;
 using APIVinotrip.Models.Repository;
 using APIVinotrip.Models.DataManager;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +41,27 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+ .AddJwtBearer(options =>
+ {
+     options.RequireHttpsMetadata = false;
+     options.SaveToken = true;
+     options.TokenValidationParameters = new TokenValidationParameters
+     {
+         ValidateIssuer = true,
+         ValidateAudience = true,
+         ValidateLifetime = true,
+         ValidateIssuerSigningKey = true,
+         ValidIssuer = builder.Configuration["Jwt:Issuer"],
+         ValidAudience = builder.Configuration["Jwt:Audience"],
+         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])),
+         ClockSkew = TimeSpan.Zero
+     };
+ });
+
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseCors(policy =>
     policy.WithOrigins("apivinotripv1-dad8bqb3arhjecaj.francecentral-01.azurewebsites.net")
     .AllowAnyMethod()
@@ -45,11 +70,19 @@ app.UseCors(policy =>
     );
 app.UseStaticFiles();
 
+builder.Services.AddAuthorization(config =>
+{
+    config.AddPolicy(Policies.Dirigeant, Policies.DirigeantPolicy());
+    config.AddPolicy(Policies.Client, Policies.ClientPolicy());
+});
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    
 }
 
 app.UseHttpsRedirection();
