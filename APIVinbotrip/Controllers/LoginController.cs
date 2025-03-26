@@ -14,24 +14,23 @@ namespace APIVinotrip.Controllers
      [ApiController]
      public class LoginController : ControllerBase
      {
-         private readonly IConfiguration _config;
-         private List<Client> appClients = new List<Client>
-                                       {
-                                         new Client { NomClient = "COUTURIER", PrenomClient = "Vincent", MdpClient = "1234",
-                                        IdRole = 1, },
-                                         new Client { NomClient = "MACHIN", PrenomClient = "Machin", MdpClient = "1234", IdRole =
-                                        2 }
-                                         };
+        private readonly IDataRepository<Client> data;
+        private readonly IConfiguration _config;
+        
         private readonly List<Role> roles = new List<Role>{
             new Role(1,"Client"),
             new Role(4,  "Dirigeant"),
-            new Role(2 , "Service vente")
+            new Role(3 , "DPO"),
+            new Role(2 , "Service Vente")
 
         };
-         public LoginController(IConfiguration config)
+        
+        public LoginController(IConfiguration config, IDataRepository<Client> dataRepo)
          {
            _config = config;
-         }
+            data = dataRepo;
+        }
+        
          [HttpPost]
          [AllowAnonymous]
          public IActionResult Login([FromBody] Client login)
@@ -49,9 +48,11 @@ namespace APIVinotrip.Controllers
              }
              return response;
          }
-         private Client AuthenticateClient(Client user)
+         private  Client AuthenticateClient(Client user)
          {
-             return appClients.SingleOrDefault(x => x.NomClient.ToUpper() == user.NomClient.ToUpper() &&x.MdpClient == user.MdpClient);
+            List<Client> appClients = new List<Client>();
+            appClients=data.GetAll().Result.Value.ToList();
+            return appClients.SingleOrDefault(x => x.EmailClient.ToUpper() == user.EmailClient.ToUpper() && x.MdpClient == user.MdpClient);
          }
          private string GenerateJwtToken(Client userInfo)
          {
@@ -62,7 +63,7 @@ namespace APIVinotrip.Controllers
              {
                  new Claim(JwtRegisteredClaimNames.Sub, userInfo.NomClient),
                  new Claim("NomClient", userInfo.NomClient.ToString()),
-                 new Claim("Role",roles[int.Parse(userInfo.IdRole.ToString())].LibelleRole),
+                 new Claim("IdRole", userInfo.IdRole.ToString()??"1"),
                  new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
              };
              var token = new JwtSecurityToken(

@@ -143,5 +143,6 @@ namespace APIVinotrip.Controllers
         //{
         //    return _context.Client.Any(e => e.UtilisateurId == id);
         //}
+
     }
 }

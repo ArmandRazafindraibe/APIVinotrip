@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using APIVinotrip.Models.EntityFramework;
 using APIVinotrip.Models.DataManager;
 using APIVinotrip.Models.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIVinotrip.Controllers
 {
@@ -66,6 +67,8 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Policy = Policies.ServiceVente)]
+        [Authorize(Policy = Policies.Dirigeant)]
         public async Task<IActionResult> PutCategorieVignoble(int id, CategorieVignoble categorieVignoble)
         {
             if (id != categorieVignoble.IdCategorieVignoble)
@@ -90,6 +93,8 @@ namespace APIVinotrip.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Policy = Policies.ServiceVente)]
+        [Authorize(Policy = Policies.Dirigeant)]
         public async Task<ActionResult<Avis>> PostCategorieVignoble(CategorieVignoble categorieVignoble)
         {
             if (!ModelState.IsValid)
@@ -106,6 +111,8 @@ namespace APIVinotrip.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Policy = Policies.ServiceVente)]
+        [Authorize(Policy = Policies.Dirigeant)]
         public async Task<IActionResult> DeleteCategorieVignoble(int id)
         {
             var avis = await dataRepository.GetById(id);

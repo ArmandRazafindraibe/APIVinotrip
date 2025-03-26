@@ -17,15 +17,15 @@ namespace APIVinotrip.Controllers
              dataRepository = dataRepos;
         }
 
-        // GET: api/Aviss
+        // GET: api/Avis
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Avis>>> GetAviss()
+        public async Task<ActionResult<IEnumerable<Avis>>> GetAvis()
         {
             return await dataRepository.GetAll();
         }
 
 
-        // GET: api/Aviss/5
+        // GET: api/Avis/5
         [HttpGet]
         [Route("[action]/{id}")]
         [ActionName("GetById")]
@@ -43,7 +43,7 @@ namespace APIVinotrip.Controllers
             return  avis;
         }
 
-        // GET: api/Aviss/5
+        // GET: api/Avis/5
         [HttpGet]
         [Route("[action]/{title}")]
         [ActionName("GetAvisByTitle")]
@@ -61,7 +61,7 @@ namespace APIVinotrip.Controllers
             return  avis;
         }
 
-        // PUT: api/Aviss/5
+        // PUT: api/Avis/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -86,7 +86,7 @@ namespace APIVinotrip.Controllers
             }
         }
 
-            // POST: api/Aviss
+            // POST: api/Avis
             // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
             [HttpPost]
             [ProducesResponseType(StatusCodes.Status201Created)]
@@ -103,7 +103,7 @@ namespace APIVinotrip.Controllers
             return CreatedAtAction("GetById", new { id = avis.IdAvis }, avis); // GetById : nom de l’action
         }
 
-        // DELETE: api/Aviss/5
+        // DELETE: api/Avis/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -120,7 +120,7 @@ namespace APIVinotrip.Controllers
 
         //private bool AvisExists(int id)
         //{
-        //    return _context.Aviss.Any(e => e.Idavis == id);
+        //    return _context.Avis.Any(e => e.Idavis == id);
         //}
     }
 }

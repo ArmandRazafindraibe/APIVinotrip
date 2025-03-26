@@ -55,6 +55,8 @@ builder.Services.AddAuthorization(config =>
 {
     config.AddPolicy(Policies.Dirigeant, Policies.DirigeantPolicy());
     config.AddPolicy(Policies.Client, Policies.ClientPolicy());
+    config.AddPolicy(Policies.ServiceVente, Policies.ServiceVentePolicy());
+    config.AddPolicy(Policies.Dpo, Policies.DPOPolicy());
 
 });
 

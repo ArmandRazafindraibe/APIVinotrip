@@ -10,19 +10,19 @@ namespace APIVinotrip.Controllers
     [ApiController]
     public class FavorisController : ControllerBase
     {
-        private readonly IDataRepository<Favoris> dataRepository;
+        private readonly IDataRepository<Favoris> dataRepositoryFavoris;
         //private readonly FilmRatingsDBContext _context; 
 
         public FavorisController(IDataRepository<Favoris> dataRepos)
         {
-            dataRepository = dataRepos;
+            dataRepositoryFavoris = dataRepos;
         }
 
         // GET: api/Favoris
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Favoris>>> GetFavoris()
         {
-            return await dataRepository.GetAll();
+            return await dataRepositoryFavoris.GetAll();
         }
 
         // GET: api/Favoris/5
@@ -33,7 +33,7 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Favoris>> GetFavorisById(int id)
         {
-            var favoris =  await dataRepository.GetById(id);
+            var favoris =  await dataRepositoryFavoris.GetById(id);
 
             if (favoris == null)
             {
@@ -51,7 +51,7 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Favoris>> GetFavorisByTitle(string title)
         {
-            var favoris = await dataRepository.GetByString(title);
+            var favoris = await dataRepositoryFavoris.GetByString(title);
 
             if (favoris == null)
             {
@@ -74,14 +74,14 @@ namespace APIVinotrip.Controllers
                 return BadRequest();
             }
 
-            var userToUpdate = await dataRepository.GetById(id);
+            var userToUpdate = await dataRepositoryFavoris.GetById(id);
             if (userToUpdate == null)
             {
                 return NotFound();
             }
             else
             {
-               await  dataRepository.Update(userToUpdate.Value, favoris);
+               await  dataRepositoryFavoris.Update(userToUpdate.Value, favoris);
                 return NoContent();
             }
         }
@@ -98,7 +98,7 @@ namespace APIVinotrip.Controllers
                 return BadRequest(ModelState);
             }
 
-            await dataRepository.Add(favoris);
+            await dataRepositoryFavoris.Add(favoris);
 
             return CreatedAtAction("GetById", new { id = favoris.IdSejour }, favoris); // GetById : nom de l’action
         }
@@ -109,12 +109,12 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteFavoris(int id)
         {
-            var favoris = await dataRepository.GetById(id);
+            var favoris = await dataRepositoryFavoris.GetById(id);
             if (favoris == null)
             {
                 return NotFound();
             }
-            await dataRepository.Delete(favoris.Value);
+            await dataRepositoryFavoris.Delete(favoris.Value);
             return NoContent();
         }
 
