@@ -16,5 +16,12 @@ namespace APIVinotrip.Models.EntityFramework
 
         [InverseProperty(nameof(Client.Role))]
         public virtual List<Client> Clients { get; set; } = new List<Client>();
+
+        public Role(int? idRole, string? libelleRole)
+        {
+            IdRole = idRole;
+            LibelleRole = libelleRole;
+        }
+
     }
 }

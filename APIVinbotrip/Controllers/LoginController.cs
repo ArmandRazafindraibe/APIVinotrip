@@ -22,7 +22,12 @@ namespace APIVinotrip.Controllers
                                          new Client { NomClient = "MACHIN", PrenomClient = "Machin", MdpClient = "1234", IdRole =
                                         2 }
                                          };
-        private readonly List<Role> roles = new List<Role>();
+        private readonly List<Role> roles = new List<Role>{
+            new Role(1,"Client"),
+            new Role(4,  "Dirigeant"),
+            new Role(2 , "Service vente")
+
+        };
          public LoginController(IConfiguration config)
          {
            _config = config;
@@ -51,7 +56,7 @@ namespace APIVinotrip.Controllers
          private string GenerateJwtToken(Client userInfo)
          {
              var securityKey = new
-            SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:SecretKey"]));
+             SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:SecretKey"]));
              var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
              var claims = new[]
              {
