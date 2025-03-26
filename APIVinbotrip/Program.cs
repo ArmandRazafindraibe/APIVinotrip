@@ -82,12 +82,12 @@ var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 
+
 app.UseCors(policy =>
-    policy.WithOrigins("apivinotripv1-dad8bqb3arhjecaj.francecentral-01.azurewebsites.net")
+    policy.AllowAnyOrigin()
     .AllowAnyMethod()
-    .AllowAnyHeader()
-    .AllowCredentials()
-    );
+    .AllowAnyHeader());
+
 app.UseStaticFiles();
 
 
