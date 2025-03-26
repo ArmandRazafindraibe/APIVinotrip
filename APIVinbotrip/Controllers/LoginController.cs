@@ -19,9 +19,9 @@ namespace APIVinotrip.Controllers
         
         private readonly List<Role> roles = new List<Role>{
             new Role(1,"Client"),
-            new Role(4,  "Dirigeant"),
+            new Role(2 , "Service Vente"),
             new Role(3 , "DPO"),
-            new Role(2 , "Service Vente")
+            new Role(4,  "Dirigeant")
 
         };
         
@@ -50,8 +50,8 @@ namespace APIVinotrip.Controllers
          }
          private  Client AuthenticateClient(Client user)
          {
-            List<Client> appClients = new List<Client>();
-            appClients=data.GetAll().Result.Value.ToList();
+            List<Client> appClients = data.GetAll().Result.Value.ToList();
+            
             return appClients.SingleOrDefault(x => x.EmailClient.ToUpper() == user.EmailClient.ToUpper() && x.MdpClient == user.MdpClient);
          }
          private string GenerateJwtToken(Client userInfo)
@@ -63,7 +63,7 @@ namespace APIVinotrip.Controllers
              {
                  new Claim(JwtRegisteredClaimNames.Sub, userInfo.NomClient),
                  new Claim("NomClient", userInfo.NomClient.ToString()),
-                 new Claim("IdRole", userInfo.IdRole.ToString()??"1"),
+                 new Claim("Role",roles.FirstOrDefault(r => r.IdRole == userInfo.IdRole)?.LibelleRole ?? "Client"),
                  new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
              };
              var token = new JwtSecurityToken(
