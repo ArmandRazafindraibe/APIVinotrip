@@ -63,5 +63,6 @@ namespace APIVinotrip.Models.DataManager
 
             return sejours;
         }
+    
     }
 }
