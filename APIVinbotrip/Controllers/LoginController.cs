@@ -10,6 +10,7 @@ using System.Text;
 
 namespace APIVinotrip.Controllers
 {
+
      [Route("api/[controller]")]
      [ApiController]
      public class LoginController : ControllerBase
@@ -63,7 +64,7 @@ namespace APIVinotrip.Controllers
              {
                  new Claim(JwtRegisteredClaimNames.Sub, userInfo.NomClient),
                  new Claim("NomClient", userInfo.NomClient.ToString()),
-                 new Claim("Role",roles.FirstOrDefault(r => r.IdRole == userInfo.IdRole)?.LibelleRole ?? "Client"),
+                 new Claim(ClaimTypes.Role,roles.FirstOrDefault(r => r.IdRole == userInfo.IdRole)?.LibelleRole ?? "Client"),
                  new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
              };
              var token = new JwtSecurityToken(
