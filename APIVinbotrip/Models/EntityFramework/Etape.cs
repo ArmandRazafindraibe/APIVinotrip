@@ -11,11 +11,19 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("idEtape")]
         public int IdEtape { get; set; }
 
+<<<<<<< Updated upstream
         [Column("idSejour")]
         public int? IdSejour { get; set; }
 
         [Column("idHebergement")]
         public int? IdHebergement { get; set; }
+=======
+        [Column("idsejour")]
+        public int IdSejour { get; set; }
+
+        [Column("idhebergement")]
+        public int IdHebergement { get; set; }
+>>>>>>> Stashed changes
 
         [Column("titreEtape")]
         [StringLength(100)]

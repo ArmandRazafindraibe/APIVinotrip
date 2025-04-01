@@ -23,7 +23,7 @@ namespace APIVinotrip.Models.EntityFramework
         public int Idcategoriesejour { get; set; }
 
         [Column("idlocalite")]
-        public int? Idlocalite { get; set; }
+        public int Idlocalite { get; set; }
 
         [Column("idtheme")]
         public int Idtheme { get; set; }
@@ -44,13 +44,13 @@ namespace APIVinotrip.Models.EntityFramework
         public string? Descriptionsejour { get; set; }
 
         [Column("prixsejour",TypeName = "NUMERIC(8,2)")]
-        public decimal? Prixsejour { get; set; }
+        public decimal Prixsejour { get; set; }
 
         [Column("publie")]
-        public bool? Publie { get; set; }
+        public bool Publie { get; set; }
 
         [Column("nouveauprixsejour", TypeName = "NUMERIC(8,2)")]
-        public decimal? Nouveauprixsejour { get; set; }
+        public decimal Nouveauprixsejour { get; set; }
 
         [InverseProperty(nameof(Avis.Sejour))]
         public virtual ICollection<Avis> AvisNavigation { get; set; } = new List<Avis>();

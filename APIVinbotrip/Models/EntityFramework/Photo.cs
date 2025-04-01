@@ -13,7 +13,8 @@ namespace APIVinotrip.Models.EntityFramework
         [Column("idSejour")]
         public int IdSejour { get; set; }
 
-        // Additional properties for Photo
+        [Column("idsejour")]
+        public string? NomPhoto { get; set; }
 
         [ForeignKey(nameof(IdSejour))]
         [InverseProperty(nameof(Sejour.Photos))]
