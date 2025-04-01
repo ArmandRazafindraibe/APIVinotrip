@@ -1,77 +1,75 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIVinotrip.Models.EntityFramework;
 using APIVinotrip.Models.DataManager;
 using APIVinotrip.Models.Repository;
-using Microsoft.AspNetCore.Authorization;
 
 namespace APIVinotrip.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesSejourController : ControllerBase
+    public class HebergementsController : ControllerBase
     {
-        private readonly IDataRepository<CategorieSejour> dataRepository;
+        private readonly IDataRepository<Hebergement> dataRepository;
+         
 
-        public CategoriesSejourController(IDataRepository<CategorieSejour> dataRepos)
+        public HebergementsController(IDataRepository<Hebergement> dataRepos)
         {
             dataRepository = dataRepos;
         }
 
-        // GET: api/Aviss
+        // GET: api/Hebergements
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CategorieSejour>>> GetCategorieSejours()
+        public async Task<ActionResult<IEnumerable<Hebergement>>> GetHebergements()
         {
             return await dataRepository.GetAll();
         }
 
-        // GET: api/Aviss/5
+        // GET: api/Hebergements/5
         [HttpGet]
         [Route("[action]/{id}")]
         [ActionName("GetById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<CategorieSejour>> GetCategorieSejourById(int id)
+        public async Task<ActionResult<Hebergement>> GetHebergementById(int id)
         {
-            var avis = await dataRepository.GetById(id);
+            var hebergement = await dataRepository.GetById(id);
 
-            if (avis == null)
+            if (hebergement == null)
             {
                 return NotFound();
             }
 
-            return avis;
+            return  hebergement;
         }
 
-        // GET: api/Aviss/5
+        // GET: api/Hebergements/5
         [HttpGet]
         [Route("[action]/{title}")]
-        [ActionName("GetAvisByTitle")]
+        [ActionName("GetHebergementByTitle")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<CategorieSejour>> GetCategorieSejourByTitle(string title)
+        public async Task<ActionResult<Hebergement>> GetHebergementByState(string etat)
         {
-            var avis = await dataRepository.GetByString(title);
+            var hebergement = await dataRepository.GetByString(etat);
 
-            if (avis == null)
+            if (hebergement == null)
             {
                 return NotFound();
             }
 
-            return avis;
+            return  hebergement;
         }
 
-        // PUT: api/Aviss/5
+        // PUT: api/Hebergements/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Authorize(Policy = Policies.ServiceVente)]
-        [Authorize(Policy = Policies.Dirigeant)]
-        public async Task<IActionResult> PutCategorieSejour(int id, CategorieSejour categorieSejour)
+        public async Task<IActionResult> PutHebergement(int id, Hebergement hebergement)
         {
-            if (id != categorieSejour.IdCategorieSejour)
+            if (id != hebergement.IdHebergement)
             {
                 return BadRequest();
             }
@@ -83,50 +81,46 @@ namespace APIVinotrip.Controllers
             }
             else
             {
-                await dataRepository.Update(userToUpdate.Value, categorieSejour);
+                await dataRepository.Update(userToUpdate.Value, hebergement);
                 return NoContent();
             }
         }
 
-        // POST: api/Aviss
+        // POST: api/Hebergements
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Authorize(Policy = Policies.ServiceVente)]
-        [Authorize(Policy = Policies.Dirigeant)]
-        public async Task<ActionResult<Avis>> PostCategorieSejour(CategorieSejour categorieSejour)
+        public async Task<ActionResult<Hebergement>> PostHebergement(Hebergement hebergement)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            await dataRepository.Add(categorieSejour);
+            await dataRepository.Add(hebergement);
 
-            return CreatedAtAction("GetById", new { id = categorieSejour.IdCategorieSejour }, categorieSejour); // GetById : nom de l’action
+            return CreatedAtAction("GetById", new { id = hebergement.IdHebergement }, hebergement); // GetById : nom de l’action
         }
 
-        // DELETE: api/Aviss/5
+        // DELETE: api/Hebergements/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [Authorize(Policy = Policies.ServiceVente)]
-        [Authorize(Policy = Policies.Dirigeant)]
-        public async Task<IActionResult> DeleteCategorieSejour(int id)
+        public async Task<IActionResult> DeleteHebergement(int id)
         {
-            var avis = await dataRepository.GetById(id);
-            if (avis == null)
+            var hebergement = await dataRepository.GetById(id);
+            if (hebergement == null)
             {
                 return NotFound();
             }
-            await dataRepository.Delete(avis.Value);
+            await dataRepository.Delete(hebergement.Value);
             return NoContent();
         }
 
-        //private bool AvisExists(int id)
+        //private bool HebergementExists(int id)
         //{
-        //    return _context.Aviss.Any(e => e.Idavis == id);
+        //    return _context.Hebergements.Any(e => e.Idhebergement == id);
         //}
     }
 }

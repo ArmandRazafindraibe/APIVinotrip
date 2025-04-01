@@ -22,12 +22,14 @@ builder.Services.AddScoped<IDataRepository<Activite>, ActiviteManager>();
 builder.Services.AddScoped<IDataRepository<RouteDesVins>, RouteDesVinsManager>();
 builder.Services.AddScoped<IDataRepository<CategorieVignoble>, CategorieVignobleManager>();
 builder.Services.AddScoped<IDataRepository<CategorieParticipant>, CategorieParticipantManager>();
+builder.Services.AddScoped<IDataRepository<Theme>, ThemeManager>();
 builder.Services.AddScoped<IDataRepository<Duree>, DureeManager>();
 builder.Services.AddScoped<IDataRepository<CategorieSejour>, CategorieSejourManager>();
 builder.Services.AddScoped<IDataRepository<Localite>, LocaliteManager>();
 builder.Services.AddScoped<IDataRepository<Panier>, PanierManager>();
 builder.Services.AddScoped<IDataRepository<Favoris>, FavorisManager>();
 builder.Services.AddScoped<IDataRepository<Avis>, AvisManager>();
+
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>

@@ -8,67 +8,67 @@ namespace APIVinotrip.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ActivitesController : ControllerBase
+    public class ThemesController : ControllerBase
     {
-        private readonly IDataRepository<Activite> dataRepository;
+        private readonly IDataRepository<Theme> dataRepository;
 
-        public ActivitesController(IDataRepository<Activite> dataRepos)
+        public ThemesController(IDataRepository<Theme> dataRepos)
         {
              dataRepository = dataRepos;
         }
 
-        // GET: api/Activites
+        // GET: api/Themes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Activite>>> GetActivites()
+        public async Task<ActionResult<IEnumerable<Theme>>> GetThemes()
         {
             return await dataRepository.GetAll();
         }
 
-        // GET: api/Activites/5
+        // GET: api/Themes/5
         [HttpGet]
         [Route("[action]/{id}")]
         [ActionName("GetById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Activite>> GetActiviteById(int id)
+        public async Task<ActionResult<Theme>> GetThemeById(int id)
         {
-            var activite =  await dataRepository.GetById(id);
+            var theme =  await dataRepository.GetById(id);
 
-            if (activite == null)
+            if (theme == null)
             {
                 return NotFound();
             }
 
-            return  activite;
+            return  theme;
         }
 
-        // GET: api/Activites/5
+        // GET: api/Themes/5
         [HttpGet]
         [Route("[action]/{title}")]
-        [ActionName("GetActiviteByTitle")]
+        [ActionName("GetThemeByTitle")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Activite>> GetActiviteByTitle(string title)
+        public async Task<ActionResult<Theme>> GetThemeByTitle(string title)
         {
-            var activite = await dataRepository.GetByString(title);
+            var theme = await dataRepository.GetByString(title);
 
-            if (activite == null)
+            if (theme == null)
             {
                 return NotFound();
             }
 
-            return  activite;
+            return  theme;
         }
 
-        // PUT: api/Activites/5
+        // PUT: api/Themes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PutActivite(int id, Activite activite)
+        public async Task<IActionResult> PutTheme(int id, Theme theme)
         {
-            if (id != activite.IdActivite)
+            if (id != theme.IdTheme)
             {
                 return BadRequest();
             }
@@ -80,46 +80,46 @@ namespace APIVinotrip.Controllers
             }
             else
             {
-               await  dataRepository.Update(userToUpdate.Value, activite);
+               await  dataRepository.Update(userToUpdate.Value, theme);
                 return NoContent();
             }
         }
 
-            // POST: api/Activites
+            // POST: api/Themes
             // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
             [HttpPost]
             [ProducesResponseType(StatusCodes.Status201Created)]
             [ProducesResponseType(StatusCodes.Status400BadRequest)]
-            public async Task<ActionResult<Activite>> PostActivite(Activite activite)
+            public async Task<ActionResult<Theme>> PostTheme(Theme theme)
             {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            await dataRepository.Add(activite);
+            await dataRepository.Add(theme);
 
-            return CreatedAtAction("GetById", new { id = activite.IdActivite }, activite); // GetById : nom de l’action
+            return CreatedAtAction("GetById", new { id = theme.IdTheme }, theme); // GetById : nom de l’action
         }
 
-        // DELETE: api/Activites/5
+        // DELETE: api/Themes/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteActivite(int id)
+        public async Task<IActionResult> DeleteTheme(int id)
         {
-            var activite = await dataRepository.GetById(id);
-            if (activite == null)
+            var theme = await dataRepository.GetById(id);
+            if (theme == null)
             {
                 return NotFound();
             }
-            await dataRepository.Delete(activite.Value);
+            await dataRepository.Delete(theme.Value);
             return NoContent();
         }
 
-        //private bool ActiviteExists(int id)
+        //private bool ThemeExists(int id)
         //{
-        //    return _context.Activites.Any(e => e.Idactivite == id);
+        //    return _context.Themes.Any(e => e.Idtheme == id);
         //}
     }
 }

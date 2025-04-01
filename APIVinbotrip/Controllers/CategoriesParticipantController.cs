@@ -9,11 +9,11 @@ namespace APIVinotrip.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class  CategorieParticipantController : ControllerBase
+    public class  CategoriesParticipantController : ControllerBase
     {
         private readonly IDataRepository<CategorieParticipant> dataRepository;
 
-        public  CategorieParticipantController(IDataRepository<CategorieParticipant> dataRepos)
+        public  CategoriesParticipantController(IDataRepository<CategorieParticipant> dataRepos)
         {
             dataRepository = dataRepos;
         }
