@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using APIVinotrip.Helpers;
 
 namespace APIVinotrip.Controllers
 {
@@ -57,13 +58,18 @@ namespace APIVinotrip.Controllers
         private async Task<Client> AuthenticateClient(Client loginClient)
         {
             var clients = await _dataRepository.GetAll();
-            var client = clients.Value.SingleOrDefault(x =>
-                x.EmailClient.ToUpper() == loginClient.EmailClient.ToUpper() &&
-                x.MdpClient == loginClient.MdpClient);
+            // Rechercher le client par email uniquement (sans vérifier le mot de passe encore)
+            var client = clients.Value.SingleOrDefault(x => x.EmailClient.ToUpper() == loginClient.EmailClient.ToUpper());
+
+            if (client == null)
+                return null;
+
+            // Vérifier le mot de passe haché avec BCrypt
+            if (!PasswordHasher.VerifyPassword(loginClient.MdpClient, client.MdpClient))
+                return null;
 
             return client;
         }
-
         private string GenerateJwtToken(Client userInfo)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:SecretKey"]));

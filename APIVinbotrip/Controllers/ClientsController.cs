@@ -9,6 +9,8 @@ using APIVinotrip.Models.EntityFramework;
 using APIVinotrip.Models.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
+using System.Net;
+using APIVinotrip.Helpers;
 
 namespace APIVinotrip.Controllers
 {
@@ -108,19 +110,31 @@ namespace APIVinotrip.Controllers
             }
         }
 
-        // POST: api/Client
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/Clients
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [AllowAnonymous]
         public async Task<ActionResult<Client>> PostClient(Client client)
         {
-            if (!ModelState.IsValid)
+            // Vérification si l'email existe déjà
+            var existingClient = await dataRepository.GetAll();
+            if (existingClient.Value.Any(c => c.EmailClient.ToUpper() == client.EmailClient.ToUpper()))
             {
-                return BadRequest(ModelState);
+                return Conflict(new { message = "Cet email est déjà utilisé." });
             }
-             await dataRepository.Add(client);
-            return CreatedAtAction("GetById", new { id = client.IdClient }, client); // GetById : nom de l’action
+
+            // Attribution du rôle Client par défaut
+            client.IdRole = 1; // Rôle Client
+
+            // Hacher le mot de passe avant de l'enregistrer
+            string originalPassword = client.MdpClient; // Conserver le mot de passe original
+            client.MdpClient = PasswordHasher.HashPassword(client.MdpClient);
+
+            // Ne pas assigner le résultat à une variable
+            await dataRepository.Add(client);
+
+            // Vous devrez probablement récupérer l'ID du client d'une autre manière
+            // Par exemple, si l'ID est généré par la base de données, il sera mis à jour dans l'objet client
+            return CreatedAtAction(nameof(GetClientById), new { id = client.IdClient }, client);
         }
 
         // DELETE: api/Client/5
