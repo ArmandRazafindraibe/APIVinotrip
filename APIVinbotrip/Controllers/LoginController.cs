@@ -59,12 +59,11 @@ namespace APIVinotrip.Controllers
         {
             var clients = await _dataRepository.GetAll();
             // Rechercher le client par email uniquement (sans vérifier le mot de passe encore)
-            var client = clients.Value.SingleOrDefault(x => x.EmailClient.ToUpper() == loginClient.EmailClient.ToUpper());
-            var clientParTel = clients.Value.SingleOrDefault(x => x.TelClient == loginClient.TelClient);
-            if (client == null||clientParTel==null)
+            var client = clients.Value.SingleOrDefault(x => x.EmailClient.ToUpper() == loginClient.EmailClient.ToUpper()||x.TelClient == loginClient.TelClient);
+
+            if (client == null)
                 return null;
 
-            // Vérifier le mot de passe haché avec BCrypt
             if (!PasswordHasher.VerifyPassword(loginClient.MdpClient, client.MdpClient))
                 return null;
 
