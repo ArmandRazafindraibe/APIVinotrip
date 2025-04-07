@@ -45,13 +45,14 @@ namespace APIVinotrip.Controllers
 
         // GET: api/Favoris/5
         [HttpGet]
-        [Route("[action]/{title}")]
-        [ActionName("GetFavorisByTitle")]
+        [Route("[action]/{id}")]
+        [ActionName("GetFavorisByIdClient")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Favoris>> GetFavorisByTitle(string title)
+        public async Task<ActionResult<Favoris>> GetFavorisByIdClient(int id)
         {
-            var favoris = await dataRepositoryFavoris.GetByString(title);
+            var lesFavoris = await dataRepositoryFavoris.GetAll();
+            var favoris=lesFavoris.Value.FirstOrDefault(x=>x.IdClient==id);
 
             if (favoris == null)
             {
