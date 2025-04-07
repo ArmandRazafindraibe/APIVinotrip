@@ -28,7 +28,7 @@ namespace APIVinotrip.Controllers
         // GET: api/Favoris/5
         [HttpGet]
         [Route("[action]/{id}")]
-        [ActionName("GetById")]
+        [ActionName("GetByIdSejour")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Favoris>> GetFavorisById(int id)
