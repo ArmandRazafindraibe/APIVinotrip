@@ -90,19 +90,17 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
+app.UseAuthentication();
+app.UseSwagger();
+app.UseAuthorization();
+
+
 app.UseCors(policy =>
     policy.AllowAnyOrigin()
     .AllowAnyMethod()
     .AllowAnyHeader());
 
 app.UseStaticFiles();
-
-app.UseAuthentication();
-app.UseSwagger();
-app.UseAuthorization();
-
-
-
 
 
 
