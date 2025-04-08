@@ -90,19 +90,22 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-app.UseAuthentication();
 app.UseSwagger();
-app.UseAuthorization();
+app.UseSwaggerUI();
 
 
 app.UseCors(policy =>
-    policy.AllowAnyOrigin()
-    .AllowAnyMethod()
-    .AllowAnyHeader());
+    policy
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
 
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-
+// Authentication et Authorization doivent venir après CORS
+app.UseAuthentication();
+app.UseAuthorization();
 
 
 // Configure the HTTP request pipeline.
