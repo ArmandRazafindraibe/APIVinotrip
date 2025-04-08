@@ -68,6 +68,17 @@ namespace APIVinotrip.Controllers
             return await dataRepository.GetAllSejoursWithAvis();
         }
 
+
+        [HttpGet]
+        [Route("[action]")]
+        [ActionName("GetAllSejoursRoute")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<Sejour>>> GetAllSejoursOfRoute(int idRoute)
+        {
+            return await dataRepository.GetAllSejoursWithRoutes(idRoute);
+        }
+
         // PUT: api/Sejours/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
