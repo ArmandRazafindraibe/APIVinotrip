@@ -70,7 +70,7 @@ namespace APIVinotrip.Controllers
 
 
         [HttpGet]
-        [Route("[action]")]
+        [Route("[action]/{idRoute}")]
         [ActionName("GetAllSejoursRoute")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
