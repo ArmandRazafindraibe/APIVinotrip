@@ -63,6 +63,21 @@ namespace APIVinotrip.Models.DataManager
 
             return sejours;
         }
-    
+
+        public async Task<ActionResult<IEnumerable<Sejour>>> GetAllSejoursWithRoutes(int idroute)
+        {
+            var localites = vinotripDBContext.SeLocalises.ToList().FindAll(x => x.IdRoute == idroute).ToList();
+            var categoriesVignoble = new List<CategorieVignoble>();
+            var sejours = new List<Sejour>();
+            foreach (var localite in localites)
+            {
+                categoriesVignoble.Add(vinotripDBContext.Categorievignobles.ToList().FirstOrDefault(x => x.IdCategorieVignoble == localite.IdCategorieVignoble));
+            }
+            foreach (var categorie in categoriesVignoble)
+            {
+                sejours.Add(vinotripDBContext.Sejours.ToList().FirstOrDefault(x => x.Idcategorievignoble == categorie.IdCategorieVignoble));
+            }
+            return sejours;
+        }
     }
 }
