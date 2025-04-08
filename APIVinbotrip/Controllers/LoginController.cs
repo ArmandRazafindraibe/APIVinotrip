@@ -58,8 +58,13 @@ namespace APIVinotrip.Controllers
         private async Task<Client> AuthenticateClient(Client loginClient)
         {
             var clients = await _dataRepository.GetAll();
-            // Rechercher le client par email uniquement (sans vérifier le mot de passe encore)
-            var client = clients.Value.SingleOrDefault(x => x.EmailClient.ToUpper() == loginClient.EmailClient.ToUpper()||x.TelClient == loginClient.TelClient);
+
+            // Vérifier si les propriétés sont null avant d'appeler ToUpper()
+            // et utiliser des vérifications de null sécurisées
+            var client = clients.Value.SingleOrDefault(x =>
+                (!string.IsNullOrEmpty(x.EmailClient) && !string.IsNullOrEmpty(loginClient.EmailClient) &&
+                 x.EmailClient.ToUpper() == loginClient.EmailClient.ToUpper()) ||
+                (x.TelClient == loginClient.TelClient && loginClient.TelClient != null));
 
             if (client == null)
                 return null;
