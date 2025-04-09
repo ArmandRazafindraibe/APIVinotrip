@@ -10,10 +10,10 @@ namespace APIVinotrip.Controllers
     [ApiController]
     public class EtapesController : ControllerBase
     {
-        private readonly IDataRepository<Etape> dataRepository;
+        private readonly IEtapeRepository<Etape> dataRepository;
          
 
-        public EtapesController(IDataRepository<Etape> dataRepos)
+        public EtapesController(IEtapeRepository<Etape> dataRepos)
         {
             dataRepository = dataRepos;
         }
@@ -59,6 +59,17 @@ namespace APIVinotrip.Controllers
             }
 
             return  etape;
+        }
+
+
+        [HttpGet]
+        [Route("[action]")]
+        [ActionName("GetAllEtapeWithActivite")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<Etape>>> GetAllEtapeWithActivite()
+        {
+            return await dataRepository.GetAllEtapeWithActivite();
         }
 
         // PUT: api/Etapes/5

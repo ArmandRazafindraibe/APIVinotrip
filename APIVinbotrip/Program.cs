@@ -29,7 +29,7 @@ builder.Services.AddScoped<IDataRepository<Localite>, LocaliteManager>();
 builder.Services.AddScoped<IPanierRepository<Panier>, PanierManager>();
 builder.Services.AddScoped<IDataRepository<Favoris>, FavorisManager>();
 builder.Services.AddScoped<IDataRepository<Hebergement>, HebergementManager>();
-builder.Services.AddScoped<IDataRepository<Etape>, EtapeManager>();
+builder.Services.AddScoped<IEtapeRepository<Etape>, EtapeManager>();
 builder.Services.AddScoped<IDataRepository<Visite>, VisiteManager>();
 builder.Services.AddScoped<IDataRepository<Avis>, AvisManager>();
 builder.Services.AddScoped<IDataRepository<Partenaire>, PartenaireManager>();
