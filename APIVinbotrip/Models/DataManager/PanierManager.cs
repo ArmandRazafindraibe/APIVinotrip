@@ -79,5 +79,25 @@ namespace APIVinotrip.Models.DataManager
             vinotripDBContext.Paniers.Remove(panier);
              vinotripDBContext.SaveChanges();
         }
+
+        public async Task<ActionResult<IEnumerable<DescriptionPanier>>> GetAllDescriptionPanierDetail(int idPanier)
+        {
+            var descriptions = await vinotripDBContext.Descriptionpaniers
+        .Where(dp => dp.IdPanier == idPanier)
+        .Include(dp => dp.Sejour)
+        .ThenInclude(d => d.Etapes)
+        .ThenInclude(e => e.Constitues.Where(c => c.LActivite != null))
+                    .ThenInclude(c => c.LActivite)
+        .Include(dp => dp.ListeDescriptions) // via Comporte
+            .ThenInclude(c => c.UneActivite)
+        .Include(dp => dp.DetientCollection) // via Detient
+            .ThenInclude(d => d.RepasDetient)
+                .ThenInclude(r => r.RestaurantRepas)
+        .ToListAsync();
+
+ 
+
+            return descriptions;
+        }
     }
 }

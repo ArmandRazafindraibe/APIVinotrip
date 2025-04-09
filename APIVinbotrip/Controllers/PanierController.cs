@@ -77,6 +77,24 @@ namespace APIVinotrip.Controllers
             return panier;
         }
 
+
+        [HttpGet]
+        [Route("[action]/{id}")]
+        [ActionName("GetAllDescriptionPanierDetail")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<DescriptionPanier>>> GetAllDescriptionPanierDetail(int id)
+        {
+            var panier = await dataRepository.GetAllDescriptionPanierDetail(id);
+
+            if (panier == null)
+            {
+                return NotFound();
+            }
+
+            return panier;
+        }
+
         // GET: api/Paniers/5
         [HttpGet]
         [Route("[action]/{title}")]
@@ -94,6 +112,7 @@ namespace APIVinotrip.Controllers
 
             return panier;
         }
+
 
         // PUT: api/Paniers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
