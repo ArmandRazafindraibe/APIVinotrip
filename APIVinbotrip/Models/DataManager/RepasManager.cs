@@ -50,6 +50,7 @@ namespace APIVinotrip.Models.DataManager
         public async Task<ActionResult<IEnumerable<Repas>>> GetAllRepasWithRestaurant()
         {
             var repas = await vinotripDBContext.Repas
+                .Include(r=> r.Inclusions)
                 .Include(r => r.RestaurantRepas)
                     .ThenInclude(r => r.Partenaire)
                 .ToListAsync();
