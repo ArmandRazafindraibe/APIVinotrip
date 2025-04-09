@@ -115,7 +115,6 @@ namespace APIVinotrip.Controllers
 
 
         // PUT: api/Paniers/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -165,7 +164,6 @@ namespace APIVinotrip.Controllers
         }
 
         // POST: api/Paniers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [Route("[action]")]
         [ActionName("PostPanier")]
@@ -182,12 +180,11 @@ namespace APIVinotrip.Controllers
 
             await dataRepository.Add(newpanier);
 
-          
+
             return CreatedAtAction("GetByIdPanier", new { id = newpanier.IdPanier }, newpanier);
         }
 
-        // POST: api/Paniers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/Paniers Detail
         [HttpPost]
         [Route("[action]")]
         [ActionName("PostPanierDetail")]
@@ -205,8 +202,10 @@ namespace APIVinotrip.Controllers
             return CreatedAtAction("GetOneDescriptionPanier", new { id = panier.IdDescriptionPanier }, panier);
         }
 
-        // DELETE: api/Paniers/5
-        [HttpDelete("{id}")]
+        // DELETE: api/Panier/DeletePanier/{id}
+        [HttpDelete]
+        [Route("[action]/{id}")]
+        [ActionName("DeletePanier")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeletePanier(int id)
@@ -219,8 +218,10 @@ namespace APIVinotrip.Controllers
             await dataRepository.Delete(panier.Value);
             return NoContent();
         }
-        [HttpDelete("{id}")]
-        [Route("[action]")]
+
+        // DELETE: api/Panier/DeletePanierItem/{id}
+        [HttpDelete]
+        [Route("[action]/{id}")]
         [ActionName("DeletePanierItem")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -229,8 +230,5 @@ namespace APIVinotrip.Controllers
             await dataRepository.DeletePanierItem(id);
             return NoContent();
         }
-
-
-
     }
 }
