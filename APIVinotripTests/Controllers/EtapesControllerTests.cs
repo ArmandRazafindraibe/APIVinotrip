@@ -12,7 +12,7 @@ namespace APIVinotrip.Tests
     [TestClass]
     public class EtapesControllerTests
     {
-        private Mock<IDataRepository<Etape>> mockRepository;
+        private Mock<IEtapeRepository<Etape>> mockRepository;
         private EtapesController controller;
         private Etape etape;
         private List<Etape> etapes;
@@ -20,7 +20,7 @@ namespace APIVinotrip.Tests
         [TestInitialize]
         public void Setup()
         {
-            mockRepository = new Mock<IDataRepository<Etape>>();
+            mockRepository = new Mock<IEtapeRepository<Etape>>();
             controller = new EtapesController(mockRepository.Object);
             etape = new Etape
             {

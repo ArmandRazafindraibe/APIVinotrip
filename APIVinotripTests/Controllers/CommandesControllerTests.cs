@@ -14,7 +14,7 @@ namespace APIVinotrip.Tests
     [TestClass]
     public class CommandesControllerTests
     {
-        private Mock<IDataRepository<Commande>> mockRepository;
+        private Mock<ICommandeRepository<Commande>> mockRepository;
         private CommandesController controller;
         private Commande commande;
         private List<Commande> commandes;
@@ -22,7 +22,7 @@ namespace APIVinotrip.Tests
         [TestInitialize]
         public void Setup()
         {
-            mockRepository = new Mock<IDataRepository<Commande>>();
+            mockRepository = new Mock<ICommandeRepository<Commande>>();
             controller = new CommandesController(mockRepository.Object);
 
             commande = new Commande
