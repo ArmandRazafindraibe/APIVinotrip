@@ -162,6 +162,33 @@ namespace APIVinotrip.Controllers
                 return NoContent();
             }
         }
+        [HttpPut]
+        [Route("[action]")]
+        [ActionName("UpdatePanierItemQuantity")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdatePanierItemQuantity(int idDescriptionPanier, int quantite)
+        {
+            // Validation de base
+            if (quantite < 1)
+            {
+                return BadRequest("La quantité doit être supérieure à 0");
+            }
+             // Récupérer la description du panier
+                var descriptionPanier = await dataRepository.GetOneDescriptionPanierById(idDescriptionPanier);
+
+                if (descriptionPanier == null)
+                {
+                    return NotFound();
+                }
+
+                var updatedDescriptionPanier = descriptionPanier.Value;
+                updatedDescriptionPanier.Quantite = quantite;
+                await dataRepository.UpdateDetailPanier(descriptionPanier.Value, updatedDescriptionPanier);
+                return NoContent();
+            }
+        
 
         // POST: api/Paniers
         [HttpPost]

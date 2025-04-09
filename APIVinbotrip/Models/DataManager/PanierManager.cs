@@ -73,6 +73,17 @@ namespace APIVinotrip.Models.DataManager
             desc.DisponibiliteHebergement = entity.DisponibiliteHebergement;
             vinotripDBContext.SaveChanges();
         }
+        public async Task UpdatePanierItemQuantity(int idDescriptionPanier, int quantite)
+        {
+            var descriptionPanier = await vinotripDBContext.Descriptionpaniers
+                .FirstOrDefaultAsync(d => d.IdDescriptionPanier == idDescriptionPanier);
+
+            if (descriptionPanier != null)
+            {
+                descriptionPanier.Quantite = quantite;
+                await vinotripDBContext.SaveChangesAsync();
+            }
+        }
 
         public async Task Delete(Panier panier)
         {
