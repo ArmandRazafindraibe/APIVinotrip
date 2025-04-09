@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIVinotrip.Models.DataManager
 {
-    public class RepasManager : IDataRepository<Repas>
+    public class RepasManager : IRepasRepository<Repas>
     {
         readonly DBVinotripContext? vinotripDBContext;
         public RepasManager() { }
@@ -45,6 +45,16 @@ namespace APIVinotrip.Models.DataManager
         {
             vinotripDBContext.Repas.Remove(repas);
             vinotripDBContext.SaveChanges();
+        }
+
+        public async Task<ActionResult<IEnumerable<Repas>>> GetAllRepasWithRestaurant()
+        {
+            var repas = await vinotripDBContext.Repas
+                .Include(r => r.RestaurantRepas)
+                    .ThenInclude(r => r.Partenaire)
+                .ToListAsync();
+
+            return repas;
         }
     }
 }

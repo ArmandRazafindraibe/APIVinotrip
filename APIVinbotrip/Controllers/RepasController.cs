@@ -10,10 +10,10 @@ namespace APIVinotrip.Controllers
     [ApiController]
     public class RepasController : ControllerBase
     {
-        private readonly IDataRepository<Repas> dataRepository;
+        private readonly IRepasRepository<Repas> dataRepository;
 
 
-        public RepasController(IDataRepository<Repas> dataRepos)
+        public RepasController(IRepasRepository<Repas> dataRepos)
         {
             dataRepository = dataRepos;
         }
@@ -59,6 +59,16 @@ namespace APIVinotrip.Controllers
             }
 
             return repas;
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        [ActionName("GetAllRepasWithRestaurant")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<Repas>>> GetRestaurent()
+        {
+            return await dataRepository.GetAllRepasWithRestaurant();
         }
 
         // PUT: api/RouteDesVins/5
