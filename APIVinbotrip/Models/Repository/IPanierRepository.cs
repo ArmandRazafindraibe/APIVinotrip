@@ -10,5 +10,6 @@ namespace APIVinotrip.Models.Repository
         Task<ActionResult<IEnumerable<DescriptionPanier>>> GetDescriptionsPanierById(int id);
         Task<ActionResult<DescriptionPanier>> GetOneDescriptionPanierById(int id);
         Task<ActionResult<IEnumerable<DescriptionPanier>>> GetAllDescriptionPanierDetail(int idPanier);
+        Task DeletePanierItem(int idDescriptionPanier);
     }
 }

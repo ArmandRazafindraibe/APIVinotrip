@@ -219,6 +219,17 @@ namespace APIVinotrip.Controllers
             await dataRepository.Delete(panier.Value);
             return NoContent();
         }
+        [HttpDelete("{id}")]
+        [Route("[action]")]
+        [ActionName("DeletePanierItem")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeletePanierItem(int id)
+        {
+            await dataRepository.DeletePanierItem(id);
+            return NoContent();
+        }
+
 
 
     }

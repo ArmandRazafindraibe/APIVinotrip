@@ -79,6 +79,17 @@ namespace APIVinotrip.Models.DataManager
             vinotripDBContext.Paniers.Remove(panier);
              vinotripDBContext.SaveChanges();
         }
+        public async Task DeletePanierItem(int idDescriptionPanier)
+        {
+            var descriptionPanier = vinotripDBContext.Descriptionpaniers
+                .First(d => d.IdDescriptionPanier == idDescriptionPanier);
+
+            if (descriptionPanier != null)
+            {
+                vinotripDBContext.Descriptionpaniers.Remove(descriptionPanier);
+                await vinotripDBContext.SaveChangesAsync();
+            }
+        }
 
         public async Task<ActionResult<IEnumerable<DescriptionPanier>>> GetAllDescriptionPanierDetail(int idPanier)
         {
