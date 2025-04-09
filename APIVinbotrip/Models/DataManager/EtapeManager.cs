@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIVinotrip.Models.DataManager
 {
-    public class EtapeManager : IDataRepository<Etape>
+    public class EtapeManager : IEtapeRepository<Etape>
     {
         readonly DBVinotripContext? vinotripDBContext;
         public EtapeManager() { }
@@ -47,6 +47,17 @@ namespace APIVinotrip.Models.DataManager
         {
             vinotripDBContext.Etapes.Remove(etape);
             vinotripDBContext.SaveChanges();
+        }
+
+        public async Task<ActionResult<IEnumerable<Etape>>> GetAllEtapeWithActivite()
+        {
+            var etapes = await vinotripDBContext.Etapes
+                .AsNoTracking()
+                .Include(e => e.Constitues.Where(c => c.LActivite != null))
+                    .ThenInclude(c => c.LActivite)
+                .ToListAsync();
+
+            return etapes;
         }
     }
 }

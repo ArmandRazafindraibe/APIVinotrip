@@ -184,7 +184,8 @@ namespace APIVinotrip.Controllers
             await dataRepository.AddPanierDetail(panier);
 
             // Correction ici - utiliser le nom d'action spécifié dans l'attribut ActionName
-            return CreatedAtAction("GetOneDescriptionPanier", new { id = panier.IdPanier }, panier);
+            // Utiliser IdDescriptionPanier au lieu de IdPanier
+            return CreatedAtAction("GetOneDescriptionPanier", new { id = panier.IdDescriptionPanier }, panier);
         }
 
         // DELETE: api/Paniers/5
