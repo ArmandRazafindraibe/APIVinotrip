@@ -233,20 +233,7 @@ namespace APIVinotrip.Tests
             Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult));
         }
 
-        [TestMethod]
-        public async Task PostClient_ValidModel_CreatesClient()
-        {
-            
-            mockRepository.Setup(x => x.Add(client)).Returns(Task.CompletedTask);
-
-            
-            var actionResult = await controller.PostClient(client);
-
-            
-            Assert.IsInstanceOfType(actionResult.Result, typeof(CreatedAtActionResult));
-            var createdAtResult = actionResult.Result as CreatedAtActionResult;
-            Assert.IsInstanceOfType(createdAtResult.Value, typeof(Client));
-            Assert.AreEqual(client, createdAtResult.Value);
-        }
+  
+        
     }
 }

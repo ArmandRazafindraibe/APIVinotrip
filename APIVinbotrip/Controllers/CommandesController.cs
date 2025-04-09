@@ -10,10 +10,10 @@ namespace APIVinotrip.Controllers
     [ApiController]
     public class CommandesController : ControllerBase
     {
-        private readonly IDataRepository<Commande> dataRepository;
+        private readonly ICommandeRepository<Commande> dataRepository;
          
 
-        public CommandesController(IDataRepository<Commande> dataRepos)
+        public CommandesController(ICommandeRepository<Commande> dataRepos)
         {
             dataRepository = dataRepos;
         }
@@ -25,7 +25,22 @@ namespace APIVinotrip.Controllers
             return await dataRepository.GetAll();
         }
 
-        // GET: api/Commandes/5
+        [HttpGet]
+        [Route("[action]")]
+        [ActionName("GetCommandesByIdClient")]
+        public async Task<ActionResult<IEnumerable<Commande>>> GetCommandesByIdClient(int id)
+        {
+            return await dataRepository.GetAllCommandesByIdClient(id);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        [ActionName("GetCommandesByIdPanier")]
+        public async Task<ActionResult<Commande>> GetCommandeByIdPanier(int id)
+        {
+            return await dataRepository.GetCommandeByIdPanier(id);
+        }
+        // GET: api/Commandes/GetById/5
         [HttpGet]
         [Route("[action]/{id}")]
         [ActionName("GetById")]
@@ -74,14 +89,39 @@ namespace APIVinotrip.Controllers
                 return BadRequest();
             }
 
-            var userToUpdate = await dataRepository.GetById(id);
-            if (userToUpdate == null)
+            var entityToUpdate = await dataRepository.GetById(id);
+            if (entityToUpdate == null)
             {
                 return NotFound();
             }
             else
             {
-                await dataRepository.Update(userToUpdate.Value, commande);
+                await dataRepository.Update(entityToUpdate.Value, commande);
+                return NoContent();
+            }
+        }
+
+        [HttpPut()]
+        [Route("[action]/{id}")]
+        [ActionName("UpdateDescriptionCommande")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> PutDetailCommande(int id, DescriptionCommande desccommande)
+        {
+            if (id != desccommande.IdCommande)
+            {
+                return BadRequest();
+            }
+
+            var entityToUpdate = await dataRepository.GetDescriptionCommandeByIdDescription(id);
+            if (entityToUpdate == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                await dataRepository.UpdateDescriptionCommande(entityToUpdate.Value, desccommande);
                 return NoContent();
             }
         }
@@ -101,6 +141,24 @@ namespace APIVinotrip.Controllers
             await dataRepository.Add(commande);
 
             return CreatedAtAction("GetById", new { id = commande.IdCommande }, commande); // GetById : nom de l’action
+        }
+
+
+        [HttpPost]
+        [Route("[action]")]
+        [ActionName("PostDescriptionCommande")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<DescriptionCommande>> PostDescriptionCommande(DescriptionCommande desccommande)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await dataRepository.AddDescriptionCommande(desccommande);
+
+            return CreatedAtAction("GetById", new { id = desccommande.IdCommande }, desccommande); // GetById : nom de l’action
         }
 
         // DELETE: api/Commandes/5

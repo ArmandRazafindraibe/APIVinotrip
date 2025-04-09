@@ -163,7 +163,7 @@ namespace APIVinotrip.Controllers
 
             await dataRepository.Add(newpanier);
 
-            // Correction ici - utiliser le nom d'action spécifié dans l'attribut ActionName
+          
             return CreatedAtAction("GetByIdPanier", new { id = newpanier.IdPanier }, newpanier);
         }
 
@@ -183,8 +183,6 @@ namespace APIVinotrip.Controllers
 
             await dataRepository.AddPanierDetail(panier);
 
-            // Correction ici - utiliser le nom d'action spécifié dans l'attribut ActionName
-            // Utiliser IdDescriptionPanier au lieu de IdPanier
             return CreatedAtAction("GetOneDescriptionPanier", new { id = panier.IdDescriptionPanier }, panier);
         }
 
@@ -203,9 +201,6 @@ namespace APIVinotrip.Controllers
             return NoContent();
         }
 
-        //private bool PanierExists(int id)
-        //{
-        //    return _context.Paniers.Any(e => e.Idpanier == id);
-        //}
+
     }
 }

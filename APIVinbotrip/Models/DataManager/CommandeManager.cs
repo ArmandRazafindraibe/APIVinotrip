@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIVinotrip.Models.DataManager
 {
-    public class CommandeManager : IDataRepository<Commande>
+    public class CommandeManager : ICommandeRepository<Commande>
     {
         readonly DBVinotripContext? vinotripDBContext;
         public CommandeManager() { }
@@ -21,6 +21,22 @@ namespace APIVinotrip.Models.DataManager
         {
             return  vinotripDBContext.Commandes.FirstOrDefault(u => u.IdCommande == id);
         }
+
+        public async Task<ActionResult<IEnumerable<Commande>>> GetAllCommandesByIdClient(int id)
+        {
+            return vinotripDBContext.Commandes.Where(u => u.IdClientAcheteur == id).ToList();
+        }
+
+        public async Task<ActionResult<Commande>> GetCommandeByIdPanier(int id)
+        {
+            return vinotripDBContext.Commandes.FirstOrDefault(u => u.IdPanier == id);
+        }
+        public async Task<ActionResult<DescriptionCommande>> GetDescriptionCommandeByIdDescription(int id)
+        {
+            return vinotripDBContext.Descriptioncommandes.FirstOrDefault(u => u.IdCommande == id);
+        }
+
+
         public  async Task<ActionResult<Commande>> GetByString(string etat)
         {
             return  vinotripDBContext.Commandes.FirstOrDefault(u=>u.EtatCommande.ToLower() == etat.ToLower());
@@ -30,12 +46,19 @@ namespace APIVinotrip.Models.DataManager
              vinotripDBContext.Commandes.Add(entity);
              vinotripDBContext.SaveChanges();
         }
+
+        public async Task AddDescriptionCommande(DescriptionCommande entity)
+        {
+            vinotripDBContext.Descriptioncommandes.Add(entity);
+            vinotripDBContext.SaveChanges();
+        }
+
         public async  Task Update(Commande commande, Commande entity)
         {
             vinotripDBContext.Entry(commande).State = EntityState.Modified;
             commande.IdCommande = commande.IdCommande;
             commande.IdCodePromo = commande.IdCodePromo;
-            commande.IdCB = commande.IdCB;
+            commande.IdCB = entity.IdCB;
             commande.IdAdresseFacturation = entity.IdAdresseFacturation;
             commande.IdClientAcheteur = commande.IdClientAcheteur;
             commande.IdClientBeneficiaire = entity.IdClientBeneficiaire;
@@ -56,6 +79,29 @@ namespace APIVinotrip.Models.DataManager
             commande.DescriptionsCommande = entity.DescriptionsCommande;
 
              vinotripDBContext.SaveChanges();
+        }
+
+        public async Task UpdateDescriptionCommande(DescriptionCommande desccommande, DescriptionCommande entity)
+        {
+            vinotripDBContext.Entry(desccommande).State = EntityState.Modified;
+            desccommande.IdCommande = desccommande.IdCommande;
+            desccommande.IdHebergement = entity.IdHebergement;
+            desccommande.IdCB = entity.IdCB;
+            desccommande.ECoffret= entity.ECoffret;
+            desccommande.DateDebut = entity.DateDebut;
+            desccommande.DateFin= entity.DateFin;
+            desccommande.IdSejour = entity.IdSejour;
+            desccommande.NbChambresDouble = entity.NbChambresDouble;
+            desccommande.NbChambresSimple = entity.NbChambresSimple;
+            desccommande.NbChambresTriple = entity.NbChambresTriple;
+            desccommande.NbAdultes= entity.NbAdultes;
+            desccommande.NbEnfants= entity.NbEnfants;
+            desccommande.Offrir= entity.Offrir;
+            desccommande.Quantite= entity.Quantite;
+            desccommande.ValidationClient = entity.ValidationClient;
+           
+
+            vinotripDBContext.SaveChanges();
         }
         public async  Task Delete(Commande commande)
         {

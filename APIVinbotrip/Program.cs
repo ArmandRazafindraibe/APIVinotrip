@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Ajout dependances controllers
 builder.Services.AddScoped<IDataRepository<Client>, ClientManager>();
-builder.Services.AddScoped<IDataRepository<Commande>, CommandeManager>();
+builder.Services.AddScoped<ICommandeRepository<Commande>, CommandeManager>();
 builder.Services.AddScoped<ISejourRepository<Sejour>, SejourManager>();
 builder.Services.AddScoped<IDataRepository<Adresse>, AdresseManager>();
 builder.Services.AddScoped<IDataRepository<Activite>, ActiviteManager>();
