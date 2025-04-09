@@ -67,10 +67,10 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public void GetUserData_ReturnsUserResponse()
         {
-            // Act
+            
             var result = controller.GetUserData();
 
-            // Assert
+            
             var okResult = result as OkObjectResult;
             Assert.IsNotNull(okResult);
             Assert.AreEqual("This is a response from user method", okResult.Value);
@@ -79,10 +79,10 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public void GetAdminData_ReturnsAdminResponse()
         {
-            // Act
+            
             var result = controller.GetAdminData();
 
-            // Assert
+            
             var okResult = result as OkObjectResult;
             Assert.IsNotNull(okResult);
             Assert.AreEqual("This is a response from Admin method", okResult.Value);
@@ -91,13 +91,13 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetClients_ReturnsListOfClients()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetAll()).ReturnsAsync(clients);
 
-            // Act
+            
             var actionResult = await controller.GetClients();
 
-            // Assert
+            
             Assert.IsNotNull(actionResult.Value);
             Assert.AreEqual(2, actionResult.Value.Count());
         }
@@ -105,13 +105,13 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetClientById_ExistingId_ReturnsClient()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetById(1)).ReturnsAsync(client);
 
-            // Act
+            
             var actionResult = await controller.GetClientById(1);
 
-            // Assert
+            
             Assert.IsNotNull(actionResult.Value);
             Assert.AreEqual(client, actionResult.Value);
         }
@@ -119,26 +119,26 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetClientById_UnknownId_ReturnsNotFound()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetById(999));
 
-            // Act
+            
             var actionResult = await controller.GetClientById(999);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult));
         }
 
         [TestMethod]
         public async Task GetClientByEmail_ExistingEmail_ReturnsClient()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetByString("test@example.com")).ReturnsAsync(client);
 
-            // Act
+            
             var actionResult = await controller.GetClientByEmail("test@example.com");
 
-            // Assert
+            
             Assert.IsNotNull(actionResult.Value);
             Assert.AreEqual(client, actionResult.Value);
         }
@@ -146,20 +146,20 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetClientByEmail_UnknownEmail_ReturnsNotFound()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetByString("unknown@example.com"));
 
-            // Act
+            
             var actionResult = await controller.GetClientByEmail("unknown@example.com");
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult));
         }
 
         [TestMethod]
         public async Task PutClient_ValidUpdate_ReturnsNoContent()
         {
-            // Arrange
+            
             var updatedClient = new Client
             {
                 IdClient = 1,
@@ -180,17 +180,17 @@ namespace APIVinotrip.Tests
             mockRepository.Setup(x => x.GetById(1)).ReturnsAsync(client);
             mockRepository.Setup(x => x.Update(client, updatedClient)).Returns(Task.CompletedTask);
 
-            // Act
+            
             var actionResult = await controller.PutClient(1, updatedClient);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult, typeof(NoContentResult));
         }
 
         [TestMethod]
         public async Task PutClient_IdMismatch_ReturnsBadRequest()
         {
-            // Arrange
+            
             var updatedClient = new Client
             {
                 IdClient = 1,
@@ -199,50 +199,50 @@ namespace APIVinotrip.Tests
                 NomClient = "DoeUpdated"
             };
 
-            // Act
+            
             var actionResult = await controller.PutClient(999, updatedClient);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult));
         }
 
         [TestMethod]
         public async Task DeleteClient_ExistingId_ReturnsNoContent()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetById(1)).ReturnsAsync(client);
             mockRepository.Setup(x => x.Delete(client)).Returns(Task.CompletedTask);
 
-            // Act
+            
             var actionResult = await controller.DeleteClient(1);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult, typeof(NoContentResult));
         }
 
         [TestMethod]
         public async Task DeleteClient_UnknownId_ReturnsNotFound()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetById(999));
 
-            // Act
+            
             var actionResult = await controller.DeleteClient(999);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult));
         }
 
         [TestMethod]
         public async Task PostClient_ValidModel_CreatesClient()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.Add(client)).Returns(Task.CompletedTask);
 
-            // Act
+            
             var actionResult = await controller.PostClient(client);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult.Result, typeof(CreatedAtActionResult));
             var createdAtResult = actionResult.Result as CreatedAtActionResult;
             Assert.IsInstanceOfType(createdAtResult.Value, typeof(Client));

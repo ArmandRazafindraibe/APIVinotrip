@@ -65,13 +65,13 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetCommandes_ReturnsListOfCommandes()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetAll()).ReturnsAsync(commandes);
 
-            // Act
+            
             var actionResult = await controller.GetCommandes();
 
-            // Assert
+            
             Assert.IsNotNull(actionResult.Value);
             Assert.AreEqual(2, actionResult.Value.Count());
         }
@@ -79,13 +79,13 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetCommandes_EmptyList_ReturnsEmpty()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetAll()).ReturnsAsync(new List<Commande>());
 
-            // Act
+            
             var actionResult = await controller.GetCommandes();
 
-            // Assert
+            
             Assert.IsNotNull(actionResult.Value);
             Assert.AreEqual(0, actionResult.Value.Count());
         }
@@ -93,13 +93,13 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetCommandeById_ExistingId_ReturnsCommande()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetById(1)).ReturnsAsync(commande);
 
-            // Act
+            
             var actionResult = await controller.GetCommandeById(1);
 
-            // Assert
+            
             Assert.IsNotNull(actionResult.Value);
             Assert.AreEqual(commande, actionResult.Value);
         }
@@ -107,26 +107,26 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetCommandeById_UnknownId_ReturnsNotFound()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetById(999));
 
-            // Act
+            
             var actionResult = await controller.GetCommandeById(999);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult));
         }
 
         [TestMethod]
         public async Task GetCommandeByTitle_ExistingState_ReturnsCommande()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetByString("Pending")).ReturnsAsync(commande);
 
-            // Act
+            
             var actionResult = await controller.GetCommandeByState("Pending");
 
-            // Assert
+            
             Assert.IsNotNull(actionResult.Value);
             Assert.AreEqual(commande, actionResult.Value);
         }
@@ -134,26 +134,26 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetCommandeByTitle_UnknownState_ReturnsNotFound()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetByString("Unknown"));
 
-            // Act
+            
             var actionResult = await controller.GetCommandeByState("Unknown");
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult));
         }
 
         [TestMethod]
         public async Task PostCommande_ValidModel_CreatesCommande()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.Add(commande)).Returns(Task.CompletedTask);
 
-            // Act
+            
             var actionResult = await controller.PostCommande(commande);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult.Result, typeof(CreatedAtActionResult));
             var createdAtResult = actionResult.Result as CreatedAtActionResult;
             Assert.IsInstanceOfType(createdAtResult.Value, typeof(Commande));
@@ -163,7 +163,7 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task PutCommande_ValidUpdate_ReturnsNoContent()
         {
-            // Arrange
+            
             var updatedCommande = new Commande
             {
                 IdCommande = 1,
@@ -183,54 +183,54 @@ namespace APIVinotrip.Tests
             mockRepository.Setup(x => x.GetById(1)).ReturnsAsync(commande);
             mockRepository.Setup(x => x.Update(commande, updatedCommande)).Returns(Task.CompletedTask);
 
-            // Act
+            
             var actionResult = await controller.PutCommande(1, updatedCommande);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult, typeof(NoContentResult));
         }
 
         [TestMethod]
         public async Task PutCommande_IdMismatch_ReturnsBadRequest()
         {
-            // Arrange
+            
             var updatedCommande = new Commande
             {
                 IdCommande = 1,
                 EtatCommande = "Shipped"
             };
 
-            // Act
+            
             var actionResult = await controller.PutCommande(999, updatedCommande);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult));
         }
 
         [TestMethod]
         public async Task DeleteCommande_ExistingId_ReturnsNoContent()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetById(1)).ReturnsAsync(commande);
             mockRepository.Setup(x => x.Delete(commande)).Returns(Task.CompletedTask);
 
-            // Act
+            
             var actionResult = await controller.DeleteCommande(1);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult, typeof(NoContentResult));
         }
 
         [TestMethod]
         public async Task DeleteCommande_UnknownId_ReturnsNotFound()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetById(999));
 
-            // Act
+            
             var actionResult = await controller.DeleteCommande(999);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult));
         }
     }

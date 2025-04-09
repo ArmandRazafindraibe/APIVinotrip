@@ -117,7 +117,7 @@ namespace APIVinotrip.Controllers
         {
             // Vérification si l'email existe déjà
             var existingClient = await dataRepository.GetAll();
-            if (existingClient.Value.Any(c => c.EmailClient.ToUpper() == client.EmailClient.ToUpper()))
+            if (existingClient.Value.Any(c => c.EmailClient?.ToUpper() == client.EmailClient?.ToUpper()))
             {
                 return Conflict(new { message = "Cet email est déjà utilisé." });
             }
@@ -126,14 +126,13 @@ namespace APIVinotrip.Controllers
             client.IdRole = 1; // Rôle Client
 
             // Hacher le mot de passe avant de l'enregistrer
-            string originalPassword = client.MdpClient; // Conserver le mot de passe original
+            string originalPassword = client.MdpClient; 
             client.MdpClient = PasswordHasher.HashPassword(client.MdpClient);
 
             // Ne pas assigner le résultat à une variable
             await dataRepository.Add(client);
 
-            // Vous devrez probablement récupérer l'ID du client d'une autre manière
-            // Par exemple, si l'ID est généré par la base de données, il sera mis à jour dans l'objet client
+            
             return CreatedAtAction(nameof(GetClientById), new { id = client.IdClient }, client);
         }
 

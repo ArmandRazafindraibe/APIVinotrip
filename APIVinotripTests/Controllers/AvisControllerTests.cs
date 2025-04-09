@@ -58,13 +58,13 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetAvis_ReturnsListOfAvis()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetAll()).ReturnsAsync(avisList);
 
-            // Act
+            
             var actionResult = await controller.GetAvis();
 
-            // Assert
+            
             Assert.IsNotNull(actionResult.Value);
             Assert.AreEqual(2, actionResult.Value.Count());
         }
@@ -72,13 +72,13 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetAvis_EmptyList_ReturnsEmpty()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetAll()).ReturnsAsync(new List<Avis>());
 
-            // Act
+            
             var actionResult = await controller.GetAvis();
 
-            // Assert
+            
             Assert.IsNotNull(actionResult.Value);
             Assert.AreEqual(0, actionResult.Value.Count());
         }
@@ -86,13 +86,13 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetAvisById_ExistingId_ReturnsAvis()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetById(1)).ReturnsAsync(avis);
 
-            // Act
+            
             var actionResult = await controller.GetAvisById(1);
 
-            // Assert
+            
             Assert.IsNotNull(actionResult.Value);
             Assert.AreEqual(avis, actionResult.Value);
         }
@@ -100,27 +100,27 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetAvisById_UnknownId_ReturnsNotFound()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetById(999));
 
-            // Act
+            
             var actionResult = await controller.GetAvisById(999);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult));
         }
 
         [TestMethod]
         public async Task GetAvisByTitle_ExistingTitle_ReturnsAvis()
         {
-            // Arrange
+            
             
             mockRepository.Setup(x => x.GetByString("Great Stay")).ReturnsAsync(avis);
 
-            // Act
+            
             var actionResult = await controller.GetAvisByTitle("Great Stay");
 
-            // Assert
+            
             Assert.IsNotNull(actionResult.Value);
             Assert.AreEqual(avis, actionResult.Value);
         }
@@ -128,26 +128,26 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task GetAvisByTitle_UnknownTitle_ReturnsNotFound()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetByString("Nonexistent"));
 
-            // Act
+            
             var actionResult = await controller.GetAvisByTitle("Nonexistent");
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult));
         }
 
         [TestMethod]
         public async Task PostAvis_ValidModel_CreatesAvis()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.Add(avis)).Returns(Task.CompletedTask);
 
-            // Act
+            
             var actionResult = await controller.PostAvis(avis);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult.Result, typeof(CreatedAtActionResult));
             var createdAtResult = actionResult.Result as CreatedAtActionResult;
             Assert.IsNotNull(createdAtResult);
@@ -158,7 +158,7 @@ namespace APIVinotrip.Tests
         [TestMethod]
         public async Task PutAvis_ValidUpdate_ReturnsNoContent()
         {
-            // Arrange
+            
             var updatedAvis = new Avis
             {
                 IdAvis = 1,
@@ -174,17 +174,17 @@ namespace APIVinotrip.Tests
             mockRepository.Setup(x => x.GetById(1)).ReturnsAsync(avis);
             mockRepository.Setup(x => x.Update(avis, updatedAvis)).Returns(Task.CompletedTask);
 
-            // Act
+            
             var actionResult = await controller.PutAvis(1, updatedAvis);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult, typeof(NoContentResult));
         }
 
         [TestMethod]
         public async Task PutAvis_IdMismatch_ReturnsBadRequest()
         {
-            // Arrange
+            
             var updatedAvis = new Avis
             {
                 IdAvis = 1,
@@ -197,37 +197,37 @@ namespace APIVinotrip.Tests
                 IdClient = 100
             };
 
-            // Act
+            
             var actionResult = await controller.PutAvis(999, updatedAvis);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult));
         }
 
         [TestMethod]
         public async Task DeleteAvis_ExistingId_ReturnsNoContent()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetById(1)).ReturnsAsync(avis);
             mockRepository.Setup(x => x.Delete(avis)).Returns(Task.CompletedTask);
 
-            // Act
+            
             var actionResult = await controller.DeleteAvis(1);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult, typeof(NoContentResult));
         }
 
         [TestMethod]
         public async Task DeleteAvis_UnknownId_ReturnsNotFound()
         {
-            // Arrange
+            
             mockRepository.Setup(x => x.GetById(999));
 
-            // Act
+            
             var actionResult = await controller.DeleteAvis(999);
 
-            // Assert
+            
             Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult));
         }
     }
