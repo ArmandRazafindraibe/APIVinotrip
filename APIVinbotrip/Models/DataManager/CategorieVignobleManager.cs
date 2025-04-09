@@ -33,7 +33,7 @@ namespace APIVinotrip.Models.DataManager
         public async Task Update(CategorieVignoble categorieVignoble, CategorieVignoble entity)
         {
             vinotripDBContext.Entry(categorieVignoble).State = EntityState.Modified;
-            categorieVignoble.IdCategorieVignoble = entity.IdCategorieVignoble;
+            categorieVignoble.IdCategorieVignoble = categorieVignoble.IdCategorieVignoble;
             categorieVignoble.LibelleCategorieVignoble = entity.LibelleCategorieVignoble;
             vinotripDBContext.SaveChanges();
         }

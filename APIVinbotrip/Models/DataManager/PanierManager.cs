@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIVinotrip.Models.DataManager
 {
-    public class PanierManager:IDataRepository<Panier>
+    public class PanierManager:IPanierRepository<Panier>
     {
         readonly DBVinotripContext? vinotripDBContext;
         public PanierManager() { }
@@ -21,6 +21,11 @@ namespace APIVinotrip.Models.DataManager
         {
             return  vinotripDBContext.Paniers.FirstOrDefault(u => u.IdPanier == id);
         }
+
+        public async Task<ActionResult<DescriptionPanier>> GetDescriptionPanierById(int id)
+        {
+            return vinotripDBContext.Descriptionpaniers.FirstOrDefault(u => u.IdPanier == id);
+        }
         public  async Task<ActionResult<Panier>> GetByString(string vide)
         {
             return null;
@@ -28,17 +33,44 @@ namespace APIVinotrip.Models.DataManager
         public  async Task Add(Panier entity)
         {
              vinotripDBContext.Paniers.Add(entity);
+             
              vinotripDBContext.SaveChanges();
+        }
+        public async Task AddPanierDetail( DescriptionPanier desc)
+        {
+            vinotripDBContext.Descriptionpaniers.Add(desc);
+            vinotripDBContext.SaveChanges();
         }
         public  async Task Update(Panier panier, Panier entity)
         {
             vinotripDBContext.Entry(panier).State = EntityState.Modified;
-            panier.IdPanier = entity.IdPanier;
+            panier.IdPanier = panier.IdPanier;
             panier.DateAjoutPanier = entity.DateAjoutPanier;
             panier.IdCodePromo= entity.IdCodePromo;
              vinotripDBContext.SaveChanges();
         }
-        public  async Task Delete(Panier panier)
+
+        
+        public async Task UpdateDetailPanier(DescriptionPanier desc, DescriptionPanier entity)
+        {
+            vinotripDBContext.Entry(desc).State = EntityState.Modified;
+            desc.IdPanier = desc.IdPanier;
+            desc.IdDescriptionPanier = desc.IdDescriptionPanier;
+            desc.IdHebergement = entity.IdHebergement;
+            desc.DateDebut = entity.DateDebut;
+            desc.DateFin = entity.DateFin;
+            desc.Offrir = entity.Offrir;
+            desc.ECoffret = entity.ECoffret;
+            desc.NbAdultes = entity.NbAdultes;
+            desc.NbChambresDouble = entity.NbChambresDouble;
+            desc.NbChambresSimple = entity.NbChambresSimple;
+            desc.NbChambresTriple = entity.NbChambresTriple;
+            desc.NbEnfants = entity.NbEnfants;
+            desc.DisponibiliteHebergement = entity.DisponibiliteHebergement;
+            vinotripDBContext.SaveChanges();
+        }
+
+        public async Task Delete(Panier panier)
         {
             vinotripDBContext.Paniers.Remove(panier);
              vinotripDBContext.SaveChanges();

@@ -26,7 +26,7 @@ builder.Services.AddScoped<IDataRepository<Theme>, ThemeManager>();
 builder.Services.AddScoped<IDataRepository<Duree>, DureeManager>();
 builder.Services.AddScoped<IDataRepository<CategorieSejour>, CategorieSejourManager>();
 builder.Services.AddScoped<IDataRepository<Localite>, LocaliteManager>();
-builder.Services.AddScoped<IDataRepository<Panier>, PanierManager>();
+builder.Services.AddScoped<IPanierRepository<Panier>, PanierManager>();
 builder.Services.AddScoped<IDataRepository<Favoris>, FavorisManager>();
 builder.Services.AddScoped<IDataRepository<Hebergement>, HebergementManager>();
 builder.Services.AddScoped<IDataRepository<Etape>, EtapeManager>();

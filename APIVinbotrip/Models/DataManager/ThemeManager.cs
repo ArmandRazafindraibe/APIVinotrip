@@ -33,7 +33,7 @@ namespace APIVinotrip.Models.DataManager
         public async Task Update(Theme theme, Theme entity)
         {
             vinotripDBContext.Entry(theme).State = EntityState.Modified;
-            theme.IdTheme = entity.IdTheme;
+            theme.IdTheme = theme.IdTheme;
             theme.LibelleTheme = entity.LibelleTheme;
              vinotripDBContext.SaveChanges();
         }

@@ -10,9 +10,9 @@ namespace APIVinotrip.Controllers
     [ApiController]
     public class PanierController : ControllerBase
     {
-        private readonly IDataRepository<Panier> dataRepository;
+        private readonly IPanierRepository<Panier> dataRepository;
 
-        public PanierController(IDataRepository<Panier> dataRepos)
+        public PanierController(IPanierRepository<Panier> dataRepos)
         {
              dataRepository = dataRepos;
         }
@@ -27,7 +27,7 @@ namespace APIVinotrip.Controllers
         // GET: api/Paniers/5
         [HttpGet]
         [Route("[action]/{id}")]
-        [ActionName("GetById")]
+        [ActionName("GetByIdPanier")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Panier>> GetPanierById(int id)
@@ -85,19 +85,63 @@ namespace APIVinotrip.Controllers
             }
         }
 
-            // POST: api/Paniers
-            // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut]
+        [Route("[action]/{id}")]
+        [ActionName("PutPanierDetail")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> PutPanierDetail(int id, DescriptionPanier panier)
+        {
+            if (id != panier.IdPanier)
+            {
+                return BadRequest();
+            }
+
+            var userToUpdate = await dataRepository.GetDescriptionPanierById(id);
+            if (userToUpdate == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                await dataRepository.UpdateDetailPanier(userToUpdate.Value, panier);
+                return NoContent();
+            }
+        }
+
+        // POST: api/Paniers
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
             [HttpPost]
+            [Route("[action]")]
+            [ActionName("PostPanier")]
             [ProducesResponseType(StatusCodes.Status201Created)]
             [ProducesResponseType(StatusCodes.Status400BadRequest)]
             public async Task<ActionResult<Panier>> PostPanier(Panier panier)
             {
+                Panier newpanier=new Panier();
+                newpanier.DateAjoutPanier=panier.DateAjoutPanier;
+
+                await dataRepository.Add(newpanier);
+
+                return CreatedAtAction("GetById", new { id = newpanier.IdPanier }, newpanier);
+            }
+
+        // POST: api/Paniers
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        [Route("[action]")]
+        [ActionName("PostPanierDetail")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Panier>> PostPanierDetail(DescriptionPanier panier)
+        {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            await dataRepository.Add(panier);
+            await dataRepository.AddPanierDetail(panier);
 
             return CreatedAtAction("GetById", new { id = panier.IdPanier }, panier); // GetById : nom de l’action
         }

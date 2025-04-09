@@ -33,14 +33,14 @@ namespace APIVinotrip.Models.DataManager
         public async  Task Update(Commande commande, Commande entity)
         {
             vinotripDBContext.Entry(commande).State = EntityState.Modified;
-            commande.IdCommande = entity.IdCommande;
-            commande.IdCodePromo = entity.IdCodePromo;
-            commande.IdCB = entity.IdCB;
+            commande.IdCommande = commande.IdCommande;
+            commande.IdCodePromo = commande.IdCodePromo;
+            commande.IdCB = commande.IdCB;
             commande.IdAdresseFacturation = entity.IdAdresseFacturation;
-            commande.IdClientAcheteur = entity.IdClientAcheteur;
+            commande.IdClientAcheteur = commande.IdClientAcheteur;
             commande.IdClientBeneficiaire = entity.IdClientBeneficiaire;
             commande.IdAdresseLivraison = entity.IdAdresseLivraison;
-            commande.IdPanier = entity.IdPanier;
+            commande.IdPanier = commande.IdPanier;
             commande.ValidationClient = entity.ValidationClient;
             commande.codereduction = entity.codereduction;
             commande.EtatCommande = entity.EtatCommande;

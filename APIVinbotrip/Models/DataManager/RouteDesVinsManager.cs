@@ -33,7 +33,7 @@ namespace APIVinotrip.Models.DataManager
         public  async Task Update(RouteDesVins routeDesVins, RouteDesVins entity)
         {
             vinotripDBContext.Entry(routeDesVins).State = EntityState.Modified;
-            routeDesVins.IdRoute = entity.IdRoute;
+            routeDesVins.IdRoute = routeDesVins.IdRoute;
             routeDesVins.LibRoute = entity.LibRoute;
             routeDesVins.PhotoRoute = entity.PhotoRoute;
             routeDesVins.DescriptionRoute = entity.DescriptionRoute;         
