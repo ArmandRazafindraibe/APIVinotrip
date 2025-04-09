@@ -22,9 +22,14 @@ namespace APIVinotrip.Models.DataManager
             return  vinotripDBContext.Paniers.FirstOrDefault(u => u.IdPanier == id);
         }
 
-        public async Task<ActionResult<DescriptionPanier>> GetDescriptionPanierById(int id)
+        public async Task<ActionResult<IEnumerable<DescriptionPanier>>> GetDescriptionsPanierById(int id)
         {
-            return vinotripDBContext.Descriptionpaniers.FirstOrDefault(u => u.IdPanier == id);
+            return vinotripDBContext.Descriptionpaniers.Where(x=>x.IdPanier==id).ToList();
+        }
+
+        public async Task<ActionResult<DescriptionPanier>> GetOneDescriptionPanierById(int id)
+        {
+            return vinotripDBContext.Descriptionpaniers.FirstOrDefault(x=>x.IdPanier==id);
         }
         public  async Task<ActionResult<Panier>> GetByString(string vide)
         {
@@ -33,7 +38,6 @@ namespace APIVinotrip.Models.DataManager
         public  async Task Add(Panier entity)
         {
              vinotripDBContext.Paniers.Add(entity);
-             
              vinotripDBContext.SaveChanges();
         }
         public async Task AddPanierDetail( DescriptionPanier desc)

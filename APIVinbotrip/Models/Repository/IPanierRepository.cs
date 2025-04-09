@@ -7,6 +7,7 @@ namespace APIVinotrip.Models.Repository
     {
         Task AddPanierDetail(DescriptionPanier desc);
         Task UpdateDetailPanier(DescriptionPanier desc, DescriptionPanier entity);
-        Task<ActionResult<DescriptionPanier>> GetDescriptionPanierById(int id);
+        Task<ActionResult<IEnumerable<DescriptionPanier>>> GetDescriptionsPanierById(int id);
+        Task<ActionResult<DescriptionPanier>> GetOneDescriptionPanierById(int id);
     }
 }
