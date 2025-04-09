@@ -33,6 +33,7 @@ builder.Services.AddScoped<IDataRepository<Etape>, EtapeManager>();
 builder.Services.AddScoped<IDataRepository<Visite>, VisiteManager>();
 builder.Services.AddScoped<IDataRepository<Avis>, AvisManager>();
 builder.Services.AddScoped<IDataRepository<Partenaire>, PartenaireManager>();
+builder.Services.AddScoped<IRepasRepository<Repas>, RepasManager>();
 
 
 builder.Services.AddControllers()
