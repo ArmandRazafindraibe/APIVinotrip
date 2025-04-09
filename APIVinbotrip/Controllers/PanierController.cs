@@ -112,19 +112,19 @@ namespace APIVinotrip.Controllers
 
         // POST: api/Paniers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+            [HttpPost]
+            [Route("[action]")]
+            [ActionName("PostPanier")]
             [ProducesResponseType(StatusCodes.Status201Created)]
             [ProducesResponseType(StatusCodes.Status400BadRequest)]
             public async Task<ActionResult<Panier>> PostPanier(Panier panier)
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
+                Panier newpanier=new Panier();
+                newpanier.DateAjoutPanier=panier.DateAjoutPanier;
 
-                await dataRepository.Add(panier);
+                await dataRepository.Add(newpanier);
 
-                return CreatedAtAction("GetById", new { id = panier.IdPanier }, panier); // GetById : nom de l’action
+                return CreatedAtAction("GetById", new { id = newpanier.IdPanier }, newpanier);
             }
 
         // POST: api/Paniers
