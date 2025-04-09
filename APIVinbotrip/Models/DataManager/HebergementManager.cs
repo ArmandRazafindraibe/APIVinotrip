@@ -33,7 +33,7 @@ namespace APIVinotrip.Models.DataManager
         public async Task Update(Hebergement hebergement, Hebergement entity)
         {
             vinotripDBContext.Entry(hebergement).State = EntityState.Modified;
-            hebergement.IdHebergement = entity.IdHebergement;
+            hebergement.IdHebergement = hebergement.IdHebergement;
             hebergement.PrixHebergement = entity.PrixHebergement;
             hebergement.LienHebergement=entity.LienHebergement;
             hebergement.PhotoHebergement = entity.PhotoHebergement;

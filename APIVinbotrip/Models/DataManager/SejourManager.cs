@@ -33,13 +33,13 @@ namespace APIVinotrip.Models.DataManager
         public async Task Update(Sejour sejour, Sejour entity)
         {
             vinotripDBContext.Entry(sejour).State = EntityState.Modified;
-            sejour.Idsejour = entity.Idsejour;
-            sejour.Idcategorieparticipant = entity.Idcategorieparticipant;
-            sejour.Idcategoriesejour = entity.Idcategoriesejour;
-            sejour.Idcategorievignoble = entity.Idcategorievignoble;
-            sejour.Idduree=entity.Idduree;
-            sejour.Idlocalite = entity.Idlocalite;
-            sejour.Idtheme = entity.Idtheme;
+            sejour.Idsejour = sejour.Idsejour;
+            sejour.Idcategorieparticipant = sejour.Idcategorieparticipant;
+            sejour.Idcategoriesejour = sejour.Idcategoriesejour;
+            sejour.Idcategorievignoble = sejour.Idcategorievignoble;
+            sejour.Idduree=sejour.Idduree;
+            sejour.Idlocalite = sejour.Idlocalite;
+            sejour.Idtheme = sejour.Idtheme;
             sejour.Publie = entity.Publie;
             sejour.Descriptionsejour = entity.Descriptionsejour;
             sejour.Titresejour = entity.Titresejour;
