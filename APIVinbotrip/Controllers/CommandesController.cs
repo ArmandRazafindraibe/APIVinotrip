@@ -26,7 +26,7 @@ namespace APIVinotrip.Controllers
         }
 
         [HttpGet]
-        [Route("[action]")]
+        [Route("[action]/{id}")]
         [ActionName("GetCommandesByIdClient")]
         public async Task<ActionResult<IEnumerable<Commande>>> GetCommandesByIdClient(int id)
         {
@@ -34,7 +34,7 @@ namespace APIVinotrip.Controllers
         }
 
         [HttpGet]
-        [Route("[action]")]
+        [Route("[action]/{id}")]
         [ActionName("GetCommandesByIdPanier")]
         public async Task<ActionResult<Commande>> GetCommandeByIdPanier(int id)
         {
