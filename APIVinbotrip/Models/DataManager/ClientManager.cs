@@ -49,7 +49,7 @@ namespace APIVinotrip.Models.DataManager
         }
         public  async Task Delete(Client client)
         {
-            vinotripDBContext.Clients.Remove(client);
+            vinotripDBContext?.Clients.Remove(client);
              vinotripDBContext.SaveChanges();
         }
     }

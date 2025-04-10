@@ -27,7 +27,7 @@ namespace APIVinotrip.Controllers
         {
             dataRepository = dataRepo;
         }
-
+ 
         //////////////////////////////////
         [HttpGet]
         [Route("GetUserData")]

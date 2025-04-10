@@ -48,7 +48,7 @@ builder.Services.AddRazorPages();
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDbContext<DBVinotripContext>(options =>
-    options.UseNpgsql("Server=localhost;port=5432;Database=DBVinotrip; uid=postgres; password=root;"));
+    options.UseNpgsql("Server=localhost;port=5432;Database=DBVinotrip; uid=postgres; password=postgres;"));
 }
 else
 {
