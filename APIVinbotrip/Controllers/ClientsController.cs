@@ -14,21 +14,32 @@ using APIVinotrip.Helpers;
 
 namespace APIVinotrip.Controllers
 {
-
-    
+    /// <summary>
+    /// Contrôleur permettant de gérer les clients
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ClientsController : ControllerBase
     {
+        /// <summary>
+        /// Interface du repository pour accéder aux données des clients
+        /// </summary>
         private readonly IDataRepository<Client> dataRepository;
 
+        /// <summary>
+        /// Constructeur du contrôleur ClientsController
+        /// </summary>
+        /// <param name="dataRepo">Repository d'accès aux données</param>
         public ClientsController(IDataRepository<Client> dataRepo)
-
         {
             dataRepository = dataRepo;
         }
- 
-        //////////////////////////////////
+
+        /// <summary>
+        /// Récupère les données de l'utilisateur connecté
+        /// </summary>
+        /// <returns>Les données de l'utilisateur</returns>
+        /// <remarks>Nécessite l'autorisation Client</remarks>
         [HttpGet]
         [Route("GetUserData")]
         [Authorize(Policy = Policies.Client)]
@@ -36,6 +47,12 @@ namespace APIVinotrip.Controllers
         {
             return Ok("This is a response from user method");
         }
+
+        /// <summary>
+        /// Récupère les données administrateur
+        /// </summary>
+        /// <returns>Les données administrateur</returns>
+        /// <remarks>Nécessite l'autorisation Dirigeant</remarks>
         [HttpGet]
         [Route("GetAdminData")]
         [Authorize(Policy = Policies.Dirigeant)]
@@ -44,6 +61,10 @@ namespace APIVinotrip.Controllers
             return Ok("This is a response from Admin method");
         }
 
+        /// <summary>
+        /// Récupère la liste de tous les clients
+        /// </summary>
+        /// <returns>Collection d'objets Client</returns>
         // GET: api/Client
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Client>>> GetClients()
@@ -51,6 +72,11 @@ namespace APIVinotrip.Controllers
             return await dataRepository.GetAll();
         }
 
+        /// <summary>
+        /// Récupère un client spécifique par son identifiant
+        /// </summary>
+        /// <param name="id">Identifiant du client à récupérer</param>
+        /// <returns>L'objet Client correspondant à l'identifiant ou NotFound si non trouvé</returns>
         // GET: api/Client/5
         [HttpGet]
         [Route("[action]/{id}")]
@@ -65,9 +91,14 @@ namespace APIVinotrip.Controllers
             {
                 return NotFound();
             }
-            return  utilisateur;
+            return utilisateur;
         }
 
+        /// <summary>
+        /// Récupère un client spécifique par son adresse email
+        /// </summary>
+        /// <param name="email">Adresse email du client à récupérer</param>
+        /// <returns>L'objet Client correspondant à l'email ou NotFound si non trouvé</returns>
         [HttpGet]
         [Route("[action]/{email}")]
         [ActionName("GetByEmail")]
@@ -75,18 +106,22 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Client>> GetClientByEmail(string email)
         {
-            var utilisateur =  await dataRepository.GetByString(email);
+            var utilisateur = await dataRepository.GetByString(email);
             //var utilisateur =  _context.Client.FirstOrDefault(e => e.Mail.ToUpper() == email.ToUpper());
             if (utilisateur == null)
             {
                 return NotFound();
             }
-            return  utilisateur;
+            return utilisateur;
         }
 
+        /// <summary>
+        /// Met à jour un client existant
+        /// </summary>
+        /// <param name="id">Identifiant du client à mettre à jour</param>
+        /// <param name="client">Objet Client contenant les nouvelles données</param>
+        /// <returns>NoContent si la mise à jour est réussie, BadRequest si l'identifiant ne correspond pas, NotFound si le client n'existe pas</returns>
         // PUT: api/Client/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -98,7 +133,7 @@ namespace APIVinotrip.Controllers
             {
                 return BadRequest();
             }
-            var userToUpdate = await  dataRepository.GetById(id);
+            var userToUpdate = await dataRepository.GetById(id);
             if (userToUpdate == null)
             {
                 return NotFound();
@@ -110,6 +145,12 @@ namespace APIVinotrip.Controllers
             }
         }
 
+        /// <summary>
+        /// Crée un nouveau client
+        /// </summary>
+        /// <param name="client">Objet Client à créer</param>
+        /// <returns>Le client créé avec son URI d'accès, ou Conflict si l'email existe déjà</returns>
+        /// <remarks>Cette méthode est accessible sans authentification et attribue automatiquement le rôle Client (IdRole = 1)</remarks>
         // POST: api/Clients
         [HttpPost]
         [AllowAnonymous]
@@ -126,36 +167,34 @@ namespace APIVinotrip.Controllers
             client.IdRole = 1; // Rôle Client
 
             // Hacher le mot de passe avant de l'enregistrer
-            string originalPassword = client.MdpClient; 
+            string originalPassword = client.MdpClient;
             client.MdpClient = PasswordHasher.HashPassword(client.MdpClient);
 
             // Ne pas assigner le résultat à une variable
             await dataRepository.Add(client);
 
-            
+
             return CreatedAtAction(nameof(GetClientById), new { id = client.IdClient }, client);
         }
 
+        /// <summary>
+        /// Supprime un client spécifique
+        /// </summary>
+        /// <param name="id">Identifiant du client à supprimer</param>
+        /// <returns>NoContent si la suppression est réussie, NotFound si le client n'existe pas</returns>
         // DELETE: api/Client/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteClient(int id)
         {
-            var utilisateur =  await dataRepository.GetById(id);
+            var utilisateur = await dataRepository.GetById(id);
             if (utilisateur == null)
             {
                 return NotFound();
             }
-             await dataRepository.Delete(utilisateur.Value);
+            await dataRepository.Delete(utilisateur.Value);
             return NoContent();
         }
-
-
-        //private bool UtilisateurExists(int id)
-        //{
-        //    return _context.Client.Any(e => e.UtilisateurId == id);
-        //}
-
     }
 }

@@ -7,17 +7,31 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace APIVinotrip.Controllers
 {
+    /// <summary>
+    /// Contrôleur permettant de gérer les catégories de vignoble
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CategorieVignobleController : ControllerBase
     {
+        /// <summary>
+        /// Interface du repository pour accéder aux données des catégories de vignoble
+        /// </summary>
         private readonly IDataRepository<CategorieVignoble> dataRepository;
 
+        /// <summary>
+        /// Constructeur du contrôleur CategorieVignobleController
+        /// </summary>
+        /// <param name="dataRepos">Repository d'accès aux données</param>
         public CategorieVignobleController(IDataRepository<CategorieVignoble> dataRepos)
         {
             dataRepository = dataRepos;
         }
 
+        /// <summary>
+        /// Récupère la liste de toutes les catégories de vignoble
+        /// </summary>
+        /// <returns>Collection d'objets CategorieVignoble</returns>
         // GET: api/Aviss
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategorieVignoble>>> GetCategorieVignobles()
@@ -25,6 +39,11 @@ namespace APIVinotrip.Controllers
             return await dataRepository.GetAll();
         }
 
+        /// <summary>
+        /// Récupère une catégorie de vignoble spécifique par son identifiant
+        /// </summary>
+        /// <param name="id">Identifiant de la catégorie de vignoble à récupérer</param>
+        /// <returns>L'objet CategorieVignoble correspondant à l'identifiant ou NotFound si non trouvé</returns>
         // GET: api/Aviss/5
         [HttpGet]
         [Route("[action]/{id}")]
@@ -43,6 +62,11 @@ namespace APIVinotrip.Controllers
             return avis;
         }
 
+        /// <summary>
+        /// Récupère une catégorie de vignoble spécifique par son titre
+        /// </summary>
+        /// <param name="title">Titre de la catégorie de vignoble à récupérer</param>
+        /// <returns>L'objet CategorieVignoble correspondant au titre ou NotFound si non trouvé</returns>
         // GET: api/Aviss/5
         [HttpGet]
         [Route("[action]/{title}")]
@@ -61,6 +85,13 @@ namespace APIVinotrip.Controllers
             return avis;
         }
 
+        /// <summary>
+        /// Met à jour une catégorie de vignoble existante
+        /// </summary>
+        /// <param name="id">Identifiant de la catégorie de vignoble à mettre à jour</param>
+        /// <param name="categorieVignoble">Objet CategorieVignoble contenant les nouvelles données</param>
+        /// <returns>NoContent si la mise à jour est réussie, BadRequest si l'identifiant ne correspond pas, NotFound si la catégorie n'existe pas</returns>
+        /// <remarks>Nécessite l'autorisation ServiceVente ou Dirigeant</remarks>
         // PUT: api/Aviss/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -88,6 +119,12 @@ namespace APIVinotrip.Controllers
             }
         }
 
+        /// <summary>
+        /// Crée une nouvelle catégorie de vignoble
+        /// </summary>
+        /// <param name="categorieVignoble">Objet CategorieVignoble à créer</param>
+        /// <returns>La catégorie créée avec son URI d'accès, ou BadRequest si le modèle est invalide</returns>
+        /// <remarks>Nécessite l'autorisation ServiceVente ou Dirigeant</remarks>
         // POST: api/Aviss
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -104,9 +141,15 @@ namespace APIVinotrip.Controllers
 
             await dataRepository.Add(categorieVignoble);
 
-            return CreatedAtAction("GetById", new { id = categorieVignoble.IdCategorieVignoble }, categorieVignoble); // GetById : nom de l’action
+            return CreatedAtAction("GetById", new { id = categorieVignoble.IdCategorieVignoble }, categorieVignoble); // GetById : nom de l'action
         }
 
+        /// <summary>
+        /// Supprime une catégorie de vignoble spécifique
+        /// </summary>
+        /// <param name="id">Identifiant de la catégorie de vignoble à supprimer</param>
+        /// <returns>NoContent si la suppression est réussie, NotFound si la catégorie n'existe pas</returns>
+        /// <remarks>Nécessite l'autorisation ServiceVente ou Dirigeant</remarks>
         // DELETE: api/Aviss/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -124,9 +167,6 @@ namespace APIVinotrip.Controllers
             return NoContent();
         }
 
-        //private bool AvisExists(int id)
-        //{
-        //    return _context.Aviss.Any(e => e.Idavis == id);
-        //}
+      
     }
 }

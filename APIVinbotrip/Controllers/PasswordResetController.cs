@@ -15,8 +15,7 @@ namespace APIVinotrip.Controllers
     public class PasswordResetController : ControllerBase
     {
         private readonly IDataRepository<Client> _dataRepository;
-        // Vous auriez besoin d'un service d'email ici
-        // private readonly IEmailService _emailService;
+       
         private readonly IConfiguration _config;
 
         public PasswordResetController(
@@ -51,10 +50,7 @@ namespace APIVinotrip.Controllers
             string token = GenerateResetToken();
             DateTime tokenExpiry = DateTime.UtcNow.AddHours(24); // Valide pendant 24 heures
 
-            // Stocker le token dans la base de données ou un cache
-            // Exemple: client.ResetToken = token;
-            // client.ResetTokenExpiry = tokenExpiry;
-            // await _dataRepository.Update(client.IdClient, client);
+      
 
             // Envoyer l'email avec le lien de réinitialisation
             string resetLink = $"{_config["AppSettings:FrontendUrl"]}/reset-password?token={token}&email={model.Email}";
@@ -92,7 +88,6 @@ namespace APIVinotrip.Controllers
                 return NotFound("Client non trouvé.");
 
             // Vérifier le token et sa validité
-            // Exemple : 
             // if (client.ResetToken != model.Token || client.ResetTokenExpiry < DateTime.UtcNow)
             //    return BadRequest("Token invalide ou expiré.");
 

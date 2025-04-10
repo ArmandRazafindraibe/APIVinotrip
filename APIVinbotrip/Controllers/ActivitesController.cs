@@ -6,17 +6,31 @@ using APIVinotrip.Models.Repository;
 
 namespace APIVinotrip.Controllers
 {
+    /// <summary>
+    /// Contrôleur permettant de gérer les activités
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ActivitesController : ControllerBase
     {
+        /// <summary>
+        /// Interface du repository pour accéder aux données des activités
+        /// </summary>
         private readonly IDataRepository<Activite> dataRepository;
 
+        /// <summary>
+        /// Constructeur du contrôleur ActivitesController
+        /// </summary>
+        /// <param name="dataRepos">Repository d'accès aux données</param>
         public ActivitesController(IDataRepository<Activite> dataRepos)
         {
-             dataRepository = dataRepos;
+            dataRepository = dataRepos;
         }
 
+        /// <summary>
+        /// Récupère la liste de toutes les activités
+        /// </summary>
+        /// <returns>Collection d'objets Activite</returns>
         // GET: api/Activites
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Activite>>> GetActivites()
@@ -24,6 +38,11 @@ namespace APIVinotrip.Controllers
             return await dataRepository.GetAll();
         }
 
+        /// <summary>
+        /// Récupère une activité spécifique par son identifiant
+        /// </summary>
+        /// <param name="id">Identifiant de l'activité à récupérer</param>
+        /// <returns>L'objet Activite correspondant à l'identifiant ou NotFound si non trouvé</returns>
         // GET: api/Activites/5
         [HttpGet]
         [Route("[action]/{id}")]
@@ -32,16 +51,21 @@ namespace APIVinotrip.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Activite>> GetActiviteById(int id)
         {
-            var activite =  await dataRepository.GetById(id);
+            var activite = await dataRepository.GetById(id);
 
             if (activite == null)
             {
                 return NotFound();
             }
 
-            return  activite;
+            return activite;
         }
 
+        /// <summary>
+        /// Récupère une activité spécifique par son titre
+        /// </summary>
+        /// <param name="title">Titre de l'activité à récupérer</param>
+        /// <returns>L'objet Activite correspondant au titre ou NotFound si non trouvé</returns>
         // GET: api/Activites/5
         [HttpGet]
         [Route("[action]/{title}")]
@@ -57,9 +81,15 @@ namespace APIVinotrip.Controllers
                 return NotFound();
             }
 
-            return  activite;
+            return activite;
         }
 
+        /// <summary>
+        /// Met à jour une activité existante
+        /// </summary>
+        /// <param name="id">Identifiant de l'activité à mettre à jour</param>
+        /// <param name="activite">Objet Activite contenant les nouvelles données</param>
+        /// <returns>NoContent si la mise à jour est réussie, BadRequest si l'identifiant ne correspond pas, NotFound si l'activité n'existe pas</returns>
         // PUT: api/Activites/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -80,18 +110,23 @@ namespace APIVinotrip.Controllers
             }
             else
             {
-               await  dataRepository.Update(userToUpdate.Value, activite);
+                await dataRepository.Update(userToUpdate.Value, activite);
                 return NoContent();
             }
         }
 
-            // POST: api/Activites
-            // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-            [HttpPost]
-            [ProducesResponseType(StatusCodes.Status201Created)]
-            [ProducesResponseType(StatusCodes.Status400BadRequest)]
-            public async Task<ActionResult<Activite>> PostActivite(Activite activite)
-            {
+        /// <summary>
+        /// Crée une nouvelle activité
+        /// </summary>
+        /// <param name="activite">Objet Activite à créer</param>
+        /// <returns>L'activité créée avec son URI d'accès, ou BadRequest si le modèle est invalide</returns>
+        // POST: api/Activites
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Activite>> PostActivite(Activite activite)
+        {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -99,9 +134,14 @@ namespace APIVinotrip.Controllers
 
             await dataRepository.Add(activite);
 
-            return CreatedAtAction("GetById", new { id = activite.IdActivite }, activite); // GetById : nom de l’action
+            return CreatedAtAction("GetById", new { id = activite.IdActivite }, activite); // GetById : nom de l'action
         }
 
+        /// <summary>
+        /// Supprime une activité spécifique
+        /// </summary>
+        /// <param name="id">Identifiant de l'activité à supprimer</param>
+        /// <returns>NoContent si la suppression est réussie, NotFound si l'activité n'existe pas</returns>
         // DELETE: api/Activites/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -117,9 +157,6 @@ namespace APIVinotrip.Controllers
             return NoContent();
         }
 
-        //private bool ActiviteExists(int id)
-        //{
-        //    return _context.Activites.Any(e => e.Idactivite == id);
-        //}
+      
     }
 }

@@ -7,17 +7,31 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace APIVinotrip.Controllers
 {
+    /// <summary>
+    /// Contrôleur permettant de gérer les catégories de séjour
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesSejourController : ControllerBase
     {
+        /// <summary>
+        /// Interface du repository pour accéder aux données des catégories de séjour
+        /// </summary>
         private readonly IDataRepository<CategorieSejour> dataRepository;
 
+        /// <summary>
+        /// Constructeur du contrôleur CategoriesSejourController
+        /// </summary>
+        /// <param name="dataRepos">Repository d'accès aux données</param>
         public CategoriesSejourController(IDataRepository<CategorieSejour> dataRepos)
         {
             dataRepository = dataRepos;
         }
 
+        /// <summary>
+        /// Récupère la liste de toutes les catégories de séjour
+        /// </summary>
+        /// <returns>Collection d'objets CategorieSejour</returns>
         // GET: api/Aviss
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategorieSejour>>> GetCategorieSejours()
@@ -25,6 +39,11 @@ namespace APIVinotrip.Controllers
             return await dataRepository.GetAll();
         }
 
+        /// <summary>
+        /// Récupère une catégorie de séjour spécifique par son identifiant
+        /// </summary>
+        /// <param name="id">Identifiant de la catégorie de séjour à récupérer</param>
+        /// <returns>L'objet CategorieSejour correspondant à l'identifiant ou NotFound si non trouvé</returns>
         // GET: api/Aviss/5
         [HttpGet]
         [Route("[action]/{id}")]
@@ -43,6 +62,11 @@ namespace APIVinotrip.Controllers
             return avis;
         }
 
+        /// <summary>
+        /// Récupère une catégorie de séjour spécifique par son titre
+        /// </summary>
+        /// <param name="title">Titre de la catégorie de séjour à récupérer</param>
+        /// <returns>L'objet CategorieSejour correspondant au titre ou NotFound si non trouvé</returns>
         // GET: api/Aviss/5
         [HttpGet]
         [Route("[action]/{title}")]
@@ -61,6 +85,13 @@ namespace APIVinotrip.Controllers
             return avis;
         }
 
+        /// <summary>
+        /// Met à jour une catégorie de séjour existante
+        /// </summary>
+        /// <param name="id">Identifiant de la catégorie de séjour à mettre à jour</param>
+        /// <param name="categorieSejour">Objet CategorieSejour contenant les nouvelles données</param>
+        /// <returns>NoContent si la mise à jour est réussie, BadRequest si l'identifiant ne correspond pas, NotFound si la catégorie n'existe pas</returns>
+        /// <remarks>Nécessite l'autorisation ServiceVente ou Dirigeant</remarks>
         // PUT: api/Aviss/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -88,6 +119,12 @@ namespace APIVinotrip.Controllers
             }
         }
 
+        /// <summary>
+        /// Crée une nouvelle catégorie de séjour
+        /// </summary>
+        /// <param name="categorieSejour">Objet CategorieSejour à créer</param>
+        /// <returns>La catégorie créée avec son URI d'accès, ou BadRequest si le modèle est invalide</returns>
+        /// <remarks>Nécessite l'autorisation ServiceVente ou Dirigeant</remarks>
         // POST: api/Aviss
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -104,9 +141,15 @@ namespace APIVinotrip.Controllers
 
             await dataRepository.Add(categorieSejour);
 
-            return CreatedAtAction("GetById", new { id = categorieSejour.IdCategorieSejour }, categorieSejour); // GetById : nom de l’action
+            return CreatedAtAction("GetById", new { id = categorieSejour.IdCategorieSejour }, categorieSejour); // GetById : nom de l'action
         }
 
+        /// <summary>
+        /// Supprime une catégorie de séjour spécifique
+        /// </summary>
+        /// <param name="id">Identifiant de la catégorie de séjour à supprimer</param>
+        /// <returns>NoContent si la suppression est réussie, NotFound si la catégorie n'existe pas</returns>
+        /// <remarks>Nécessite l'autorisation ServiceVente ou Dirigeant</remarks>
         // DELETE: api/Aviss/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -124,9 +167,6 @@ namespace APIVinotrip.Controllers
             return NoContent();
         }
 
-        //private bool AvisExists(int id)
-        //{
-        //    return _context.Aviss.Any(e => e.Idavis == id);
-        //}
+       
     }
 }
