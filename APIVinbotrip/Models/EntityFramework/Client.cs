@@ -83,6 +83,23 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(Favoris.LeClient))]
         public virtual List<Favoris> ListeFavoris { get; set; } = new List<Favoris>();
 
-
+        public override bool Equals(object? obj)
+        {
+            return obj is Client client &&
+                   IdClient == client.IdClient &&
+                   IdRole == client.IdRole &&
+                   CiviliteClient == client.CiviliteClient &&
+                   PrenomClient == client.PrenomClient &&
+                   NomClient == client.NomClient &&
+                   EmailClient == client.EmailClient &&
+                   DateNaissanceClient == client.DateNaissanceClient &&
+                   MdpClient == client.MdpClient &&
+                   offresPromotionnellesClient == client.offresPromotionnellesClient &&
+                   DateDerniereActiviteClient == client.DateDerniereActiviteClient &&
+                   A2f == client.A2f &&
+                   TelClient == client.TelClient &&
+                   TokenResetMDP == client.TokenResetMDP &&
+                   DateCreationToken == client.DateCreationToken;
+        }
     }
 }

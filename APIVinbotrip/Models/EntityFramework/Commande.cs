@@ -85,6 +85,20 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(DescriptionCommande.Commande))]
         public virtual List<DescriptionCommande> DescriptionsCommande { get; set; } = new List<DescriptionCommande>();
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Commande commande &&
+                   IdCommande == commande.IdCommande &&
+                   IdAdresseFacturation == commande.IdAdresseFacturation &&
+                   IdClientAcheteur == commande.IdClientAcheteur &&
+                   IdClientBeneficiaire == commande.IdClientBeneficiaire &&
+                   IdAdresseLivraison == commande.IdAdresseLivraison &&
+                   IdPanier == commande.IdPanier;
+        }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(IdCommande, IdAdresseFacturation, IdClientAcheteur, IdClientBeneficiaire, IdAdresseLivraison, IdPanier);
+        }
     }
 }

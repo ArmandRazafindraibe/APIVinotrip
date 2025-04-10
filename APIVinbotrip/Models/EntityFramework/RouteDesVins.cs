@@ -26,5 +26,13 @@ namespace APIVinotrip.Models.EntityFramework
         [InverseProperty(nameof(SeLocalise.Route))]
         public virtual List<SeLocalise> SesLocalites { get; set; } = new List<SeLocalise>();
 
+        public override bool Equals(object? obj)
+        {
+            return obj is RouteDesVins vins &&
+                   IdRoute == vins.IdRoute &&
+                   LibRoute == vins.LibRoute &&
+                   DescriptionRoute == vins.DescriptionRoute &&
+                   PhotoRoute == vins.PhotoRoute;
+        }
     }
 }
