@@ -115,7 +115,6 @@ namespace APIVinotrip.Controllers
 
 
         // PUT: api/Paniers/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -163,9 +162,35 @@ namespace APIVinotrip.Controllers
                 return NoContent();
             }
         }
+        [HttpPut]
+        [Route("[action]/{id}/{quantite}")]
+        [ActionName("UpdatePanierItemQuantity")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdatePanierItemQuantity(int id, int quantite)
+        {
+            // Validation de base
+            if (quantite < 1)
+            {
+                return BadRequest("La quantité doit être supérieure à 0");
+            }
+             // Récupérer la description du panier
+                var descriptionPanier = await dataRepository.GetOneDescriptionPanierById(id);
+
+                if (descriptionPanier == null)
+                {
+                    return NotFound();
+                }
+
+                var updatedDescriptionPanier = descriptionPanier.Value;
+                updatedDescriptionPanier.Quantite = quantite;
+                await dataRepository.UpdateDetailPanier(descriptionPanier.Value, updatedDescriptionPanier);
+                return NoContent();
+            }
+        
 
         // POST: api/Paniers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [Route("[action]")]
         [ActionName("PostPanier")]
@@ -182,12 +207,11 @@ namespace APIVinotrip.Controllers
 
             await dataRepository.Add(newpanier);
 
-          
+
             return CreatedAtAction("GetByIdPanier", new { id = newpanier.IdPanier }, newpanier);
         }
 
-        // POST: api/Paniers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/Paniers Detail
         [HttpPost]
         [Route("[action]")]
         [ActionName("PostPanierDetail")]
@@ -205,8 +229,10 @@ namespace APIVinotrip.Controllers
             return CreatedAtAction("GetOneDescriptionPanier", new { id = panier.IdDescriptionPanier }, panier);
         }
 
-        // DELETE: api/Paniers/5
-        [HttpDelete("{id}")]
+        // DELETE: api/Panier/DeletePanier/{id}
+        [HttpDelete]
+        [Route("[action]/{id}")]
+        [ActionName("DeletePanier")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeletePanier(int id)
@@ -220,6 +246,16 @@ namespace APIVinotrip.Controllers
             return NoContent();
         }
 
-
+        // DELETE: api/Panier/DeletePanierItem/{id}
+        [HttpDelete]
+        [Route("[action]/{id}")]
+        [ActionName("DeletePanierItem")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeletePanierItem(int id)
+        {
+            await dataRepository.DeletePanierItem(id);
+            return NoContent();
+        }
     }
 }
